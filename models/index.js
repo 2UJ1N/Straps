@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
-const ItemSchema = require("./schemas/item");
 
-exports.Item = mongoose.model("Item", ItemSchema);
+const ProductSchema = require("./schemas/product");
+
+exports.Product = mongoose.model("Product", ProductSchema);
