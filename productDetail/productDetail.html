@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/custom.css">
+  <title>Detail</title>
+</head>
+<body>
+    <!--쇼핑몰 헤더 부분-->
+    <div class="container ">
+        <header class="blog-header py-3">
+          <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+              <a class="link-secondary" href="#">Subscribe</a>
+            </div>
+            <div class="col-4 text-center">
+              <a class="blog-header-logo text-dark" href="#">77</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+              <a class="link-secondary" href="#" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+              </a>
+              <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+            </div>
+          </div>
+        </header>
+    </div>
+    
+    <div class="container">
+        <!--메인 페이지-->
+        <div class="product-detail">
+            <!--상품 분류-->
+            <div class="product-detail-nav">브랜드 > 애플</div>
+            <!--상품 설명-->
+            <div class="product-detail-main text-center">
+                <div class="product-detail-core product_detail row mb-2">
+                    <div class="product-detail_pic col-4 col-md-4"><img src="./ex.jpeg" alt="제품 이미지" class="img-responsive"></div>
+                    <div class="product-detail-info col-8 col-md-8 align-self-center">
+                        <div class="row">
+                            <div class="product-detail-title">
+                                <h2>애플워치 스트랩</h2>
+                            </div>
+                            <div class="product-detail-price">12,000</div>
+                            <br><br>
+                            <div class="row">
+                                <div class="product-detail-num col">개수</div>
+                                <div class="input-group mb-3 col">
+                                    <button class="btn btn-outline-secondary" type="button">-</button>
+                                    <input type="text" class="form-control" placeholder="" aria-label="Example text with two button addons">
+                                    <button class="btn btn-outline-secondary" type="button">+</button>
+                                </div>
+                            </div>
+                                
+                            <!--
+                                상품 수량 추가하지 않았을 경우 버튼 비활성화 상태여야 함!
+                            -->
+                            <div class="d-grid gap-2 d-md-block col-4 mx-auto">
+                                <button type="button" class="btn btn-outline-dark">바로 구매</button>
+                                <button type="button" class="btn btn-outline-dark">장바구니에 추가</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--상품 하단-->
+            <div class="product-detail-main_bottom container text-center">
+                <div class="row">
+                    <div class="col">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#inform">상세 정보</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#review">review</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#qna">Q & A</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="inform">
+                                <img src="./ex2.jpg" alt="제품 상세설명" class="img-responsive">
+                            </div>
+                            <div class="tab-pane fade" id="review">
+                                <p>사용자의 리뷰를 보여줍니다</p>
+                            </div>
+                            <div class="tab-pane fade" id="qna">
+                                <p>사용자의 Q&A를 보여줍니다</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.js"></script>
+</body>
+    
+</html>
