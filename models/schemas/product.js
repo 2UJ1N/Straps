@@ -5,7 +5,7 @@ const ProductSchema = new Schema({
   name: { type: String, required: true },
   kind: { type: String, required: true },
   price: { type: Number, required: true },
-  content: { type: String, requried: true },
+  content: { type: String, required: true },
   image: { type: String, required: true },
   regdate: { type: Date, default: Date.now },
   product_seq: { type: Number, required: true },
