@@ -9,6 +9,7 @@ const ProductSchema = new Schema({
   image: { type: String, required: true },
   regdate: { type: Date, default: Date.now },
   product_seq: { type: Number, required: true },
-});
+  p_count: { type: Number, required: true },
+}, { timestamps: true, collection: "Product" });
 
 module.exports = ProductSchema;
