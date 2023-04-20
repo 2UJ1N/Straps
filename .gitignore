@@ -1,4 +1,7 @@
-package-lock.json
-/node_modules
-/css
-/.vscode
+.DS_Store
+/node_modules/
+/css/
+/dist/
+/.vscode/
+/.cache/
+/build/
