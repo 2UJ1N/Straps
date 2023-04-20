@@ -1,21 +1,21 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 
 // models
-const { Product } = require("./models");
-const { Cart } = require("./models");
-const { Order } = require("./models");
+const { Product } = require('./models');
+const { Cart } = require('./models');
+const { Order } = require('./models');
 
 // fake json
-const FakeProduct = require("./models/Fake/f_products.json");
-const FakeCart = require("./models/Fake/f_cart.json");
-const FakeOrder = require("./models/Fake/f_order.json");
+const FakeProduct = require('./models/Fake/f_products.json');
+const FakeCart = require('./models/Fake/f_cart.json');
+const FakeOrder = require('./models/Fake/f_order.json');
 
 // DB 연결
 mongoose
   .connect(
-    "mongodb+srv://admin:elice1234@admin-cluster.dj8naev.mongodb.net/?retryWrites=true&w=majority",
+    'mongodb+srv://admin:elice1234@admin-cluster.dj8naev.mongodb.net/?retryWrites=true&w=majority',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -24,8 +24,13 @@ mongoose
       family: 4, // IPv4
     }
   )
-  .then(() => console.log("Successfully connected to MongoDB"))
+  .then(() => console.log('Successfully connected to MongoDB'))
   .catch((err) => console.log(err));
+
+// DB 초기화하는 코드 넣기
+Product.deleteMany({});
+Cart.deleteMany({});
+Order.deleteMany({});
 
 // DB 저장
 Product.create(FakeProduct)
@@ -40,8 +45,8 @@ Order.create(FakeOrder)
   .then((order) => console.log(order))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => {
-  res.send("OK");
+app.get('/', (req, res) => {
+  res.send('OK');
 });
 
-app.listen(8080);
+app.listen(3000);
