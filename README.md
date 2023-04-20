@@ -21,7 +21,7 @@ npm install
 서버 실행
 
 ~~~bash  
-npm run start
+npm run fe-start
 ~~~  
 
 아래 주소로 접속
