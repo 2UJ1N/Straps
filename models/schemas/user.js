@@ -15,7 +15,7 @@ const UserSchema = new Schema(
       default: 0,
     },
     status: {
-      // 일반회원 1, 탈퇴회원 0
+      // 회원가입한 회원 1, 회원가입하지 않은 회원 0
       type: Number,
       required: true,
       default: 1,
