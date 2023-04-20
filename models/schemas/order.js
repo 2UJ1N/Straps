@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const OrderSchema = new Schema({
   order_num: { type: Number, required: true, unique: true }, // primary key
