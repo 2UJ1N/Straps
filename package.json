@@ -3,14 +3,17 @@
   "description": "test",
   "version": "1.0.0",
   "license": "ISC",
+  "main": "index.js",
   "stackblitz": {
     "startCommand": "npm start"
   },
   "scripts": {
+    "start-express": "babel-node index.js",
+    "test-express": "jest",
     "build": "npm run css",
-    "css-compile": "sass --style compressed --source-map --embed-sources --no-error-css --load-path=node_modules scss/:css/",
-    "css-lint": "stylelint scss/",
-    "css-prefix": "postcss --replace css/custom.css --use autoprefixer --map",
+    "css-compile": "sass --style compressed --source-map --embed-sources --no-error-css --load-path=node_modules static-files/scss/:static-files/css/",
+    "css-lint": "stylelint static-files/scss/",
+    "css-prefix": "postcss --replace static-files/css/custom.css --use autoprefixer --map",
     "css": "npm-run-all css-compile css-prefix",
     "server": "sirv --dev --no-clear --port 3000",
     "start": "npm-run-all --parallel watch server",
