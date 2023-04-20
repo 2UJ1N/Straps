@@ -6,13 +6,11 @@ const app = express();
 const { Product } = require('./models');
 const { Cart } = require('./models');
 const { Order } = require('./models');
-const { User } = require('./models');
 
 // fake json
 const FakeProduct = require('./models/Fake/f_products.json');
 const FakeCart = require('./models/Fake/f_cart.json');
 const FakeOrder = require('./models/Fake/f_order.json');
-const FakeUser = require('./models/Fake/f_user.json');
 
 // DB 연결
 mongoose
@@ -30,29 +28,23 @@ mongoose
   .catch(err => console.log(err));
 
 // DB 초기화하는 코드 넣기
-Product.deleteMany({});
-Cart.deleteMany({});
-Order.deleteMany({});
-User.deleteMany({});
-
-// DB 저장
-Product.create(FakeProduct)
-  .then(products => console.log(products))
-  .catch(err => console.log(err));
-
-Cart.create(FakeCart)
-  .then(cart => console.log(cart))
-  .catch(err => console.log(err));
-
-Order.create(FakeOrder)
-  .then(order => console.log(order))
-  .catch(err => console.log(err));
-
-User.create(FakeUser)
-  .then(user => console.log(user))
-  .catch(err => console.log(err));
+// Product.deleteMany({});
+// Cart.deleteMany({});
+// Order.deleteMany({});
 
 app.get('/', (req, res) => {
+  // DB 저장
+  Product.create(FakeProduct)
+    .then(products => console.log(products))
+    .catch(err => console.log(err));
+
+  Cart.create(FakeCart)
+    .then(cart => console.log(cart))
+    .catch(err => console.log(err));
+
+  Order.create(FakeOrder)
+    .then(order => console.log(order))
+    .catch(err => console.log(err));
   res.send('OK');
 });
 
