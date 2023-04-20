@@ -8,4 +8,4 @@ const UserSchema = require('./schemas/user');
 exports.Product = mongoose.model('Product', ProductSchema);
 exports.Cart = mongoose.model('Cart', CartSchema);
 exports.Order = mongoose.model('Order', OrderSchema);
-exports.User = mongoose.model('User', OrderSchema);
+exports.User = mongoose.model('User', UserSchema);

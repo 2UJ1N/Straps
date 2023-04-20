@@ -6,11 +6,13 @@ const app = express();
 const { Product } = require('./models');
 const { Cart } = require('./models');
 const { Order } = require('./models');
+const { User } = require('./models');
 
 // fake json
 const FakeProduct = require('./models/Fake/f_products.json');
 const FakeCart = require('./models/Fake/f_cart.json');
 const FakeOrder = require('./models/Fake/f_order.json');
+const FakeUser = require('./models/Fake/f_user.json');
 
 // DB 연결
 mongoose
@@ -45,6 +47,11 @@ app.get('/', (req, res) => {
   Order.create(FakeOrder)
     .then(order => console.log(order))
     .catch(err => console.log(err));
+
+  User.create(FakeUser)
+    .then(user => console.log(user))
+    .catch(err => console.log(err));
+
   res.send('OK');
 });
 
