@@ -27,6 +27,6 @@ npm run fe-start
 아래 주소로 접속
 
 ~~~bash  
-http://localhost:3000
+http://localhost:1234
 ~~~  
 
