@@ -27,38 +27,12 @@ npm run fe-start
 아래 주소로 접속
 
 ~~~bash  
-http://localhost:1234
+http://localhost:12345
 ~~~  
 
-## parcel 페이지 변경 방법
+## Vite 실행시 css 오류
 
-package.json 파일에서 ./fe-files/index.html 부분을 변경
-
-변경 전
-
-~~~bash  
-    "scripts": {
-        "parcel-dev": "parcel ./fe-files/index.html",
-        "parcel-prebuild": "npx rimraf build",
-        "parcel-build": "parcel build --public-url ./ ./fe-files/index.html --experimental-scope-hoisting --out-dir build", 
-        ...
-    },
-~~~  
-
-변경 후
-
-~~~bash  
-    "scripts": {
-        "parcel-dev": "parcel ./fe-files/joinForm.html",
-        "parcel-prebuild": "npx rimraf build",
-        "parcel-build": "parcel build --public-url ./ ./fe-files/joinForm.html --experimental-scope-hoisting --out-dir build", 
-        ...
-    },
-~~~  
-
-## parcel 실행시 css 오류
-
-parcel build시 아래와 같은 메시지가 출력 될 경우
+Vite build시 아래와 같은 메시지가 출력 될 경우
 
 ~~~bash  
     ×  D:\team7_watchstrap-fe\css\custom.css:undefined:undefined: ENOENT: no such file or directory, open 'D:\team7_watchstrap-fe\css\custom.css'
@@ -74,3 +48,12 @@ head 태그의 custom.css 파일 경로 확인
   </head>
 ~~~
 
+## Vite 실행 후 index.html외 다른 페이지로 이동 하고 싶은 경우
+  confimModal.html로 이동 하고 싶은 경우 주소창에 입력
+~~~bash  
+    http://localhost:12345/confirmModal.html
+~~~  
+  productDetail로 이동하고 싶은 경우 주소창에 입력
+~~~bash  
+    http://localhost:12345/productDetail/productDetailsPage.html
+~~~  
