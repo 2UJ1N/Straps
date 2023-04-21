@@ -8,6 +8,7 @@
     "startCommand": "npm start"
   },
   "scripts": {
+    "start-be": "node index.js",
     "start-express": "babel-node index.js",
     "test-express": "jest",
     "build-css": "npm run css",
