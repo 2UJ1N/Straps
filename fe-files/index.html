@@ -9,43 +9,46 @@
 </head>
 
 <body class="container">
-  <header class="container text-center" style="border: 1px black;">
+  <header class="container text-center">
     <div class="row">
       <p>Some LOGO</p>
     </div>
-    <div class="row">
-      <div class="col-10">
-        <ul class="nav nav-tabs justify-content-center" role="tablist">
-          <li class="nav-item" role="presentation">
+    <div>
+      <div>
+        <ul class="nav nav-tabs justify-content-center row" role="tablist">
+          <li class="nav-item col" role="presentation">
             <button class="nav-link active" id="bestSeller-tab" data-bs-toggle="tab"
               data-bs-target="#bestSeller-tab-pane" type="button" role="tab" aria-controls="bestSeller-tab-pane"
               aria-selected="true">베스트 셀러</button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li class="nav-item col" role="presentation">
             <button class="nav-link" id="sale-tab" data-bs-toggle="tab" data-bs-target="#sale-tab-pane" type="button"
               role="tab" aria-controls="sale-tab-pane" aria-selected="false">세일</button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li class="nav-item col" role="presentation">
             <button class="nav-link" id="galaxy-tab" data-bs-toggle="tab" data-bs-target="#galaxy-tab-pane"
               type="button" role="tab" aria-controls="galaxy-tab-pane" aria-selected="false">갤럭시</button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li class="nav-item col" role="presentation">
             <button class="nav-link" id="apple-tab" data-bs-toggle="tab" data-bs-target="#apple-tab-pane" type="button"
               role="tab" aria-controls="apple-tab-pane" aria-selected="false">애플</button>
           </li>
-          <li class="nav-item" role="presentation">
+          <li class="nav-item col" role="presentation">
             <button class="nav-link" id="etc-tab" data-bs-toggle="tab" data-bs-target="#etc-tab-pane" type="button"
               role="tab" aria-controls="etc-tab-pane" aria-selected="false">기타</button>
           </li>
+          <svg type="button" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+            class="bi bi-person-circle col" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+          </svg>
+          <svg type="button" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+            class="bi bi-cart-fill col" viewBox="0 0 16 16">
+            <path
+              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+          </svg>
         </ul>
-      </div>
-      <div class="col">
-        <button type="button" class="btn btn-primary">
-          로그인
-        </button>
-        <button type="button" class="btn btn-secondary">
-          장바구니
-        </button>
       </div>
     </div>
   </header>
@@ -54,9 +57,9 @@
       <div class="tab-pane fade show active" id="bestSeller-tab-pane" role="tabpanel" aria-labelledby="bestSeller-tab"
         tabindex="0">
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-          <div class="container text-cent">
+          <div class="container">
             <div class="row">
-              <h6 class="col-10">베스트 셀러</h6>
+              <label class="col-10 text-left font-weight-bold">베스트 셀러</label>
               <div class="col dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -118,9 +121,9 @@
       </div>
       <div class="tab-pane fade" id="sale-tab-pane" role="tabpanel" aria-labelledby="sale-tab" tabindex="0">
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-          <div class="container text-cent">
+          <div class="container">
             <div class="row">
-              <h6 class="col-10">세일</h6>
+              <h6 class="col-10 text-left">세일</h6>
               <div class="col dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -182,9 +185,9 @@
       </div>
       <div class="tab-pane fade" id="galaxy-tab-pane" role="tabpanel" aria-labelledby="galaxy-tab" tabindex="0">
         <div class="my-3 p-3 bg-body rounded shadow-sm">
-          <div class="container text-cent">
+          <div class="container">
             <div class="row">
-              <h6 class="col-10">갤럭시</h6>
+              <h6 class="col-10 text-left">갤럭시</h6>
               <div class="col dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
@@ -244,130 +247,134 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="apple-tab-pane" role="tabpanel" aria-labelledby="apple-tab" tabindex="0">        <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <div class="container text-cent">
-          <div class="row">
-            <h6 class="col-10">애플</h6>
-            <div class="col dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Dropdown trigger
-              </button>
-              <ul class="dropdown-menu">
-                <li><button class="dropdown-item" type="button">Action</button></li>
-                <li><button class="dropdown-item" type="button">Another action</button></li>
-                <li><button class="dropdown-item" type="button">Something else here</button></li>
-              </ul>
+      <div class="tab-pane fade" id="apple-tab-pane" role="tabpanel" aria-labelledby="apple-tab" tabindex="0">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+          <div class="container">
+            <div class="row">
+              <h6 class="col-10 text-left">애플</h6>
+              <div class="col dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown trigger
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" type="button">Action</button></li>
+                  <li><button class="dropdown-item" type="button">Another action</button></li>
+                  <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="container text-center">
+            <div class="row align-items-start">
+              <div class="col">
+                1
+              </div>
+              <div class="col">
+                2
+              </div>
+              <div class="col">
+                3
+              </div>
+              <div class="col">
+                4
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col">
+                5
+              </div>
+              <div class="col">
+                6
+              </div>
+              <div class="col">
+                7
+              </div>
+              <div class="col">
+                8
+              </div>
+            </div>
+            <div class="row align-items-end">
+              <div class="col">
+                9
+              </div>
+              <div class="col">
+                10
+              </div>
+              <div class="col">
+                11
+              </div>
+              <div class="col">
+                12
+              </div>
             </div>
           </div>
         </div>
-        <div class="container text-center">
-          <div class="row align-items-start">
-            <div class="col">
-              1
-            </div>
-            <div class="col">
-              2
-            </div>
-            <div class="col">
-              3
-            </div>
-            <div class="col">
-              4
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col">
-              5
-            </div>
-            <div class="col">
-              6
-            </div>
-            <div class="col">
-              7
-            </div>
-            <div class="col">
-              8
+      </div>
+      <div class="tab-pane fade" id="etc-tab-pane" role="tabpanel" aria-labelledby="etc-tab" tabindex="0">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+          <div class="container">
+            <div class="row">
+              <h6 class="col-10 text-left">기타</h6>
+              <div class="col dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown trigger
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" type="button">Action</button></li>
+                  <li><button class="dropdown-item" type="button">Another action</button></li>
+                  <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div class="row align-items-end">
-            <div class="col">
-              9
+          <div class="container text-center">
+            <div class="row align-items-start">
+              <div class="col">
+                1
+              </div>
+              <div class="col">
+                2
+              </div>
+              <div class="col">
+                3
+              </div>
+              <div class="col">
+                4
+              </div>
             </div>
-            <div class="col">
-              10
+            <div class="row align-items-center">
+              <div class="col">
+                5
+              </div>
+              <div class="col">
+                6
+              </div>
+              <div class="col">
+                7
+              </div>
+              <div class="col">
+                8
+              </div>
             </div>
-            <div class="col">
-              11
-            </div>
-            <div class="col">
-              12
-            </div>
-          </div>
-        </div>
-      </div></div>
-      <div class="tab-pane fade" id="etc-tab-pane" role="tabpanel" aria-labelledby="etc-tab" tabindex="0">        <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <div class="container text-cent">
-          <div class="row">
-            <h6 class="col-10">기타</h6>
-            <div class="col dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Dropdown trigger
-              </button>
-              <ul class="dropdown-menu">
-                <li><button class="dropdown-item" type="button">Action</button></li>
-                <li><button class="dropdown-item" type="button">Another action</button></li>
-                <li><button class="dropdown-item" type="button">Something else here</button></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="container text-center">
-          <div class="row align-items-start">
-            <div class="col">
-              1
-            </div>
-            <div class="col">
-              2
-            </div>
-            <div class="col">
-              3
-            </div>
-            <div class="col">
-              4
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col">
-              5
-            </div>
-            <div class="col">
-              6
-            </div>
-            <div class="col">
-              7
-            </div>
-            <div class="col">
-              8
-            </div>
-          </div>
-          <div class="row align-items-end">
-            <div class="col">
-              9
-            </div>
-            <div class="col">
-              10
-            </div>
-            <div class="col">
-              11
-            </div>
-            <div class="col">
-              12
+            <div class="row align-items-end">
+              <div class="col">
+                9
+              </div>
+              <div class="col">
+                10
+              </div>
+              <div class="col">
+                11
+              </div>
+              <div class="col">
+                12
+              </div>
             </div>
           </div>
         </div>
-      </div></div>
+      </div>
     </div>
 
   </main>
