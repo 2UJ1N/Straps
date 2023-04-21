@@ -8,9 +8,6 @@
     "startCommand": "npm start"
   },
   "scripts": {
-    "parcel-dev": "parcel ./fe-files/index.html",
-    "parcel-prebuild": "npx rimraf build",
-    "parcel-build": "parcel build --public-url ./ ./fe-files/index.html --experimental-scope-hoisting --out-dir build",
     "start-express": "babel-node index.js",
     "test-express": "jest",
     "build-css": "npm run css",
@@ -18,18 +15,21 @@
     "css-lint": "stylelint fe-files/scss/",
     "css-prefix": "postcss --replace fe-files/css/custom.css --use autoprefixer --map",
     "css": "npm-run-all css-compile css-prefix",
-    "fe-start": "npm-run-all --parallel watch parcel-dev",
+    "fe-start": "npm-run-all --parallel watch vite-start",
     "watch": "nodemon -e html,scss -x \"npm run css\"",
-    "test": "npm-run-all css-lint css"
+    "test": "npm-run-all css-lint css",
+    "vite-start": "vite",
+    "vite-build": "vite build",
+    "vite-test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.7",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.4",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
     "debug": "^4.3.4",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
@@ -41,12 +41,12 @@
     "mongoose": "^7.0.4",
     "nodemon": "^2.0.22",
     "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.12.5",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "sass": "^1.61.0",
     "stylelint": "^15.4.0",
-    "stylelint-config-twbs-bootstrap": "^9.0.1"
+    "stylelint-config-twbs-bootstrap": "^9.0.1",
+    "vite": "^4.3.1"
   },
   "author": "yun seo choi"
 }
