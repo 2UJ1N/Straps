@@ -3,6 +3,7 @@
     "mongoose": "^7.0.4"
   },
   "dependencies": {
+    "debug": "^4.3.4",
     "dotenv": "^16.0.3",
     "express": "^4.18.2"
   }
