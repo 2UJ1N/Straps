@@ -74,3 +74,9 @@
     border: 1px solid red;
     color: red;
 }
+
+.jumbotron .option .priceOption .price .soldOut strong{
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+}
