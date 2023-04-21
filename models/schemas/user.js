@@ -2,10 +2,11 @@ const { Schema } = require('mongoose');
 
 const UserSchema = new Schema(
   {
-    password: { type: String, required: true }, // primary key
-    full_name: { type: String, required: true },
+    user_id: { type: Schema.Types.ObjectId, required: true }, // primary key
+    password: { type: String, required: true },
+    name: { type: String, required: true },
     address: { type: String, required: false },
-    phone_number: { type: String, required: false },
+    phones: { type: String, required: false },
     email: { type: String, required: true },
     regdate: { type: Date, default: Date.now },
     role: {
