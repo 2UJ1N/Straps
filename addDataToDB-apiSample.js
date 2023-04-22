@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
+//스키마 가져옴
 const { Product } = require('./models');
 
-mongoose.connect("mongodb://127.0.0.1:27017/api-module-test");
+//db 이름
+const dbName = "api-module-test";
+
+//로컬 DB일 경우
+mongoose.connect("mongodb://127.0.0.1:27017/" + dataBaseName);
+
+//Atlas 클라우드 DB일 경우
+// const dbConStr = "mongodb+srv://데이터베이스아이디:데이터베이스비밀번호@클러스터이름/"
+// mongoose.connect(dbConStr);
+
 //////////////////////////////
-// 샘플 테이터 DB에 등록하는 코드
+// 샘플 데이터 DB에 등록하는 코드
 //////////////////////////////
 async function addDataToDB() {
   let products = [
@@ -128,7 +138,9 @@ async function addDataToDB() {
       "prod_cell": 9
     }
   ];  
-
+  
+  //Product 스키마
+  //products 샘플 데이터
   await Product.create(products);
 }
 
