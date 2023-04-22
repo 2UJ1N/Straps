@@ -40,43 +40,85 @@
     color: #000;
     font-weight: 800;
     margin-bottom: 30px;
+    padding: 0 15px;
 }
 .jumbotron h3{
     color: #1a1e21;
     font-size: 18px;
     margin-bottom: 13px;
     font-weight: 600;
+    padding: 0 15px;
 }
 .jumbotron p{
     margin-bottom: 60px;
+    padding: 0 15px;
 }
 
-.jumbotron strong {
+.productSpec strong {
     margin-right: 5px; 
     padding: 2px 3px; 
     border-radius: 3px; 
     font-weight: bolder; 
     font-style: normal; 
-    font-size: 11px;  
+    font-size: 12px;  
 }
 
-.jumbotron .delivary strong {
+.productSpec .delivary strong {
     border: 1px solid #28C76F;
     color: #28C76F;
 }
 
-.jumbotron .best strong {
+.productSpec .best strong {
     border: 1px solid blue;
     color: blue;
 }
 
-.jumbotron .sale strong {
+.productSpec .sale strong {
     border: 1px solid red;
     color: red;
 }
 
-.jumbotron .option .priceOption .price .soldOut strong{
-    border: 1px solid red;
-    background-color: red;
+.productSpec .option .priceOption .price .soldOut strong{
+    border: 1px solid var(--bs-red);
+    background-color: var(--bs-red);
     color: white;
+}
+
+.productSpec .option .priceOption .salePrice .salePercent {
+    color: red;
+}
+
+form hr {
+    border: none;
+    border-top: 1px solid #d3d3d3;
+    margin: 30px 0 ;
+}
+
+.option {
+    padding: 0 15px;
+}
+
+.option h4 {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000;
+    margin-right: 10px;
+}
+
+.option .divider {
+    color: #d3d3d3;
+}
+
+.option .quantityOption input {
+    border: none;
+    width: 30px;
+    color: #000;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+}
+
+.productDetail {
+    text-align: center;
 }
