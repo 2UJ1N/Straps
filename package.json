@@ -3,14 +3,13 @@
   "description": "test",
   "version": "1.0.0",
   "license": "ISC",
-  "main": "index.js",
+  "main": "index-apiSample.js",
   "stackblitz": {
     "startCommand": "npm start"
   },
   "scripts": {
-    "start-babel": "babel-node index-apiSample.js",
-    "debug-babel": "babel-node debug index-apiSample.js",
-    "start-be": "node index.js",
+    "start-apiSample": "babel-node index-apiSample.js",
+    "debug-apiSample": "babel-node debug index-apiSample.js",
     "start-express": "babel-node index.js",
     "test-express": "jest",
     "vite-start": "vite",
