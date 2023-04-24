@@ -4,13 +4,11 @@
 // addDataToDB-apiSample.js
 // routes-apiSample
 //   > products-apiSample.js
+//   > user-apiSample.js
 // models-apiSample
-//   > schemas-apiSample
 //   f_productDB-apiSample.js
 //   index-apiSample.js
-//   > > product-apiSample.js
-// index-apiSample.js 구동 시 vscode 디버거 필요함 
-// module 에러 남
+
 
 //express import
 const express = require('express');
@@ -21,15 +19,23 @@ const cors = require("cors");
 // /routes-apiSample/products-apiSample.js product api 라우터
 const productRouter = require('./routes-apiSample/products-apiSample');
 
+// /routes-apiSample/products-apiSample.js product api 라우터
+const userRouter = require('./routes-apiSample/user-apiSample');
+
 //express 생성
 const app = express();
 
 app.use(express.json());
 
-// /products url
+// /products api
 // cor() 미들웨어, cors 핸들링함
 // productRouter product api 라우터
 app.use('/products',cors(), productRouter);
+
+// /user api
+// cor() 미들웨어, cors 핸들링함
+// userRouter product api 라우터
+app.use('/user',cors(), userRouter);
 
 //404에러처리
 app.use((req, res, next) => {
