@@ -50,5 +50,5 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(3000);
-console.log("서버 시작 포트 번호 3000")
+app.listen(5002);
+console.log("서버 시작 포트 번호 5002")
