@@ -11,6 +11,7 @@
     "start-be": "node index.js",
     "start-express": "babel-node index.js",
     "test-express": "jest",
+    "fe-start" : "vite",
     "vite-start": "vite",
     "vite-build": "vite build",
     "vite-test": "echo \"Error: no test specified\" && exit 1"
