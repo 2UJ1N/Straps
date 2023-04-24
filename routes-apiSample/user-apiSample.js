@@ -2,7 +2,7 @@
 const { Router } = require('express');
 
 // fakeDB 호출 실제에서는 const mongoose = require('mongoose'); 써야함
-const mongooseFake = require('../models-apiSample/f_productDB-apiSample');
+const mongooseFake = require('../models-apiSample/f_userDB-apiSample');
 
 //라우터 생성
 const router = Router();
