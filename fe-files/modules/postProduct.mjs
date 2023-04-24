@@ -1,6 +1,6 @@
-async function postProduct(data) {
+async function postProduct(url,data) {
     try {
-      const response = await fetch("http://localhost:3000/products", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json; charset=utf-8",

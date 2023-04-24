@@ -1,6 +1,6 @@
-async function getProducts() {
+async function getProducts(url) {
     try {
-      const response = await fetch("http://localhost:3000/products", {
+      const response = await fetch(url, {
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=utf-8",
