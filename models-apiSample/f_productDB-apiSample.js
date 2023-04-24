@@ -1,5 +1,5 @@
 //가짜데이터 import
-const f_products = require("../Fake/f_products.json");
+const f_products = require("../models/Fake/f_products.json");
 //////////////////////////
 // 이 파일은 DB를 흉내 낸 것 
 //////////////////////////
