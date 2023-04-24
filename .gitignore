@@ -1,9 +1,7 @@
-/fe-files/css/custom.css.map
 .DS_Store
-/node_modules/
-/dist/
+/node_modules/**
 /.vscode/
-/.cache/
-/build/
-/dist
-/models/dist
+/.cache/**
+/build/**
+/dist/**
+/models/dist/**
