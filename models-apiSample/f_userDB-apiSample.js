@@ -17,38 +17,38 @@ const f_users = require("../models/Fake/f_user.json");
     }));
   }
   
-  exports.get = (prod_num) => {
+  exports.findOne = (email) => {
     const f_user = f_users.find(
-      (f_user) => f_user.prod_num === prod_num
+      (f_user) => f_user.email === email
     );
   
     if (!f_user) {
-      throw new Error('Note not found');
+      throw new Error('User not found');
     }
     return f_user;
   };
   
-  exports.create = ( name, kind, price, content,image,regdate,prod_count,prod_cell) => {
-    const {
-       prod_num: lastNum,
-       prod_seq: lastSeq
-     } = f_users[f_users.length - 1];
+  exports.create = ( password, name, address,phones,email,regdate) => {
+    const { user_id : lastNum } = f_users[f_users.length - 1];
+    const userRole = false;
+    const userStatus = true;
     const newF_user = { 
-      prod_num: lastNum + 1, 
+      user_id : lastNum + 1, 
+      password, 
       name, 
-      kind, 
-      price, 
-      content,
-      image,
+      address, 
+      phones,
+      email,
       regdate,
-      prod_seq: lastSeq + 1,
-      prod_count,
-      prod_cell
+      role : userRole,
+      status : userStatus
     };
     f_users.push(newF_user);
     return newF_user;
   };
   
+
+  ///////////////////////////////당분간 안씀////////////////
   exports.update = (prod_num, prod_seq, name, kind, price, content,image,regdate,prod_count,prod_cell) => {
     const index = f_users.findIndex(
       (f_user) => f_user.prod_num === prod_num
