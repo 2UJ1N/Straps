@@ -1,8 +1,9 @@
 /fe-files/css/custom.css.map
 .DS_Store
-/node_modules/
+/node_modules/*
 /dist/
 /.cache/
 /build/
 /dist
 /models/dist
+/package-lock.json
