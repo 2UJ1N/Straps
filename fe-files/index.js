@@ -1,8 +1,5 @@
 //index.html에 사용될 js 스크립트
-import { getProducts } from './modules/getProducts.mjs';
-import { postProduct } from './modules/postProduct.mjs';
-import { putProduct } from './modules/putProduct.mjs';
-import { deleteProduct } from './modules/deleteProduct.mjs';
+import { putProduct, deleteProduct, postProduct ,getProducts } from './modules/product.mjs';
 
 //서버 주소
 let url = "http://localhost:3000/products";
