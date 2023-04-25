@@ -12,11 +12,13 @@ const authAdmin = require('../middlewares/authAdmin');
 
 // async handler 불러오기
 const asyncHandler = require('../utils/asyncHandler');
+const isUsingEmail = require('../middlewares/isUsingEmail');
 
 // 회원가입 post
 userRouter.post(
   '/register',
   contentType,
+  isUsingEmail,
   validEmailCheck,
   asyncHandler(async (req, res, next) => {
     const { name, email, password, role } = req.body;
@@ -59,6 +61,17 @@ userRouter.get(
   }),
 );
 
+// 사용자 정보 조회 (자신의 정보를 볼 수 있다.)
+userRouter.get(
+  '/user',
+  loginRequired,
+  asyncHandler(async (req, res) => {
+    const userId = req.currentUserId;
+    const userInfo = await userModel.findById({ user_id: userId });
+    res.status(200).json(userInfo);
+  }),
+);
+
 // 사용자 정보 수정
 userRouter.patch(
   '/user/edit/:userId',
@@ -90,17 +103,6 @@ userRouter.patch(
   }),
 );
 
-// 사용자 정보 조회 (자신의 정보를 볼 수 있다.)
-userRouter.get(
-  '/user',
-  loginRequired,
-  asyncHandler(async (req, res) => {
-    const userId = req.currentUserId;
-    const userInfo = await userModel.findById({ _id: userId });
-    res.status(200).json(userInfo);
-  }),
-);
-
 // 사용자 정보 삭제: 일부 변경하는 개념이므로 patch 메서드로 구현
 userRouter.patch(
   '/user/drop',
@@ -115,6 +117,7 @@ userRouter.patch(
     const userInfoRequired = { userId, currentPassword };
 
     const toUpdate = {
+      // 의미?
       status: 0,
     };
     const updatedUserInfo = await userService.setUser(userInfoRequired, toUpdate);

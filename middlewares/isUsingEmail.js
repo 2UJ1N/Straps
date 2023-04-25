@@ -1,6 +1,5 @@
 // 회원가입 시, 이메일 중복인지 유효성 검사
-
-import { userService } from './services/userService.js';
+const userService = require('../services/userService');
 
 const isUsingEmail = async (req, res, next) => {
   const email = req.body.email;
@@ -17,4 +16,4 @@ const isUsingEmail = async (req, res, next) => {
   next();
 };
 
-export { isUsingEmail };
+module.exports = isUsingEmail;

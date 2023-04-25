@@ -11,15 +11,21 @@ class UserService {
   async isUsingEmail(email) {
     return await this.userModel.isUsingEmail(email);
   }
+
   // 회원가입
   async addUser(userInfo) {
     const { email, name, password, role } = userInfo;
 
     const isUsingEmail = await this.isUsingEmail(email);
+    const validEmailCheck = await this.validEmailCheck(email);
 
     // 탈퇴한 회원의 이메일이면 가입 가능
     if (!isUsingEmail) {
       throw new Error('이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.');
+    }
+
+    if (!validEmailCheck) {
+      throw new Error('정상적인 이메일이 아닙니다.');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10); // 비밀번호 해싱
@@ -40,15 +46,8 @@ class UserService {
   async getUserToken(loginInfo) {
     const { email, password, role } = loginInfo; // 관리자인지 사용자인지 구분해야하므로 role도 필요
 
+    // 이메일 일치 여부 확인 (유저 db에 프론트에서 입력한 이메일이 있는지 찾는다)
     const user = await this.userModel.findByEmail(email); // 아이디인 이메일로 유저 찾기
-
-    if (!user) {
-      throw new Error('회원 정보가 없습니다');
-    }
-    if (user.status === 0) {
-      throw new Error('회원가입하지 않은 회원 입니다');
-    }
-
     if (!user) {
       throw new Error('해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.');
     }
@@ -69,9 +68,9 @@ class UserService {
     // 2개 프로퍼티를 jwt 토큰에 담음; loginRequired: jwt.verify 이용하여 정상적인 jwt인지 확인도 해야하나?
     const token = jwt.sign({ userId: user.user_id, role: user.role }, secretKey); // jwt의 sign 함수: 토큰 생성, 이 때 위의 secret key 사용
     if (user.role === 1) {
-      return { token, admin: 1 }; // 관리자인 경우, 리턴 값을 사용자와 다르게 반환
+      return { token, admin: 1 }; // 사용자인 경우, 리턴 값을 관리자와 다르게 반환
     }
-    return { token };
+    return { token }; // 관리자인 경우, 토큰 값만 리턴
   }
 
   // 사용자 목록을 받음.
@@ -85,7 +84,7 @@ class UserService {
     return await this.userModel.findById(id);
   }
 
-  // 유저정보 수정, 현재 비밀번호가 있어야 수정 가능함.
+  // 사용자 정보 수정, 현재 비밀번호가 있어야 수정 가능함.
   async setUser(userInfoRequired, toUpdate) {
     // 객체 destructuring: 구조화된 배열 또는 객체를 비구조화하여 개별적인 변수에 할당
     const { userId, currentPassword } = userInfoRequired;
