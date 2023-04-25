@@ -1,5 +1,6 @@
 //index.html에 사용될 js 스크립트
 import { putProduct, deleteProduct, postProduct ,getProducts } from './modules/product.mjs';
+import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 
 //서버 주소
 let url = "http://34.64.218.104:5002/products";
@@ -200,3 +201,60 @@ class CardGrid extends HTMLElement {
   }
 }
 customElements.define('card-grid', CardGrid);
+
+
+
+//서버 주소
+url = "http://34.64.218.104:5002/user";
+
+////////////////////////////////////////////////
+// postProduct DEMO
+let userDataForPostDemo = {
+    "password": "s58rBMief",
+    "name": "Molly Stubbings",
+    "address": "Ulsan",
+    "phones": "010-6742-6856",
+    "email": "mstubbings0@google.com",
+    "regdate": "12/24/2022",
+    "role": false,
+    "status": false
+  };
+
+const callPutUser = putUser(url,userDataForPostDemo);
+console.log(callPutUser);
+////////////////////////////
+
+////////////////////////////////////////////////
+//putProduct DEMO
+
+let userDataForChangeDemo = {
+  "password": "aaaabbbb!!11",
+  "name": "Molly Stubbings",
+  "address": "Ulsan",
+  "phones": "010-6742-1234",
+  "email": "mstubbings0@google.com",
+  "regdate": "12/24/2022",
+  "role": false,
+  "status": false
+};
+
+
+const callChangeUser= changeUser(url, userDataForChangeDemo["email"] ,userDataForChangeDemo);
+console.log(callChangeUser);
+////////////////////////////
+
+////////////////////
+//getProducts DEMO
+const callGetUser = getUser(url, userDataForChangeDemo["email"]);
+console.log(callGetUser);
+////////////////////
+
+////////////////////////////////////////////////
+//deleteProduct DEMO
+
+
+let deleteUserEmail = userDataForChangeDemo["email"];
+
+const callDeleteUser= deleteUser(url, deleteUserEmail);
+console.log(callDeleteUser);
+////////////////////////////
