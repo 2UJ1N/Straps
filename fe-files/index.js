@@ -6,8 +6,8 @@ let url = "http://34.64.218.104:5002/products";
 
 ////////////////////
 //getProducts DEMO
-const products = await getProducts(url);
-console.log(products);
+// const products = getProducts(url);
+// console.log(products);
 ////////////////////
 
 ////////////////////////////////////////////////
@@ -21,7 +21,7 @@ let dataForPostDemo =   {
     "regdate": "6/9/2022",
     "prod_cell": 3
   };
-const callPostProduct = await postProduct(url,dataForPostDemo);
+const callPostProduct = postProduct(url,dataForPostDemo);
 console.log(callPostProduct);
 ////////////////////////////
 
@@ -42,7 +42,7 @@ let dataForPutDemo = {
 
 let putUrlParams = 10;
 
-const callPutProduct = await putProduct(url, putUrlParams ,dataForPutDemo);
+const callPutProduct = putProduct(url, putUrlParams ,dataForPutDemo);
 console.log(callPutProduct);
 ////////////////////////////
 
@@ -51,7 +51,7 @@ console.log(callPutProduct);
 
 let deleteUrlParams = 2;
 
-const callDeleteProduct = await deleteProduct(url, deleteUrlParams);
+const callDeleteProduct = deleteProduct(url, deleteUrlParams);
 console.log(callDeleteProduct);
 ////////////////////////////
 
@@ -59,7 +59,6 @@ console.log(callDeleteProduct);
 /////////////상품 카드 데모///////////////////
 class ItemCardDemo extends HTMLElement {
   constructor() {
-    const { image, name, price} = products[0]
     super();
     //shadow DOM 생성
     const shadow = this.attachShadow({ mode: 'open' });
@@ -69,15 +68,14 @@ class ItemCardDemo extends HTMLElement {
     <div>
       <div>
         <div>
-          ${image}
           <img alt="이미지1" data-original="//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg"
             src="//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg">
         </div>
         <p>
-          ${name}
+          name111
         </p>
         <p>
-          ${price}
+          123213
         </p
       </div>
     </div>
@@ -97,29 +95,31 @@ class ItemCard extends HTMLElement {
     //shadow DOM 생성
     const shadow = this.attachShadow({ mode: 'open' });
 
-    //템플릿을 붙임
+    //템플릿 생성
     const cardTemplate = document.createElement("template");
 
+    //html 정의
     cardTemplate.innerHTML = `
     <li>
       <div>
         <div>
           <div>
-            ${image}
+            <slot name="item-image"></slot>
             <img alt="이미지1" data-original="//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg"
               src="//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg">
           </div>
           <p>
-            ${name}
+            <slot name="item-name"></slot>
           </p>
           <p>
-            ${price}
+            <slot name="item-price"></slot>
           </p
         </div>
       </div>
     </li>
     `;
 
+    //완성된 cardTemplate append
     shadow.appendChild(cardTemplate.content.cloneNode(true));
   }
 }
@@ -128,14 +128,24 @@ customElements.define('item-card', ItemCard);
 
 ////////////////////////////////////////////
 //상품 그리드
+
 class CardGrid extends HTMLElement {
   constructor() {
     super();
+    //field 정의
 
+    //additem 함수 정의
+    this.addItem = this.addItem.bind(this);
+    //fetchProducts 함수 정의
+    this.fetchProducts = this.fetchProducts.bind(this);
+    //fetch한 상품 정보 등록 함수 정의
+    this.itmesInit = this.itmesInit.bind(this);
+
+    //shadow DOM 생성
     const shadow = this.attachShadow({ mode: 'open' });
-
+    //템플릿 생성
     const cardContainer = document.createElement('template');
-
+    //html 정의
     cardContainer.innerHTML = `
       <style>
       </style>
@@ -143,30 +153,50 @@ class CardGrid extends HTMLElement {
       <ul>
       </ul>
     `
-
-    this.addItem = this.addItem.bind(this);
-    
+    //완성된 cardTemplate append
     shadow.appendChild(cardContainer.content.cloneNode(true));
   }
 
-  connectedCallback() {
+  //컴포넌트가 DOM에 연결 되면 실행되는 함수
+  async connectedCallback() {
+    // 버튼 선택
     const addButton = this.shadowRoot.querySelector('button');
 
+    //ul 선택
     this.itemList = this.shadowRoot.querySelector('ul');
 
+    await this.fetchProducts()
+    //fetchProducts 실행
+    await this.itmesInit();
+
+    //addButton에 클릭 이벤트 추가
     addButton.addEventListener('click', this.addItem, false);
-    const card = document.createElement('item-card');
-    this.itemList.appendChild(card);
   }
 
   //상품추가 함수
   addItem(e) {
     {
-      const card = document.createElement('item-card');
+      const card = document.createElement('item-card-demo');
       this.itemList.appendChild(card);
     }
   }
+  //상품 정보 fetch 함수
+  async fetchProducts() {
+    return await getProducts(url);
+  }
+  //불러온 상품 정보 출력
+  async itmesInit(){
+
+    //TODO 작동이 안되요ㅠㅠ
+    // const json = await this.fetchProducts();
+    // let name = json[0].name;
+    // let price = json[0].price;
+    // let image = json[0].image;
+    // let card = document.createElement('item-card');
+    // card.querySelector('slot');
+    // console.log(card);
+
+    // this.itemList.appendChild(card);
+  }
 }
 customElements.define('card-grid', CardGrid);
-
-
