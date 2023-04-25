@@ -1,0 +1,12 @@
+.was-validated .gender-group input:invalid ~ .invalid-feedback {
+    display: block;
+}
+
+.warning-text {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+  }
+
+  .label-required::after {content: "*"; margin-left: 5px; color: #dc3545; }
