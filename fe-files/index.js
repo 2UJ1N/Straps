@@ -2,12 +2,12 @@
 import { putProduct, deleteProduct, postProduct ,getProducts } from './modules/product.mjs';
 
 //서버 주소
-let url = "http://localhost:3000/products";
+let url = "http://34.64.218.104:5002/products";
 
 ////////////////////
 //getProducts DEMO
-const callGetProducts = getProducts(url);
-console.log(callGetProducts);
+const products = await getProducts(url);
+console.log(products);
 ////////////////////
 
 ////////////////////////////////////////////////
@@ -21,7 +21,7 @@ let dataForPostDemo =   {
     "regdate": "6/9/2022",
     "prod_cell": 3
   };
-const callPostProduct = postProduct(url,dataForPostDemo);
+const callPostProduct = await postProduct(url,dataForPostDemo);
 console.log(callPostProduct);
 ////////////////////////////
 
@@ -42,7 +42,7 @@ let dataForPutDemo = {
 
 let putUrlParams = 10;
 
-const callPutProduct= putProduct(url, putUrlParams ,dataForPutDemo);
+const callPutProduct = await putProduct(url, putUrlParams ,dataForPutDemo);
 console.log(callPutProduct);
 ////////////////////////////
 
@@ -51,14 +51,13 @@ console.log(callPutProduct);
 
 let deleteUrlParams = 2;
 
-const callDeleteProduct= deleteProduct(url, deleteUrlParams);
+const callDeleteProduct = await deleteProduct(url, deleteUrlParams);
 console.log(callDeleteProduct);
 ////////////////////////////
-import { getProducts } from './modules/fetchApi.mjs';
 
-const products = await getProducts();
 
-class ItemCard extends HTMLElement {
+/////////////카드 컴포넌트///////////////////
+class ItemCardDemo extends HTMLElement {
   constructor() {
     const { image, name, price} = products[0]
     super();
@@ -86,20 +85,83 @@ class ItemCard extends HTMLElement {
     shadow.appendChild(cardTemplate.content.cloneNode(true));
   }
 }
+customElements.define('item-card-demo', ItemCardDemo);
+
+class ItemCard extends HTMLElement {
+  constructor() {
+    super();
+    const { image, name, price} = products[0];
+
+    //shadow DOM 생성
+    const shadow = this.attachShadow({ mode: 'open' });
+
+    //템플릿을 붙임
+    const cardTemplate = document.createElement("template");
+
+    cardTemplate.innerHTML = `
+    <li>
+      <div>
+        <div>
+          <div>
+            ${image}
+            <img alt="이미지1" data-original="//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg"
+              src="//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg">
+          </div>
+          <p>
+            ${name}
+          </p>
+          <p>
+            ${price}
+          </p
+        </div>
+      </div>
+    </li>
+    `;
+
+    shadow.appendChild(cardTemplate.content.cloneNode(true));
+  }
+}
 customElements.define('item-card', ItemCard);
 
+class CardGrid extends HTMLElement {
+  constructor() {
+    super();
 
-// class CardGrid extends HTMLElement {
-//   constructor() {
-//     super();
-//     const shadow = this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: 'open' });
 
-//     shadow.appendChild(htmlTemplate.content.cloneNode(true));
-     
-//   }
+    const cardContainer = document.createElement('template');
 
-// }
+    cardContainer.innerHTML = `
+      <style>
+      </style>
+      <button>&oplus;</button>
+      <ul>
+      </ul>
+    `
 
-// customElements.define('card-grid', CardGrid);
+    this.addItem = this.addItem.bind(this);
+    
+    shadow.appendChild(cardContainer.content.cloneNode(true));
+  }
+
+  connectedCallback() {
+    const addButton = this.shadowRoot.querySelector('button');
+
+    this.itemList = this.shadowRoot.querySelector('ul');
+
+    addButton.addEventListener('click', this.addItem, false);
+    const card = document.createElement('item-card');
+    this.itemList.appendChild(card);
+  }
+
+  //상품추가 함수
+  addItem(e) {
+    {
+      const card = document.createElement('item-card');
+      this.itemList.appendChild(card);
+    }
+  }
+}
+customElements.define('card-grid', CardGrid);
 
 
