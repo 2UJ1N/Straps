@@ -1,4 +1,20 @@
-﻿/* 상품 상세 페이지 */
+﻿@font-face {
+    font-family: 'LOTTERIACHAB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 헤더 */
+.blog-header .blog-header-logo {
+    font-family: 'LOTTERIACHAB';
+    font-size: 60px;
+    text-align: center;
+    padding: auto;
+    margin: auto;
+}
+
+/* 상품 상세 페이지 */
 .productPictures {
     text-align: center;
 }
@@ -23,6 +39,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.productNav{
+    display: inline-block;
 }
     
 .jumbotron h2{
