@@ -39,3 +39,10 @@
   float: right; /* 왼쪽으로 float */
   margin-right: 10px; /* 오른쪽에 여백 추가 */
 }
+
+.border.rounded.p-2.bg-secondary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

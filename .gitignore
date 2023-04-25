@@ -5,3 +5,5 @@
 /build/**
 /dist/**
 /models/dist/**
+/fe-files/dist/**
+/css/**
