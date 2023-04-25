@@ -20,6 +20,7 @@ class CardGrid extends HTMLElement {
     cardContainer.innerHTML = `
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <slot id="categoryTabLabel"></slot>
         <div>
         </div>
       `
@@ -42,7 +43,9 @@ class CardGrid extends HTMLElement {
     //addButton에 클릭 이벤트 추가
     // addButton.addEventListener('click', this.addItem, false);
   }
+  // attributeChangedCallback(name, oldValue, newValue){
 
+  // }
   //상품추가 함수
   // addItem(e) {
   //   {
@@ -88,5 +91,6 @@ class CardGrid extends HTMLElement {
       this.itemContainer.appendChild(divRow);
     }
   }
+  
 }
 customElements.define('card-grid', CardGrid);
