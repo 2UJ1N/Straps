@@ -1,215 +1,184 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <title>Bootstrap Sass &amp; JS</title>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="index.css">
-  <title>Bootstrap Sass &amp; JS</title>
-</head>
-<body class="container">
-  <header class="container text-center">
-    <div class="row">
-      <p>Some LOGO</p>
-    </div>
-    <div>
+  <body class="container">
+    <header class="container text-center">
+      <div class="row">
+        <p>Some LOGO</p>
+      </div>
       <div>
-        <ul class="nav nav-pills d-flex flex-row" role="tablist">
-          <div class="d-flex flex-row flex-grow-1 justify-content-center">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active btn-lg" id="bestSeller-tab" data-bs-toggle="tab"
-                data-bs-target="#bestSeller-tab-pane" type="button" role="tab" aria-controls="bestSeller-tab-pane"
-                aria-selected="true">베스트 셀러</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link btn-lg" id="sale-tab" data-bs-toggle="tab" data-bs-target="#sale-tab-pane"
-                type="button" role="tab" aria-controls="sale-tab-pane" aria-selected="false">세일</button>
-            </li>
-            <li class="nav-item " role="presentation">
-              <button class="nav-link btn-lg" id="galaxy-tab" data-bs-toggle="tab" data-bs-target="#galaxy-tab-pane"
-                type="button" role="tab" aria-controls="galaxy-tab-pane" aria-selected="false">갤럭시</button>
-            </li>
-            <li class="nav-item " role="presentation">
-              <button class="nav-link btn-lg" id="apple-tab" data-bs-toggle="tab" data-bs-target="#apple-tab-pane"
-                type="button" role="tab" aria-controls="apple-tab-pane" aria-selected="false">애플</button>
-            </li>
-          </div>
-          <div class="d-flex flex-row">
-            <svg type="button" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-              class="bi bi-person-circle justify-content-end" viewBox="0 0 16 16" data-bs-toggle="modal"
-              data-bs-target="#modalSignin">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-            </svg>
-            <svg type="button" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-              class="bi bi-cart-fill justify-content-end" viewBox="0 0 16 16"
-              data-bs-toggle="offcanvas" data-bs-target="#cartSideBar"
-              aria-controls="cartSideBar"
+        <div>
+          <ul class="nav nav-tabs justify-content-center row" role="tablist">
+            <li class="nav-item col" role="presentation">
+              <button
+                class="nav-link active"
+                id="bestSeller-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#bestSeller-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="bestSeller-tab-pane"
+                aria-selected="true"
               >
+                베스트 셀러
+              </button>
+            </li>
+            <li class="nav-item col" role="presentation">
+              <button
+                class="nav-link"
+                id="sale-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#sale-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="sale-tab-pane"
+                aria-selected="false"
+              >
+                세일
+              </button>
+            </li>
+            <li class="nav-item col" role="presentation">
+              <button
+                class="nav-link"
+                id="galaxy-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#galaxy-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="galaxy-tab-pane"
+                aria-selected="false"
+              >
+                갤럭시
+              </button>
+            </li>
+            <li class="nav-item col" role="presentation">
+              <button
+                class="nav-link"
+                id="apple-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#apple-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="apple-tab-pane"
+                aria-selected="false"
+              >
+                애플
+              </button>
+            </li>
+            <svg
+              type="button"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="currentColor"
+              class="bi bi-person-circle col"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
               <path
-                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+              />
             </svg>
-          </div>
-        </ul>
-      </div>
-    </div>
-  </header>
-  <main class="container">
-
-    <!-- 로그인 모달 -->
-    <div class="modal fade" id="modalSignin" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content rounded-4 shadow">
-          <div class="modal-header p-5 pb-4 border-bottom-0">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body p-5 pt-0">
-            <form class="">
-              <div class="form-floating mb-3">
-                <input id="emailInput" type="email" class="form-control rounded-3">
-                <label for="floatingInput">아이디를 입력해주세요</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input id="passwordInput" type="password" class="form-control rounded-3">
-                <label for="floatingPassword">비밀번호를 입력해주세요</label>
-              </div>
-              <!-- <hr class="my-4"> -->
-              <button class="w-100 mb-2 btn rounded-3 btn-primary" type="submit">로그인</button>
-              <button class="w-100 mb-2 btn rounded-3 btn-secondary" type="button">회원가입</button>
-            </form>
-          </div>
+            <svg
+              type="button"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              fill="currentColor"
+              class="bi bi-cart-fill col"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+              />
+            </svg>
+          </ul>
         </div>
       </div>
-    </div>
-    <!-- 로그인 모달 -->
-
-    <!-- 카트 사이드 바 -->
-
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="cartSideBar"
-      aria-labelledby="cartSideBarLabel">
-
-      <div class="offcanvas-body" style="background-color: gainsboro">
-
-        <div class="offcanvas-header">
-          <span class="fs-4 me-3">장바구니</span>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
-        </div>
-        <hr />
-
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
-              <div>
-                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                상품1
-                <div class="btn-group">
-                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    수량
+    </header>
+    <main class="container">
+      <div class="tab-content" id="mainTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="bestSeller-tab-pane"
+          role="tabpanel"
+          aria-labelledby="bestSeller-tab"
+          tabindex="0"
+        >
+          <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <div class="container">
+              <div class="row">
+                <label class="col-10 text-left font-weight-bold"
+                  >베스트 셀러</label
+                >
+                <div class="col dropdown">
+                  <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Dropdown trigger
                   </button>
                   <ul class="dropdown-menu">
-                    ...
+                    <li>
+                      <button class="dropdown-item" type="button">
+                        Action
+                      </button>
+                    </li>
+                    <li>
+                      <button class="dropdown-item" type="button">
+                        Another action
+                      </button>
+                    </li>
+                    <li>
+                      <button class="dropdown-item" type="button">
+                        Something else here
+                      </button>
+                    </li>
                   </ul>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                </svg>
-
               </div>
-            </a>
-          </li>
-          <li>
-
-            <a href="#" class="nav-link text-black">
-              <div>
-                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                상품2
-                <div class="btn-group">
-                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    수량
-                  </button>
-                  <ul class="dropdown-menu">
-                    ...
-                  </ul>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                </svg>
+            </div>
+            <div class="container text-center">
+              <div class="row align-items-start">
+                <div class="col">1</div>
+                <div class="col">2</div>
+                <div class="col">3</div>
+                <div class="col">4</div>
               </div>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-black">
-              <div>
-                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                상품3
-                <div class="btn-group">
-                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    수량
-                  </button>
-                  <ul class="dropdown-menu">
-                    ...
-                  </ul>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                </svg>
+              <div class="row align-items-center">
+                <div class="col">5</div>
+                <div class="col">6</div>
+                <div class="col">7</div>
+                <div class="col">8</div>
               </div>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-black">
-              <div>
-                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                상품4
-                <div class="btn-group">
-                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    수량
-                  </button>
-                  <ul class="dropdown-menu">
-                    ...
-                  </ul>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                </svg>
+            </div>
+            <div class="row align-items-end">
+              <div class="col">
+                9
               </div>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-black">
-              <div>
-                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
-                상품5
-                <div class="btn-group">
-                  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    수량
-                  </button>
-                  <ul class="dropdown-menu">
-                    ...
-                  </ul>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3"
-                  viewBox="0 0 16 16">
-                  <path
-                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                </svg>
+              <div class="col">
+                10
+              </div>
+              <div class="col">
+                11
+              </div>
+              <div class="col">
+                12
               </div>
             </a>
           </li>
@@ -222,41 +191,130 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- 카트 사이드바 -->
-    <div class="dropdown text-end">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        정렬
-      </button>
-      <ul class="dropdown-menu">
-        <li><button class="dropdown-item" type="button">인기순</button></li>
-        <li><button class="dropdown-item" type="button">높은 가격순</button></li>
-        <li><button class="dropdown-item" type="button">낮은 가격순</button></li>
-      </ul>
-    </div>
-    <div class="tab-content" id="mainTabContent">
-      <div class="tab-pane fade show active" id="bestSeller-tab-pane" role="tabpanel" aria-labelledby="bestSeller-tab"
-        tabindex="0">
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-          <card-grid></card-grid>
-        </div>
-      </div>
       <div class="tab-pane fade" id="sale-tab-pane" role="tabpanel" aria-labelledby="sale-tab" tabindex="0">
         <div class="my-3 p-3 bg-body rounded shadow-sm">
           <div class="container">
             <div class="row">
-              <h6 class="col-10 text-start">세일</h6>
+              <h6 class="col-10 text-left">세일</h6>
+              <div class="col dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown trigger
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" type="button">Action</button></li>
+                  <li><button class="dropdown-item" type="button">Another action</button></li>
+                  <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+              </div>
             </div>
           </div>
-            <item-card-demo></item-card-demo>
+          <div class="container text-center">
+            <div class="row align-items-start">
+              <div class="col">
+                1
+              </div>
+              <div class="col">
+                2
+              </div>
+              <div class="col">
+                3
+              </div>
+              <div class="col">
+                4
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col">
+                5
+              </div>
+              <div class="col">
+                6
+              </div>
+              <div class="col">
+                7
+              </div>
+              <div class="col">
+                8
+              </div>
+            </div>
+            <div class="row align-items-end">
+              <div class="col">
+                9
+              </div>
+              <div class="col">
+                10
+              </div>
+              <div class="col">
+                11
+              </div>
+              <div class="col">
+                12
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="tab-pane fade" id="galaxy-tab-pane" role="tabpanel" aria-labelledby="galaxy-tab" tabindex="0">
         <div class="my-3 p-3 bg-body rounded shadow-sm">
           <div class="container">
             <div class="row">
-              <h6 class="col-10 text-start">갤럭시</h6>
+              <h6 class="col-10 text-left">갤럭시</h6>
+              <div class="col dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown trigger
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" type="button">Action</button></li>
+                  <li><button class="dropdown-item" type="button">Another action</button></li>
+                  <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="container text-center">
+            <div class="row align-items-start">
+              <div class="col">
+                1
+              </div>
+              <div class="col">
+                2
+              </div>
+              <div class="col">
+                3
+              </div>
+              <div class="col">
+                4
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col">
+                5
+              </div>
+              <div class="col">
+                6
+              </div>
+              <div class="col">
+                7
+              </div>
+              <div class="col">
+                8
+              </div>
+            </div>
+            <div class="row align-items-end">
+              <div class="col">
+                9
+              </div>
+              <div class="col">
+                10
+              </div>
+              <div class="col">
+                11
+              </div>
+              <div class="col">
+                12
+              </div>
             </div>
           </div>
         </div>
@@ -265,11 +323,127 @@
         <div class="my-3 p-3 bg-body rounded shadow-sm">
           <div class="container">
             <div class="row">
-              <h6 class="col-10 text-start">애플</h6>
+              <h6 class="col-10 text-left">애플</h6>
+              <div class="col dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown trigger
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" type="button">Action</button></li>
+                  <li><button class="dropdown-item" type="button">Another action</button></li>
+                  <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="container text-center">
-
+            <div class="row align-items-start">
+              <div class="col">
+                1
+              </div>
+              <div class="col">
+                2
+              </div>
+              <div class="col">
+                3
+              </div>
+              <div class="col">
+                4
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col">
+                5
+              </div>
+              <div class="col">
+                6
+              </div>
+              <div class="col">
+                7
+              </div>
+              <div class="col">
+                8
+              </div>
+            </div>
+            <div class="row align-items-end">
+              <div class="col">
+                9
+              </div>
+              <div class="col">
+                10
+              </div>
+              <div class="col">
+                11
+              </div>
+              <div class="col">
+                12
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="etc-tab-pane" role="tabpanel" aria-labelledby="etc-tab" tabindex="0">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+          <div class="container">
+            <div class="row">
+              <h6 class="col-10 text-left">기타</h6>
+              <div class="col dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown trigger
+                </button>
+                <ul class="dropdown-menu">
+                  <li><button class="dropdown-item" type="button">Action</button></li>
+                  <li><button class="dropdown-item" type="button">Another action</button></li>
+                  <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="container text-center">
+            <div class="row align-items-start">
+              <div class="col">
+                1
+              </div>
+              <div class="col">
+                2
+              </div>
+              <div class="col">
+                3
+              </div>
+              <div class="col">
+                4
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col">
+                5
+              </div>
+              <div class="col">
+                6
+              </div>
+              <div class="col">
+                7
+              </div>
+              <div class="col">
+                8
+              </div>
+            </div>
+            <div class="row align-items-end">
+              <div class="col">
+                9
+              </div>
+              <div class="col">
+                10
+              </div>
+              <div class="col">
+                11
+              </div>
+              <div class="col">
+                12
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -289,10 +463,6 @@
     crossorigin="anonymous"></script>
   <!-- index.js -->
   <script src="index.js" type="module"></script>
-  <!-- 로그인 모달 js -->
-  <script src="loginModal/loginModal.js" type="module"></script>
-  <!-- cartsidebar js -->
-  <script src="cartsidebar/cartSidebar.js" type="module"></script>
 </body>
 
 </html>
