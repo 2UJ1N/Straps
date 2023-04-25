@@ -6,7 +6,7 @@ export default {
     outDir: '../dist'
   },
   server: {
-    port: 12345,
+    port: 3000,
     hot: true
   }
 }
