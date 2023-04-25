@@ -122,3 +122,5 @@ const productApi = {
     }
   },
 };
+
+module.exports = productApi;
