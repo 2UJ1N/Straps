@@ -64,6 +64,26 @@ async function getProducts(url) {
   };
 // export { getProducts };
 
+//getProduct
+//상품 정보 가져오는 API
+async function getProduct(url = "", urlParmas = "") {
+  try {
+    url = url + "/" + urlParmas;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+    const result = await response.json();
+    console.log("Success");
+    return result;
+  } catch (error) {
+    console.error("Error");
+    return error;
+  }
+};
+
 //deleteProduct
 //상품 정보 삭제 API
 async function deleteProduct(url = "", urlParmas = "") {
@@ -85,4 +105,4 @@ async function deleteProduct(url = "", urlParmas = "") {
         return error;
     }
   };
-export { deleteProduct, putProduct, getProducts, postProduct };
+export { deleteProduct, putProduct, getProducts, postProduct , getProduct};
