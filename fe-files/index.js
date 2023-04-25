@@ -3,7 +3,7 @@ import { putProduct, deleteProduct, postProduct ,getProducts } from './modules/p
 import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 
 //서버 주소
-let productsUrl = "http://34.64.218.104:5002/products";
+const productsUrl = "http://34.64.218.104:5002/products";
 
 ////////////////////
 //getProducts DEMO
@@ -94,7 +94,7 @@ class ItemCard extends HTMLElement {
     const { image, name, price} = products[0];
 
     //shadow DOM 생성
-    const shadow = this.attachShadow({ mode: 'open' });
+    const shadowRoot = this.attachShadow({ mode: 'open' });
 
     //템플릿 생성
     const cardTemplate = document.createElement("template");
@@ -121,7 +121,7 @@ class ItemCard extends HTMLElement {
     `;
 
     //완성된 cardTemplate append
-    shadow.appendChild(cardTemplate.content.cloneNode(true));
+    shadowRoot.appendChild(cardTemplate.content.cloneNode(true));
   }
 }
 customElements.define('item-card', ItemCard);
@@ -140,7 +140,7 @@ class CardGrid extends HTMLElement {
     //fetchProducts 함수 정의
     this.fetchProducts = this.fetchProducts.bind(this);
     //fetch한 상품 정보 등록 함수 정의
-    this.itmesInit = this.itmesInit.bind(this);
+    this.itemsInit = this.itemsInit.bind(this);
 
     //shadow DOM 생성
     const shadow = this.attachShadow({ mode: 'open' });
@@ -166,9 +166,8 @@ class CardGrid extends HTMLElement {
     //ul 선택
     this.itemList = this.shadowRoot.querySelector('ul');
 
-    await this.fetchProducts()
     //fetchProducts 실행
-    await this.itmesInit();
+    await this.fetchProducts();
 
     //addButton에 클릭 이벤트 추가
     addButton.addEventListener('click', this.addItem, false);
@@ -183,21 +182,21 @@ class CardGrid extends HTMLElement {
   }
   //상품 정보 fetch 함수
   async fetchProducts() {
-    return await getProducts(productsUrl);
+    const json = await getProducts(productsUrl);
+    this.itemsInit(json);
+    
   }
   //불러온 상품 정보 출력
-  async itmesInit(){
-
+  itemsInit(json){
     //TODO 작동이 안되요ㅠㅠ
-    // const json = await this.fetchProducts();
-    // let name = json[0].name;
-    // let price = json[0].price;
-    // let image = json[0].image;
-    // let card = document.createElement('item-card');
-    // card.querySelector('slot');
-    // console.log(card);
+    let name = json[0].name;
+    let price = json[0].price;
+    let image = json[0].image;
+    let card = document.createElement('item-card');
+    card.querySelector('slot');
+    console.log(card);
 
-    // this.itemList.appendChild(card);
+    this.itemList.appendChild(card);
   }
 }
 customElements.define('card-grid', CardGrid);
@@ -205,7 +204,7 @@ customElements.define('card-grid', CardGrid);
 
 
 //서버 주소
-let userUrl = "http://34.64.218.104:5002/user";
+const userUrl = "http://34.64.218.104:5002/user";
 
 ////////////////////////////////////////////////
 // postProduct DEMO
