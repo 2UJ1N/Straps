@@ -3,11 +3,11 @@ import { putProduct, deleteProduct, postProduct ,getProducts } from './modules/p
 import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 
 //서버 주소
-let url = "http://34.64.218.104:5002/products";
+let productsUrl = "http://34.64.218.104:5002/products";
 
 ////////////////////
 //getProducts DEMO
-// const products = getProducts(url);
+// const products = getProducts(productsUrl);
 // console.log(products);
 ////////////////////
 
@@ -22,7 +22,7 @@ let dataForPostDemo =   {
     "regdate": "6/9/2022",
     "prod_cell": 3
   };
-const callPostProduct = postProduct(url,dataForPostDemo);
+const callPostProduct = postProduct(productsUrl,dataForPostDemo);
 console.log(callPostProduct);
 ////////////////////////////
 
@@ -43,7 +43,7 @@ let dataForPutDemo = {
 
 let putUrlParams = 10;
 
-const callPutProduct = putProduct(url, putUrlParams ,dataForPutDemo);
+const callPutProduct = putProduct(productsUrl, putUrlParams ,dataForPutDemo);
 console.log(callPutProduct);
 ////////////////////////////
 
@@ -52,7 +52,7 @@ console.log(callPutProduct);
 
 let deleteUrlParams = 2;
 
-const callDeleteProduct = deleteProduct(url, deleteUrlParams);
+const callDeleteProduct = deleteProduct(productsUrl, deleteUrlParams);
 console.log(callDeleteProduct);
 ////////////////////////////
 
@@ -183,7 +183,7 @@ class CardGrid extends HTMLElement {
   }
   //상품 정보 fetch 함수
   async fetchProducts() {
-    return await getProducts(url);
+    return await getProducts(productsUrl);
   }
   //불러온 상품 정보 출력
   async itmesInit(){
@@ -205,7 +205,7 @@ customElements.define('card-grid', CardGrid);
 
 
 //서버 주소
-url = "http://34.64.218.104:5002/user";
+let userUrl = "http://34.64.218.104:5002/user";
 
 ////////////////////////////////////////////////
 // postProduct DEMO
@@ -220,7 +220,7 @@ let userDataForPostDemo = {
     "status": false
   };
 
-const callPutUser = putUser(url,userDataForPostDemo);
+const callPutUser = putUser(userUrl,userDataForPostDemo);
 console.log(callPutUser);
 ////////////////////////////
 
@@ -239,13 +239,13 @@ let userDataForChangeDemo = {
 };
 
 
-const callChangeUser= changeUser(url, userDataForChangeDemo["email"] ,userDataForChangeDemo);
+const callChangeUser= changeUser(userUrl, userDataForChangeDemo["email"] ,userDataForChangeDemo);
 console.log(callChangeUser);
 ////////////////////////////
 
 ////////////////////
 //getProducts DEMO
-const callGetUser = getUser(url, userDataForChangeDemo["email"]);
+const callGetUser = getUser(userUrl, userDataForChangeDemo["email"]);
 console.log(callGetUser);
 ////////////////////
 
@@ -255,6 +255,6 @@ console.log(callGetUser);
 
 let deleteUserEmail = userDataForChangeDemo["email"];
 
-const callDeleteUser= deleteUser(url, deleteUserEmail);
+const callDeleteUser= deleteUser(userUrl, deleteUserEmail);
 console.log(callDeleteUser);
 ////////////////////////////
