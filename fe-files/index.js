@@ -56,7 +56,7 @@ console.log(callDeleteProduct);
 ////////////////////////////
 
 
-/////////////카드 컴포넌트///////////////////
+/////////////상품 카드 데모///////////////////
 class ItemCardDemo extends HTMLElement {
   constructor() {
     const { image, name, price} = products[0]
@@ -87,6 +87,8 @@ class ItemCardDemo extends HTMLElement {
 }
 customElements.define('item-card-demo', ItemCardDemo);
 
+//////////////////////////////////////////////
+// 상품 카드 클래스
 class ItemCard extends HTMLElement {
   constructor() {
     super();
@@ -123,6 +125,9 @@ class ItemCard extends HTMLElement {
 }
 customElements.define('item-card', ItemCard);
 
+
+////////////////////////////////////////////
+//상품 그리드
 class CardGrid extends HTMLElement {
   constructor() {
     super();
