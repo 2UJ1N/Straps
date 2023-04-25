@@ -1,5 +1,3 @@
-import { SourceMap } from 'module'
-
 const path = require('path')
 
 export default {
