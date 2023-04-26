@@ -62,4 +62,3 @@ app.get('/', (req, res) => {
 app.use('/products', productRouter);
 
 app.listen(3000);
-// app.listen(8080); // product api - POSTMAN test용

@@ -97,9 +97,7 @@ const productApi = {
 
       const updatedProduct = await Product.updateOne({ prod_num }, updateInfo);
 
-      const foundUpdatedProduct = await Product.findOne({ prod_num });
-
-      res.status(201).json(foundUpdatedProduct); // 수정된 내용 전체 보내줌
+      res.status(201).json(UpdatedProduct);
     } catch (error) {
       console.error(error);
     }
