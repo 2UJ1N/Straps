@@ -5,8 +5,20 @@ const productApi = {
   // 상품 목록 - 전체 상품 조회
   async getAllProducts(req, res, next) {
     try {
-      const foundAllProducts = await Product.find({});
-      res.status(200).json(foundAllProducts);
+      // 페이지네이션
+      const page = Number(req.query.page || 1);
+      const perPage = Number(req.query.perPage || 10);
+
+      const total = await Product.countDocuments({});
+      const products = await Product.find({})
+        .sort({ createdAt: -1 })
+        .skip(perPage * (page - 1))
+        .limit(perPage);
+
+      const totalPage = Math.ceil(total / perPage);
+
+      // const foundAllProducts = await Product.find({});
+      res.status(200).json({ products, page, perPage, totalPage });
     } catch (error) {
       console.error(error);
     }
@@ -97,7 +109,7 @@ const productApi = {
 
       const updatedProduct = await Product.updateOne({ prod_num }, updateInfo);
 
-      res.status(201).json(UpdatedProduct);
+      res.status(201).json(updatedProduct);
     } catch (error) {
       console.error(error);
     }
