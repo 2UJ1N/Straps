@@ -7,14 +7,24 @@ const productsUrl = "http://34.64.218.104:5002/products";
 class CardGrid extends HTMLElement {
     constructor() {
         super();
-        this.noShadow = true;
+        this._category = "best";
         this.cardGridTemplate = `    
-            <slot id="categoryTabLabel">Category</slot>
+            <slot id = "categoryTabLabel" >Category</slot>
             <div class="container">
-                <h3>test111</h3>
+                <h4>${this._category}</h4>
             </div>
         `;
         this.jsonArray;
+        this.categoryNameTest;
+    }
+    set category(value) {
+        this._category = value;
+        this.updateTemplate();
+        this.update();
+    }
+
+    get category() {
+        return this._category;
     }
     async connectedCallback() {
         this.jsonArray = await getProducts(productsUrl);
@@ -48,6 +58,18 @@ class CardGrid extends HTMLElement {
     }
     render() {
         this.insertAdjacentHTML("afterbegin", this.cardGridTemplate);
+        this.addItemsToGrid(this.jsonArray);
+    }
+    updateTemplate(){
+        this.cardGridTemplate = `    
+        <slot id = "categoryTabLabel" >Category</slot>
+        <div class="container">
+            <h4>${this._category}</h4>
+        </div>
+        `;
+    }
+    update(){
+        this.innerHTML = this.cardGridTemplate;
         this.addItemsToGrid(this.jsonArray);
     }
 }

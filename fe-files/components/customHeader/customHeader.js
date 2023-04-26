@@ -5,11 +5,11 @@ const loginModal = new LoginModal();
 
 ////////////////////////////////////////////
 //CustomHeader Component
-class CustomHeader extends HTMLElement {
+export default class CustomHeader extends HTMLElement {
   constructor() {
     super();
     //템플릿 생성
-    this.innerHTML = `    
+    this.customHeaderTemplate = `    
     <div class="row">
       <p>Some LOGO</p>
     </div>
@@ -48,92 +48,33 @@ class CustomHeader extends HTMLElement {
       </div>
     </div>
     `
+
   }
 
   //컴포넌트가 DOM에 연결 되면 실행되는 함수
   connectedCallback() {
-    //버튼 선택
-    // const loginButton = this.shadowRoot.querySelector('#loginButton');
-    // const cartButton = this.shadowRoot.querySelector('#cartButton');
-    const bestTabButton = this.querySelector('#bestTabButton');
-    const saleTabButton = this.querySelector('#saleTabButton');
-    const galaxyTabButton = this.querySelector('#galaxyTabButton');
-    const appleTabButton = this.querySelector('#appleTabButton');
-
-    //버튼 별 이벤트 함수 바인드
-    // this.openLoginModal = this.openLoginModal.bind(this);
-    // this.openCartSideBar = this.openCartSideBar.bind(this);
-    this.openBestTab = this.openBestTab.bind(this);
-    this.openSaleTab = this.openSaleTab.bind(this);
-    this.openGalaxyTab = this.openGalaxyTab.bind(this);
-    this.openAppleTab = this.openAppleTab.bind(this);
-
-    //class 함수 바인드
-    this.changeAcitveTab = this.changeAcitveTab.bind(this);
-
-    //버튼 별 클릭 이벤트 추가
-    // loginButton.addEventListener('click', this.openLoginModal, false);
-    // cartButton.addEventListener('click', this.openCartSideBar, false);
-    bestTabButton.addEventListener('click', this.openBestTab, false);
-    saleTabButton.addEventListener('click', this.openSaleTab, false);
-    galaxyTabButton.addEventListener('click', this.openGalaxyTab, false);
-    appleTabButton.addEventListener('click', this.openAppleTab, false);
-    // this.openBestTab();
-    this.appendChild(loginModal);
-    
+    this.render();
+    this.querySelectorAll(".nav-item")
+      .forEach((elem)=>{
+        elem.addEventListener('click', this.changeAcitveTab, false);
+    });
+    this.appendChild(loginModal);    
   }
-  //버튼별 이벤트
-  // openLoginModal(e) {
-  //   {
-  //     console.log("login clicked");
-  //   }
-  // }
-  // openCartSideBar(e) {
-  //   {
-  //     console.log("cart clicked");
-  //   }
-  // }
-  changeAcitveTab(clickedButton){
-    const classString = "btn rounded-3 btn-primary"
-    const activeButton = this.querySelector(".active");
-    activeButton.className = classString;
-    clickedButton.className = classString + " " + "active";
-  }
-  openBestTab(e) {
+  changeAcitveTab(e){
     {
-      const bestTabButton = this.querySelector('#bestTabButton');
-      this.changeAcitveTab(bestTabButton);
-      const cardGrid = document.querySelector("card-grid");
-      cardGrid.textContent = "베스트 상품";
-      console.log("best clicked");
+      const classString = "btn rounded-3 btn-primary";
+      const navPills = this.parentNode;
+      navPills.querySelectorAll(".nav-item")
+        .forEach((elem)=>{
+          elem.firstElementChild.setAttribute("class",classString);
+      });
+      e.target.setAttribute("class",classString + " " + "active");
+      let cardGrid = document.querySelector("card-grid");
+      cardGrid.category =e.target.getAttribute("id").replace('TabButton', '');
     }
   }
-  openSaleTab(e) {
-    {
-      const saleTabButton = this.querySelector('#saleTabButton');
-      this.changeAcitveTab(saleTabButton);
-      const cardGrid = document.querySelector("card-grid");
-      cardGrid.textContent = "세일";
-      console.log("sale clicked");
-    }
-  }
-  openGalaxyTab(e) {
-    {
-      const galaxyTabButton = this.querySelector('#galaxyTabButton');
-      this.changeAcitveTab(galaxyTabButton);
-      const cardGrid = document.querySelector("card-grid");
-      cardGrid.textContent = "갤럭시";
-      console.log("galaxy clicked");
-    }
-  }
-  openAppleTab(e) {
-    {
-      const appleTabButton = this.querySelector('#appleTabButton');
-      this.changeAcitveTab(appleTabButton);
-      const cardGrid = document.querySelector("card-grid");
-      cardGrid.textContent = "애플";
-      console.log("apple clicked");
-    }
+  render() {
+    this.insertAdjacentHTML("afterbegin", this.customHeaderTemplate);
   }
 }
 customElements.define('custom-header', CustomHeader);
