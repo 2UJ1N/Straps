@@ -9,16 +9,15 @@
 </head>
 <body>
     <!--쇼핑몰 헤더-->
-    <!--
-        수정 필요
-    -->
-    <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="link-secondary" href="#">Subscribe</a>
+    <header class="shopHeader py-3">
+        <div class="row align-items-center">
+            <div class="link col-4 pt-1">
+                <a class="eliceLink" href="https://elice.io/">
+                    <img class="eliceLogo" src="../images/eliceLogo.png"/>
+                </a>
             </div>
-            <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="#">Straps</a>
+            <div class="logo col-4 text-center align-self-center">
+                <a class="shopLogo text-dark" href="#">Straps</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
                 <a class="link-secondary" href="#" aria-label="Search">
@@ -40,17 +39,17 @@
                 <p class="productNav py-2">브랜드 > <a id="category" href="#" target="_self"></a></p>
                 <!--상품 이미지-->
                 <div class="productPictures col-md-5">
-                    <img src="../images/watchBigImg1.jpg" alt="제품 이미지" class="big_img">
+                    <img src="../../images/watchBigImg1.jpg" alt="제품 이미지" class="big_img">
                     <ul class="sub_img">
-                        <li><img src="../images/watchSmallImg1.jpg" data-target="../images/watchBigImg1.jpg" alt="제품 상세 이미지1"></li>
-                        <li><img src="../images/watchSmallImg2.jpg" data-target="../images/watchBigImg2.jpg" alt="제품 상세 이미지2"></li>
-                        <li><img src="../images/watchSmallImg3.jpg" data-target="../images/watchBigImg3.jpg" alt="제품 상세 이미지3"></li>
+                        <li><img src="../../images/watchSmallImg1.jpg" data-target="../../images/watchBigImg1.jpg" alt="제품 상세 이미지1"></li>
+                        <li><img src="../../images/watchSmallImg2.jpg" data-target="../../images/watchBigImg2.jpg" alt="제품 상세 이미지2"></li>
+                        <li><img src="../../images/watchSmallImg3.jpg" data-target="../../images/watchBigImg3.jpg" alt="제품 상세 이미지3"></li>
                     </ul>
                 </div>
                 <!--상품 정보-->
                 <div class="productSpec jumbotron col-md-7">
-                    <h2>상품 이름</h2>
-                    <p>상세 설명</p>
+                    <h2 id="productName">상품 이름</h2>
+                    <p id="productExplain">상세 설명</p>
                     <span class="best"><strong>베스트셀러🛒</strong></span>
                     <span class="sale"><strong>세일🔥</strong></span>
                     <span class="delivary"><strong>무료배송📦</strong></span>
@@ -61,10 +60,12 @@
                             <div class="priceOption">
                                 <!--재고량 0일 경우 일시 품절 보이게 + 장바구니/구매 버튼 비활성화--> 
                                 <h4>가격</h4>
-                                <span class="price" id="price">₩12,000  <span class="soldOut"><strong>일시품절</strong></span></span>
+                                <span class="price" id="productPrice"></span>
+                                <span class="soldOut"><strong>일시품절</strong></span>
                                 <br>
                                 <h4>할인가</h4>
-                                <span class="salePrice">₩10,800  <span class="salePercent"><strong>[10%]</strong></span></span>
+                                <span class="salePrice" id="productSalePrice"></span>
+                                <span class="salePercent"><strong>[10%]</strong></span>
                             </div>
                             <span class="divider align-self-center">|</span>
                             <div class="quantityOption align-self-center">
@@ -136,8 +137,8 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="inform">
-                            <img src="../images/watchDetailImg1.jpg" alt="제품 상세설명1" class="img-responsive">
-                            <img src="../images/watchDetailImg2.jpg" alt="제품 상세설명2" class="img-responsive">
+                            <img src="../../images/watchDetailImg1.jpg" alt="제품 상세설명1" class="img-responsive">
+                            <img src="../../images/watchDetailImg2.jpg" alt="제품 상세설명2" class="img-responsive">
                         </div>
                         <div class="tab-pane fade" id="review">
                             <p>사용자의 리뷰를 보여줍니다</p>
