@@ -1,10 +1,10 @@
 import LoginModal from "../loginModal/loginModal.js";
 
-////////////////////////////////////////////
-//CustomHeader Component
-
+//로그인 모달 import
 const loginModal = new LoginModal();
 
+////////////////////////////////////////////
+//CustomHeader Component
 class CustomHeader extends HTMLElement {
   constructor() {
     super();
@@ -78,9 +78,9 @@ class CustomHeader extends HTMLElement {
     saleTabButton.addEventListener('click', this.openSaleTab, false);
     galaxyTabButton.addEventListener('click', this.openGalaxyTab, false);
     appleTabButton.addEventListener('click', this.openAppleTab, false);
-    this.openBestTab();
-
+    // this.openBestTab();
     this.appendChild(loginModal);
+    
   }
   //버튼별 이벤트
   // openLoginModal(e) {
