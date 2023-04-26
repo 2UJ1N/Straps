@@ -11,7 +11,7 @@ const ProductSchema = new Schema(
     regdate: { type: Date, default: Date.now },
     prod_seq: { type: Number, required: true },
     prod_count: { type: Number, required: true },
-    prod_cell: { type: Number, required: true },
+    prod_sell: { type: Number, required: true },
   },
   { timestamps: true, collection: 'Product' }
 );
