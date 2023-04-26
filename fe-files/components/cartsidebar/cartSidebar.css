@@ -1,0 +1,48 @@
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.offcanvas-body .list-group {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.border.rounded.p-2.bg-secondary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav-item:hover .nav-link {
+  background-color: whitesmoke; /* 호버 효과 적용 */
+}
+
+.nav-item2:hover .nav-link {
+  background-color: whitesmoke; /* 호버 효과 적용 */
+}
+
+.nav-item3:hover .nav-link {
+  background-color: whitesmoke; /* 호버 효과 적용 */
+}
+.nav-item4:hover .nav-link {
+  background-color: whitesmoke; /* 호버 효과 적용 */
+}
+
+.nav-item5:hover .nav-link {
+  background-color: whitesmoke; /* 호버 효과 적용 */
+}
+
+.trash-icon {
+  float: right; /* 왼쪽으로 float */
+  margin-right: 10px; /* 오른쪽에 여백 추가 */
+}
+
+.border.rounded.p-2.bg-secondary {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

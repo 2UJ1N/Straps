@@ -7,87 +7,17 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="/fe-files/components/cartsidebar/cartSidebar.css">
+  <link rel="stylesheet" href="/fe-files/components/loginModal/loginModal.css">
+
   <title>Bootstrap Sass &amp; JS</title>
 </head>
+
 <body class="container">
   <header class="container text-center">
-    <div class="row">
-      <p>Some LOGO</p>
-    </div>
-    <div>
-      <div>
-        <ul class="nav nav-pills d-flex flex-row" role="tablist">
-          <div class="d-flex flex-row flex-grow-1 justify-content-center">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active btn-lg" id="bestSeller-tab" data-bs-toggle="tab"
-                data-bs-target="#bestSeller-tab-pane" type="button" role="tab" aria-controls="bestSeller-tab-pane"
-                aria-selected="true">베스트 셀러</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link btn-lg" id="sale-tab" data-bs-toggle="tab" data-bs-target="#sale-tab-pane"
-                type="button" role="tab" aria-controls="sale-tab-pane" aria-selected="false">세일</button>
-            </li>
-            <li class="nav-item " role="presentation">
-              <button class="nav-link btn-lg" id="galaxy-tab" data-bs-toggle="tab" data-bs-target="#galaxy-tab-pane"
-                type="button" role="tab" aria-controls="galaxy-tab-pane" aria-selected="false">갤럭시</button>
-            </li>
-            <li class="nav-item " role="presentation">
-              <button class="nav-link btn-lg" id="apple-tab" data-bs-toggle="tab" data-bs-target="#apple-tab-pane"
-                type="button" role="tab" aria-controls="apple-tab-pane" aria-selected="false">애플</button>
-            </li>
-          </div>
-          <div class="d-flex flex-row">
-            <svg type="button" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-              class="bi bi-person-circle justify-content-end" viewBox="0 0 16 16" data-bs-toggle="modal"
-              data-bs-target="#modalSignin">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-            </svg>
-            <svg type="button" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-              class="bi bi-cart-fill justify-content-end" viewBox="0 0 16 16"
-              data-bs-toggle="offcanvas" data-bs-target="#cartSideBar"
-              aria-controls="cartSideBar"
-              >
-              <path
-                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </div>
-        </ul>
-      </div>
-    </div>
-  </header>
-  <main class="container">
-
-    <!-- 로그인 모달 -->
-    <div class="modal fade" id="modalSignin" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content rounded-4 shadow">
-          <div class="modal-header p-5 pb-4 border-bottom-0">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body p-5 pt-0">
-            <form class="">
-              <div class="form-floating mb-3">
-                <input id="emailInput" type="email" class="form-control rounded-3">
-                <label for="floatingInput">아이디를 입력해주세요</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input id="passwordInput" type="password" class="form-control rounded-3">
-                <label for="floatingPassword">비밀번호를 입력해주세요</label>
-              </div>
-              <!-- <hr class="my-4"> -->
-              <button class="w-100 mb-2 btn rounded-3 btn-primary" type="submit">로그인</button>
-              <button class="w-100 mb-2 btn rounded-3 btn-secondary" type="button">회원가입</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- 로그인 모달 -->
-
+    <custom-header>
+    </custom-header>
     <!-- 카트 사이드 바 -->
-
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="cartSideBar"
       aria-labelledby="cartSideBarLabel">
 
@@ -225,6 +155,9 @@
     </div>
 
     <!-- 카트 사이드바 -->
+  </header>
+  <main class="container">
+
     <div class="dropdown text-end">
       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         정렬
@@ -235,45 +168,7 @@
         <li><button class="dropdown-item" type="button">낮은 가격순</button></li>
       </ul>
     </div>
-    <div class="tab-content" id="mainTabContent">
-      <div class="tab-pane fade show active" id="bestSeller-tab-pane" role="tabpanel" aria-labelledby="bestSeller-tab"
-        tabindex="0">
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-          <card-grid></card-grid>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="sale-tab-pane" role="tabpanel" aria-labelledby="sale-tab" tabindex="0">
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-          <div class="container">
-            <div class="row">
-              <h6 class="col-10 text-start">세일</h6>
-            </div>
-          </div>
-            <item-card-demo></item-card-demo>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="galaxy-tab-pane" role="tabpanel" aria-labelledby="galaxy-tab" tabindex="0">
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-          <div class="container">
-            <div class="row">
-              <h6 class="col-10 text-start">갤럭시</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="apple-tab-pane" role="tabpanel" aria-labelledby="apple-tab" tabindex="0">
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-          <div class="container">
-            <div class="row">
-              <h6 class="col-10 text-start">애플</h6>
-            </div>
-          </div>
-          <div class="container text-center">
-
-          </div>
-        </div>
-      </div>
-    </div>
+    <card-grid></card-grid>
 
   </main>
   <!-- jquery -->
@@ -289,10 +184,14 @@
     crossorigin="anonymous"></script>
   <!-- index.js -->
   <script src="index.js" type="module"></script>
+  <!-- customHeaderComponent.js -->
+  <script src="components/customHeaderComponent/customHeaderComponent.js" type="module"></script>
+  <!-- cardGridComponent.js -->
+  <script src="components/cardGridComponent/cardGridComponent.js" type="module"></script>
   <!-- 로그인 모달 js -->
-  <script src="loginModal/loginModal.js" type="module"></script>
+  <script src="components/loginModal/loginModal.js" type="module"></script>
   <!-- cartsidebar js -->
-  <script src="cartsidebar/cartSidebar.js" type="module"></script>
+  <script src="components/cartsidebar/cartSidebar.js" type="module"></script>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
-//putProduct
-//상품 정보 수정 API
-async function putProduct(url = "", urlParmas = "" ,data = {}) {
+//User
+//회원정보 수정 API
+async function changeUser(url = "", urlId = "" ,data = {}) {
     try{
-        url = url + "/" + urlParmas;
+        url = url + "/" + urlId;
         const response = await fetch(url, {
             method: "PUT",
             headers: {
@@ -22,10 +22,11 @@ async function putProduct(url = "", urlParmas = "" ,data = {}) {
   }
 // export { putProduct };
 
-//postProduct
-//상품 정보 등록 API
-async function postProduct(url,data) {
+//putUser
+//회원정보 등록 API
+async function putUser(url,data) {
     try {
+        url = url + "/" + data.email;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -44,19 +45,20 @@ async function postProduct(url,data) {
 // export { postProduct };
 
 
-//getProducts
-//상품 정보 가져오는 API
-async function getProducts(url) {
+//getUser
+//회원 정보 가져오는 API
+async function getUser(url, urlId) {
     try {
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-        },
-      });
-      const result = await response.json();
-      console.log("Success");
-      return result;
+        url = url + "/" + urlId;
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+            },
+        });
+        const result = await response.json();
+        console.log("Success");
+        return result;
     } catch (error) {
       console.error("Error");
       return error;
@@ -64,31 +66,11 @@ async function getProducts(url) {
   };
 // export { getProducts };
 
-//getProduct
-//상품 정보 가져오는 API
-async function getProduct(url = "", urlParmas = "") {
-  try {
-    url = url + "/" + urlParmas;
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-    });
-    const result = await response.json();
-    console.log("Success");
-    return result;
-  } catch (error) {
-    console.error("Error");
-    return error;
-  }
-};
-
-//deleteProduct
-//상품 정보 삭제 API
-async function deleteProduct(url = "", urlParmas = "") {
+//deleteUser
+//회원 정보 삭제 API
+async function deleteUser(url = "", urlId = "") {
     try{
-        url = url + "/" + urlParmas;
+        url = url + "/" + urlId;
         const response = await fetch(url, {
             method: "DELETE",
             headers: {
@@ -105,4 +87,4 @@ async function deleteProduct(url = "", urlParmas = "") {
         return error;
     }
   };
-export { deleteProduct, putProduct, getProducts, postProduct , getProduct};
+export { changeUser, deleteUser, getUser, putUser };

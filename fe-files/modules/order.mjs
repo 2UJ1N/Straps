@@ -1,5 +1,5 @@
-//putProduct
-//상품 정보 수정 API
+//putOrder
+//주문 정보 수정 API
 async function putProduct(url = "", urlParmas = "" ,data = {}) {
     try{
         url = url + "/" + urlParmas;
@@ -23,7 +23,7 @@ async function putProduct(url = "", urlParmas = "" ,data = {}) {
 // export { putProduct };
 
 //postProduct
-//상품 정보 등록 API
+//상품 주문 API
 async function postProduct(url,data) {
     try {
       const response = await fetch(url, {
@@ -45,7 +45,7 @@ async function postProduct(url,data) {
 
 
 //getProducts
-//상품 정보 가져오는 API
+//주문 내역 가져오는 API
 async function getProducts(url) {
     try {
       const response = await fetch(url, {
@@ -65,7 +65,7 @@ async function getProducts(url) {
 // export { getProducts };
 
 //getProduct
-//상품 정보 가져오는 API
+//상세 주문 내역 API
 async function getProduct(url = "", urlParmas = "") {
   try {
     url = url + "/" + urlParmas;
@@ -85,7 +85,7 @@ async function getProduct(url = "", urlParmas = "") {
 };
 
 //deleteProduct
-//상품 정보 삭제 API
+//주문 삭제 API
 async function deleteProduct(url = "", urlParmas = "") {
     try{
         url = url + "/" + urlParmas;
