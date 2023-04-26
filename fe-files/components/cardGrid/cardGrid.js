@@ -1,3 +1,4 @@
+import { Button } from 'bootstrap';
 import { getProducts } from '../../modules/product.mjs';
 import ItemCard from '../itemCard/itemCard.js';
 
@@ -12,8 +13,16 @@ class CardGrid extends HTMLElement {
             <slot id = "categoryTabLabel" >Category</slot>
             <div class="container">
                 <h4>${this._category}</h4>
+                <div class="dropdown text-end">
+                <select id="sortSelector">
+                    <option value="2">인기순</option>
+                    <option value="1">높은 가격순</option>
+                    <option value="0">낮은 가격순</option>
+                </select>
+              </div>
             </div>
         `;
+        this._sort = 0;
         this.jsonArray;
         this.categoryNameTest;
     }
@@ -26,11 +35,37 @@ class CardGrid extends HTMLElement {
     get category() {
         return this._category;
     }
+
+    set sort(value) {
+        this._sort = value;
+        this.updateTemplate();
+        this.update();
+    }
+
+    get sort() {
+        return this._sort;
+    }
     async connectedCallback() {
         this.jsonArray = await getProducts(productsUrl);
         this.render();
     }
-    addItemsToGrid(jsonArray){
+    addItemsToGrid(jsonArray,sort){
+        //낮은가격순
+        if(sort === 0){
+            jsonArray = jsonArray.sort((a, b) => {
+                if (a.price < b.price) {
+                  return -1;
+                }
+            });              
+        }
+        //높은가격순
+        if(sort === 1){
+            jsonArray = jsonArray.sort((a, b) => {
+                if (a.price > b.price) {
+                  return -1;
+                }
+            });              
+        }
         const cardGrid = this.querySelector('div');
         let rowNum = 0;
         for (let i = 0; i < jsonArray.length; i++) {
@@ -58,19 +93,31 @@ class CardGrid extends HTMLElement {
     }
     render() {
         this.insertAdjacentHTML("afterbegin", this.cardGridTemplate);
-        this.addItemsToGrid(this.jsonArray);
+        // this.addItemsToGrid(this.jsonArray,this.sort);
+        this.addItemsToGrid(this.jsonArray,0);
+    }
+    changeSort(e){
+        console.log(e.target.getAttribute("id"));
+        
     }
     updateTemplate(){
-        this.cardGridTemplate = `    
+        this.cardGridTemplate = `  
         <slot id = "categoryTabLabel" >Category</slot>
         <div class="container">
             <h4>${this._category}</h4>
+            <div class="dropdown text-end">
+            <select id="sortSelector">
+                <option value="2">인기순</option>
+                <option value="1">높은 가격순</option>
+                <option value="0">낮은 가격순</option>
+            </select>
+          </div>
         </div>
         `;
     }
     update(){
         this.innerHTML = this.cardGridTemplate;
-        this.addItemsToGrid(this.jsonArray);
+        this.addItemsToGrid(this.jsonArray,this.sort);
     }
 }
 customElements.define('card-grid', CardGrid);
