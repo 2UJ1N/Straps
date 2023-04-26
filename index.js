@@ -1,9 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
+require('dotenv').config();
 require('dotenv').config();
 
 // models
+const { Product } = require('./models');
+const { Cart } = require('./models');
+const { Order } = require('./models');
+const { User } = require('./models');
 const { Product } = require('./models');
 const { Cart } = require('./models');
 const { Order } = require('./models');

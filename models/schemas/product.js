@@ -4,7 +4,7 @@ const ProductSchema = new Schema(
   {
     prod_num: { type: Number, required: true, unique: true }, // primary key
     name: { type: String, required: true },
-    kind: { type: Boolean, required: true }, // 0:ì• í”Œ, 1:ì‚¼ì„±
+    kind: { type: Boolean, required: true }, // 0:¾ÖÇÃ, 1:»ï¼º
     price: { type: Number, required: true },
     content: { type: String },
     image: { type: String, required: true },
@@ -13,7 +13,7 @@ const ProductSchema = new Schema(
     prod_count: { type: Number, required: true },
     prod_sell: { type: Number, required: true },
   },
-  { timestamps: true, collection: 'Product' }
+  { timestamps: true, collection: 'Product' },
 );
 
 module.exports = ProductSchema;
