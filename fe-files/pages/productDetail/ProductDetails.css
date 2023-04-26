@@ -10,12 +10,18 @@
     .productPictures .big_img {width: 100%; height: fit-content; }
 }
 
+.body {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
 /* 헤더 */
 .shopHeader {
-    height: 300px;
+    height: 250px;
+    margin-top: 30px;
 }
 
 .shopHeader .row {
+    align-items: flex-start;
     justify-content: space-between; 
 }
 
@@ -25,12 +31,12 @@
     margin-left: 30px;
 }
 
-.shopHeader .shopLogo {
+.shopHeader .logo .shopLogo {
     font-family: 'LOTTERIACHAB';
-    font-size: 80px;
+    font-size: 90px;
     text-align: center;
-    padding: auto;
-    margin: auto;
+    text-decoration-line: none;
+    margin-top: 100px;
 }
 
 .nav-tabs {justify-content: center; }
@@ -157,14 +163,26 @@ form hr {
 }
 
 .option .quantityOption input {
+    font-family: 'LOTTERIACHAB';
     border: none;
-    width: 30px;
+    width: 50px;
     color: #000;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 300;
+    font-size: 30px;
     text-align: center;
+    display: inline-block;
 }
 
 .productDetail {
     text-align: center;
 }
+
+.option .order .addComplete {
+    display: none;
+}
+
+.orderNow {
+    font-family: 'LOTTERIACHAB';
+    transition-property: transform;
+}
+
