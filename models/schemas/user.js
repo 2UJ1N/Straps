@@ -1,8 +1,8 @@
-const { Schema } = require('mongoose');
+const { Schema } = require("mongoose");
 
 const UserSchema = new Schema(
   {
-    user_id: { type: Schema.Types.ObjectId, required: true }, // primary key
+    user_id: { type: Number, required: true }, // primary key
     password: { type: String, required: true },
     name: { type: String, required: true },
     address: { type: String, required: false },
@@ -23,9 +23,9 @@ const UserSchema = new Schema(
     },
   },
   {
-    collection: 'users',
+    collection: "users",
     timestamps: true,
-  },
+  }
 );
 
 module.exports = UserSchema;
