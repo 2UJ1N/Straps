@@ -10,8 +10,48 @@
 export default class LoginModal extends HTMLElement  {
     constructor() {
       super();
+    this.loginModalTemplate = `
+    <div class="modal fade" id="modalSignin" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <!-- 모달 닫기 -->
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- 모달 본문 -->
+                <div class="modal-body p-5 pt-0">
+                    <!-- 인사 -->
+                    <div class="ment text-center">
+                        <span class="hi">Welcome</span>
+                        <span class="shop">Straps!</span>
+                    </div>
+
+                    <form class="">
+                        <!-- 아이디 비밀번호-->
+                        <div class="form-floating mb-3">
+                            <input id="emailInput" type="email" class="form-control">
+                            <label for="floatingInput text-center">아이디</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input id="passwordInput" type="password" class="form-control">
+                            <label for="floatingPassword text-center">비밀번호</label>
+                        </div>
+                        
+                        <!-- 버튼 -->
+                        <div class="button d-flex justify-content-center">
+                            <button type="submit" class="login btn btn-lg btn-dark">Login</button>
+                            <button type="button" class="signin btn btn-lg btn-outline-dark hover1">signin</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
     //   템플릿 생성
-      this.innerHTML = `   
+      this.loginModalTemplateBak = `   
         <div class="modal fade" id="modalSignin" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content rounded-4 shadow">
@@ -36,6 +76,12 @@ export default class LoginModal extends HTMLElement  {
             </div>
         </div>
         `
+    }
+    async connectedCallback() {
+        this.render();
+    }
+    render() {
+        this.insertAdjacentHTML("afterbegin", this.loginModalTemplate);
     }
 }
 customElements.define('login-modal', LoginModal);
