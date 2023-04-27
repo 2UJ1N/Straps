@@ -15,8 +15,6 @@
 
 <body class="container">
   <header class="container text-center">
-    <custom-header>
-    </custom-header>
     <!-- 카트 사이드 바 -->
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="cartSideBar"
       aria-labelledby="cartSideBarLabel">
@@ -156,19 +154,11 @@
 
     <!-- 카트 사이드바 -->
   </header>
+  <custom-header>
+  </custom-header>
   <main class="container">
-
-    <div class="dropdown text-end">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        정렬
-      </button>
-      <ul class="dropdown-menu">
-        <li><button class="dropdown-item" type="button">인기순</button></li>
-        <li><button class="dropdown-item" type="button">높은 가격순</button></li>
-        <li><button class="dropdown-item" type="button">낮은 가격순</button></li>
-      </ul>
-    </div>
     <card-grid></card-grid>
+
 
   </main>
   <!-- jquery -->
@@ -184,14 +174,18 @@
     crossorigin="anonymous"></script>
   <!-- index.js -->
   <script src="index.js" type="module"></script>
-  <!-- customHeaderComponent.js -->
-  <script src="components/customHeaderComponent/customHeaderComponent.js" type="module"></script>
-  <!-- cardGridComponent.js -->
-  <script src="components/cardGridComponent/cardGridComponent.js" type="module"></script>
-  <!-- 로그인 모달 js -->
-  <script src="components/loginModal/loginModal.js" type="module"></script>
-  <!-- cartsidebar js -->
-  <script src="components/cartsidebar/cartSidebar.js" type="module"></script>
+
+  <!-- 컴포넌트 import   -->
+    <!-- customHeader Component -->
+    <script src="components/customHeader/customHeader.js" type="module"></script>
+    <!-- cardGrid Component -->
+    <script src="components/cardGrid/cardGrid.js" type="module"></script>
+    <!-- 로그인 모달 js -->
+    <script src="components/loginModal/loginModal.js" type="module"></script>
+    <!-- cartsidebar js -->
+    <script src="components/cartsidebar/cartSidebar.js" type="module"></script>
+  <!-- 컴포넌트 import -->
+
 </body>
 
 </html>
