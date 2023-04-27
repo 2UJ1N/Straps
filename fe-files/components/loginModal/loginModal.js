@@ -7,7 +7,7 @@
 //     emailInput.focus()
 // })
 
-export default class LoginModal extends HTMLDivElement  {
+export default class LoginModal extends HTMLElement  {
     constructor() {
       super();
     //   템플릿 생성
@@ -38,14 +38,14 @@ export default class LoginModal extends HTMLDivElement  {
         `
     }
 }
-
+customElements.define('login-modal', LoginModal);
 
 const joinForm = document.querySelector('#join');
 
 
-joinForm.addEventListener("click", () => {
-  window.location.href = "../joinForm/joinForm.html";
-});
+// joinForm.addEventListener("click", () => {
+//   window.location.href = "../joinForm/joinForm.html";
+// });
 
 
 //서버 주소
@@ -64,8 +64,8 @@ let userDataForPostDemo = {
     "status": false
   };
 
-const callPutUser = putUser(userUrl,userDataForPostDemo);
-console.log(callPutUser);
+// const callPutUser = putUser(userUrl,userDataForPostDemo);
+// console.log(callPutUser);
 ////////////////////////////
 
 ////////////////////////////////////////////////
@@ -83,14 +83,14 @@ let userDataForChangeDemo = {
 };
 
 
-const callChangeUser= changeUser(userUrl, userDataForChangeDemo["email"] ,userDataForChangeDemo);
-console.log(callChangeUser);
+// const callChangeUser= changeUser(userUrl, userDataForChangeDemo["email"] ,userDataForChangeDemo);
+// console.log(callChangeUser);
 ////////////////////////////
 
 ////////////////////
 //getProducts DEMO
-const callGetUser = getUser(userUrl, userDataForChangeDemo["email"]);
-console.log(callGetUser);
+// const callGetUser = getUser(userUrl, userDataForChangeDemo["email"]);
+// console.log(callGetUser);
 ////////////////////
 
 ////////////////////////////////////////////////
@@ -99,6 +99,6 @@ console.log(callGetUser);
 
 let deleteUserEmail = userDataForChangeDemo["email"];
 
-const callDeleteUser= deleteUser(userUrl, deleteUserEmail);
-console.log(callDeleteUser);
+// const callDeleteUser= deleteUser(userUrl, deleteUserEmail);
+// console.log(callDeleteUser);
 ////////////////////////////
