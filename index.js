@@ -13,7 +13,7 @@ const { User } = require('./models');
 const FakeProduct = require('./models/Fake/f_products.json');
 const FakeCart = require('./models/Fake/f_cart.json');
 const FakeOrder = require('./models/Fake/f_order.json');
-const FakeUser = require('./models/Fake/f_user.json');
+const FakeUser = require('./models/Fake/f_user_convert.json');
 
 // Middleware
 const cors = require('cors');
@@ -34,7 +34,7 @@ mongoose
     family: 4, // IPv4
   })
   .then(() => console.log('Successfully connected to MongoDB'))
-  .catch((err) => console.log(err));
+  .catch(err => console.log(err));
 
 // DB 초기화하는 코드 넣기
 
