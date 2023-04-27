@@ -50,7 +50,7 @@ const productApi = {
       } else if (category === '2') {
         products = products.filter((product) => product.kind === 'true');
       } else if (category === '3') {
-        products = products.filter((product) => !product.kind === 'false');
+        products = products.filter((product) => product.kind === 'false');
       }
 
       if (sortOption === '0') {
