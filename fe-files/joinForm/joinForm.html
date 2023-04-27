@@ -17,7 +17,7 @@
   <div class="container">
     <main>
       <div class="py-5 text-center">
-        <h1>77&77</h1>
+        <h1>straps</h1>
         <h4>회원가입</h4>
         <p class="lead"></p>
       </div>
@@ -66,7 +66,7 @@
 
 
               <div class="col-12 mb-3">
-                <label for="root" class="label-required">주소</label>
+                <label for="root">주소</label>
                 <div class="row">
                   <div class="col-4">
                     <input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호 검색" readonly required>
@@ -83,13 +83,13 @@
 
               <div class="col-12 mb-3">
                 <input type="postcode" class="form-control" id="address" required readonly>
-                <div class="invalid-feedback">
-                  우편번호를 입력해주세요.
-                </div>
               </div>
 
               <div class="col-12 mb-3">
-                <input type="text" class="form-control formstyle-none" id="more_address" placeholder="상세주소 입력">
+                <input type="text" class="form-control formstyle-none" id="more_address" placeholder="상세주소 입력" required>
+                <div class="invalid-feedback">
+                  상세주소를 입력해주세요.
+                </div> 
               </div>
 
 

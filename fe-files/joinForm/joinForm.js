@@ -4,24 +4,25 @@ window.addEventListener('load', () => {
   // submit 전 모든 값 입력하기
   Array.prototype.filter.call(forms, (form) => {
     form.addEventListener('submit', function (event) {
-      if (form.checkValidity() === false) {
-        event.preventDefault();
+      if (form.checkValidity() === false) { //값이 없으면
+        event.preventDefault(); //동작멈추게 하고 was-validated추가
         event.stopPropagation();
       } else {
-        event.preventDefault();
-        const userData = userDataCreate(form);
-        console.log(userData); // 입력된 값들이 객체로 출력됨
-        //window.location.href = "../index.html";
+        event.preventDefault(); //기본동작 막고
+        const userData = userDataCreate(form); //db에 들어갈 user정보를 만듬
+        console.log(userData); // 출력
+        //window.location.href = "../index.html"; //성공하면 홈으로 돌아가기
       }
       form.classList.add('was-validated');
     }, false);
   });
   createBrithOptions();//생년월일 날짜 달기
+
   //비밀번호 유효성 검사
   document.getElementById('password').onkeyup=function(event){
     var pw = this.value;
-    var num = pw.search(/[0-9]/g);
-    var eng = pw.search(/[a-z]/ig);
+    var num = pw.search(/[0-9]/g); //숫자부분
+    var eng = pw.search(/[a-z]/ig); //영어부분
 
     if(pw.length < 8 || pw.length > 20){
       document.getElementById('pwchk01').innerHTML = '비밀번호는 8자리에서 20자리 사이로 입력해주세요';
@@ -42,14 +43,14 @@ window.addEventListener('load', () => {
 
   //비밀번호 일치 확인
   document.getElementById('passwordCheck').onkeyup = function(event){
-    var pww = document.getElementById('password').value;
-    var pwck = this.value;
+    var pww = document.getElementById('password').value; //비밀번호값
+    var pwck = this.value; //비밀번호 확인값
 
-    if(pww != pwck){
+    if(pww != pwck){ //다르면
       document.getElementById('pwchk02').innerHTML = '비밀번호가 일치하지 않습니다';
       event.preventDefault();
       event.stopPropagation();
-    } else{ 
+    } else{ //같으면
       document.getElementById('pwchk02').innerHTML = '';
     }
   }
@@ -58,7 +59,7 @@ window.addEventListener('load', () => {
 
 //주소 불러오기 - daum api 활용
 function findAddr(){
-  new daum.Postcode({
+  new daum.Postcode({ 
     oncomplete: function(data) {
       var addr = '';
       var roadAddr = data.roadAddress; //도로명주소 변수
@@ -119,13 +120,12 @@ function createBrithOptions(){
       selectDay.add(option);
     }
   }
-
 createYearOptions();
 createMonthOptions();
 createDayOptions();
 }
 
-
+//받은 데이터들 json객체로 만들기
 function userDataCreate(form) {
   const userData = {};
   const inputs = form.querySelectorAll('input, select, textarea');
