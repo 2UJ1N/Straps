@@ -55,5 +55,5 @@ head 태그의 custom.css 파일 경로 확인
 ~~~  
   productDetail로 이동하고 싶은 경우 주소창에 입력
 ~~~bash  
-    http://localhost:12345/productDetail/productDetailsPage.html
+    http://localhost:12345/productDetail/productDetailPage.html
 ~~~  
