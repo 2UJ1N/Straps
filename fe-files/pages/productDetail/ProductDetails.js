@@ -168,8 +168,11 @@ else { //상품 품절 o
     orderNow.disabled = true;
 }
 
+// 공유
+let nowUrl = window.location.href;
 
-addCart.addEventListener("click", () => { 
-    addCart.style.display = 'none';
-    getElementById('addComplete').display = 'inline';
-})
+function copyUrl(){
+    navigator.clipboard.writeText(nowUrl).then(res =>{
+        alert('주소가 복사되었습니다!')
+    })
+}
