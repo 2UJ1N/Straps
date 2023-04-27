@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'LOTTERIACHAB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media (max-width: 1000px) {
+    .productPictures .sub_img li img {width: 100%; }
+    .productPictures .big_img {width: 100%; height: fit-content; }
+}
+
+/* 헤더 */
+.shopHeader {
+    height: 300px;
+}
+
+.shopHeader .row {
+    justify-content: space-between; 
+}
+
+.shopHeader .link .eliceLogo {
+    width: 10%;
+    height: 10%;
+    margin-left: 30px;
+}
+
+.shopHeader .shopLogo {
+    font-family: 'LOTTERIACHAB';
+    font-size: 80px;
+    text-align: center;
+    padding: auto;
+    margin: auto;
+}
+
+.nav-tabs {justify-content: center; }

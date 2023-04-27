@@ -9,12 +9,12 @@
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="/fe-files/components/cartsidebar/cartSidebar.css">
   <link rel="stylesheet" href="/fe-files/components/loginModal/loginModal.css">
-
+  <!-- <link rel="stylesheet" href="/fe-files/components/customHeader/customHeader.css"> -->
   <title>Bootstrap Sass &amp; JS</title>
 </head>
 
 <body class="container">
-  <header class="container text-center">
+  <div class="container text-center">
     <!-- 카트 사이드 바 -->
     <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="cartSideBar"
       aria-labelledby="cartSideBarLabel">
@@ -153,14 +153,12 @@
     </div>
 
     <!-- 카트 사이드바 -->
-  </header>
-  <custom-header>
-  </custom-header>
-  <main class="container">
-    <card-grid></card-grid>
-
-
-  </main>
+  </div>
+    <custom-header>
+    </custom-header>
+    <main class="container">
+      <card-grid></card-grid>
+    </main>
   <!-- jquery -->
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
     crossorigin="anonymous"></script>
