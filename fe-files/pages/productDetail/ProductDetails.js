@@ -104,6 +104,12 @@ let i = 1;
 
 minus.addEventListener("click", () => {
     if (i > 0) {
+        if (i == 1) {
+            // 버튼 비활성화
+            addCart.disabled = true;
+            orderNow.disabled = true;
+        }
+
         i--
         amount.value = i;
         amount.textContent = amount.value;
@@ -125,6 +131,10 @@ plus.addEventListener("click", () => {
     amount.textContent = amount.value;
     let totalCostNum = i * product['price'];
     totalCost.textContent = '₩ ' + numberWithCommas(totalCostNum);
+
+    // 버튼 활성화
+    addCart.disabled = false;
+    orderNow.disabled = false;
 })
 
 
