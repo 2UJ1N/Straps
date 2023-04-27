@@ -1,39 +1,46 @@
+const userApi = require('../apis/user_api');
+
 const { User } = require('../models/index');
 const { userService } = require('../services/userService');
 
 const Router = require('express');
+const bodyParser = require('body-parser');
 const userRouter = Router();
+userRouter.use(bodyParser.urlencoded({ extended: true }));
+userRouter.use(bodyParser.json());
 
 // 미들웨어 불러오기
 const contentType = require('../middlewares/contentType');
 const validEmailCheck = require('../middlewares/validEmailCheck');
 const loginRequired = require('../middlewares/loginRequired');
 const authAdmin = require('../middlewares/authAdmin');
+const isUsingEmail = require('../middlewares/isUsingEmail');
 
 // async handler 불러오기
 const asyncHandler = require('../utils/asyncHandler');
-const isUsingEmail = require('../middlewares/isUsingEmail');
 
 // 회원가입 post
 userRouter.post(
   '/register',
-  contentType,
-  isUsingEmail,
-  validEmailCheck,
-  asyncHandler(async (req, res, next) => {
-    const { name, email, password, role } = req.body;
+  userApi.register,
+  //contentType,
+  //isUsingEmail,
+  //validEmailCheck,
+  // asyncHandler(async (req, res, next) => {
+  //   const { name, email, password, role } = req.body;
 
-    // 위 데이터를 유저 db에 추가하기
-    const newUser = await userService.addUser({
-      // userService의 addUser 함수 적용
-      name,
-      email,
-      password,
-      role,
-    });
+  //   // 위 데이터를 유저 db에 추가하기
+  //   const newUser = await userService.addUser({
+  //     // userService의 addUser 함수 적용
+  //     name,
+  //     email,
+  //     password,
+  //     role,
+  //   });
 
-    res.status(201).json(newUser);
-  }),
+  //   res.status(201).json(newUser);
+  // }
+  // ),
 );
 
 // 로그인 post
@@ -43,7 +50,7 @@ userRouter.post(
     const { email, password } = req.body;
 
     // 로그인 진행 (로그인 성공 시 jwt 토큰을 프론트에 보내 줌)
-    const userToken = await userService.getUserToken({ email, password });
+    const userToken = await userService.getUserToken({ email, password }); // 오류: userToken 프로퍼티를 불러올 수 없다고 나옴
 
     // jwt 토큰을 프론트에 보냄 (jwt 토큰은, 문자열임)
     res.status(200).json(userToken);
@@ -51,23 +58,23 @@ userRouter.post(
 );
 
 // 전체 유저 목록을 가져옴 (배열 형태임) // 관리자 페이지
-userRouter.get(
-  '/admin/userList',
-  loginRequired,
-  authAdmin,
-  asyncHandler(async function (req, res, next) {
-    const users = await userService.getUsers();
-    res.status(200).json(users);
-  }),
-);
+// userRouter.get(
+//   '/admin/userList',
+//   loginRequired,
+//   authAdmin,
+//   asyncHandler(async function (req, res, next) {
+//     const users = await userService.getUsers();
+//     res.status(200).json(users);
+//   }),
+// );
 
 // 사용자 정보 조회 (자신의 정보를 볼 수 있다.)
 userRouter.get(
   '/user',
-  loginRequired,
+  loginRequired, // 유저 토큰이 null 값으로 처리되어 loginRequired가 실행됨
   asyncHandler(async (req, res) => {
     const userId = req.currentUserId;
-    const userInfo = await userModel.findById({ user_id: userId });
+    const userInfo = await userModel.findById({ _id: userId });
     res.status(200).json(userInfo);
   }),
 );
@@ -126,3 +133,7 @@ userRouter.patch(
 );
 
 module.exports = userRouter;
+
+userRouter.listen(3000, function () {
+  console.log('listening on 3000');
+});

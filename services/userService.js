@@ -66,7 +66,7 @@ class UserService {
     const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
 
     // 2개 프로퍼티를 jwt 토큰에 담음; loginRequired: jwt.verify 이용하여 정상적인 jwt인지 확인도 해야하나?
-    const token = jwt.sign({ userId: user.user_id, role: user.role }, secretKey); // jwt의 sign 함수: 토큰 생성, 이 때 위의 secret key 사용
+    const token = jwt.sign({ userId: user._id, role: user.role }, secretKey); // jwt의 sign 함수: 토큰 생성, 이 때 위의 secret key 사용
     if (user.role === 1) {
       return { token, admin: 1 }; // 사용자인 경우, 리턴 값을 관리자와 다르게 반환
     }

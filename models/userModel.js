@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const UserSchema = require('../models/schemas/user');
 
 const User = mongoose.model('users', UserSchema); // 왜 앞에 'users 쓴지 모르겠음
-// 오류: MissingSchemaError: Schema hasn't been registered for model "users".
 
 class UserModel {
   // export class: ES module
@@ -13,7 +12,7 @@ class UserModel {
   }
 
   async findById(userId) {
-    const user = await User.findOne({ user_id: userId });
+    const user = await User.findOne({ _id: userId });
     return user;
   }
 
@@ -28,7 +27,7 @@ class UserModel {
   }
 
   async update({ userId, update }) {
-    const filter = { user_id: userId };
+    const filter = { _id: userId };
     const option = { returnOriginal: false };
 
     const updatedUser = await User.findOneAndUpdate(filter, update, option);

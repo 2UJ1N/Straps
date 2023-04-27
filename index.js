@@ -15,42 +15,62 @@ const FakeCart = require('./models/Fake/f_cart.json');
 const FakeOrder = require('./models/Fake/f_order.json');
 const FakeUser = require('./models/Fake/f_user.json');
 
-// DB ì—°ê²°
+// Middleware
+const cors = require('cors');
+
+// Router
+const indexRouter = require('./routes/index');
+const productRouter = require('./routes/productRouter');
+const orderRouter = require('./routes/orderRouter');
+const cartRouter = require('./routes/cartRouter');
+const userRouter = require('./routes/userRouter');
+
+// DB ¿¬°á
 mongoose
   .connect(process.env.DB_Link, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 10000, // 10ì´ˆ
-    socketTimeoutMS: 45000, // 45ì´ˆ
+    serverSelectionTimeoutMS: 10000, // 10ÃÊ
+    socketTimeoutMS: 45000, // 45ÃÊ
     family: 4, // IPv4
   })
   .then(() => console.log('Successfully connected to MongoDB'))
   .catch(err => console.log(err));
 
-// DB ì´ˆê¸°í™”í•˜ëŠ” ì½”ë“œ ë„£ê¸°
-Product.deleteMany({});
-Cart.deleteMany({});
-Order.deleteMany({});
+// DB ÃÊ±âÈ­ÇÏ´Â ÄÚµå ³Ö±â
 
-// DB ì €ìž¥
-Product.create(FakeProduct)
-  .then(products => console.log(products))
-  .catch(err => console.log(err));
+// Product.deleteMany({});
+// Cart.deleteMany({});
+// Order.deleteMany({});
+// User.deleteMany({});
 
-Cart.create(FakeCart)
-  .then(cart => console.log(cart))
-  .catch(err => console.log(err));
+// DB ÀúÀå
 
-Order.create(FakeOrder)
-  .then(order => console.log(order))
-  .catch(err => console.log(err));
+// Product.create(FakeProduct)
+//   .then((products) => {}) //console.log(products)
+//   .catch((err) => console.log(err));
 
-User.create(FakeUser)
-  .then(user => console.log(user))
-  .catch(err => console.log(err));
+// Cart.create(FakeCart)
+//   .then((cart) => {}) //console.log(cart)
+//   .catch((err) => console.log(err));
+
+// Order.create(FakeOrder)
+//   .then((order) => {}) //console.log(order)
+//   .catch((err) => console.log(err));
+
+// User.create(FakeUser)
+//   .then((user) => {}) //console.log(user)
+//   .catch((err) => console.log(err));
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('OK');
 });
+
+app.use('/products', cors(), productRouter);
+app.use('/cart', cors(), cartRouter);
+app.use('/order', cors(), orderRouter);
+app.use('/user', cors(), userRouter);
 
 app.listen(3000);
