@@ -40,9 +40,13 @@ const productApi = {
       let products = await Product.find({});
 
       if (category === '0') {
-        products = products.filter((product) => product.prod_sell / product.prod_count >= 0.7);
+        products = products.filter(
+          (product) => product.prod_sell / product.prod_count >= 0.7
+        );
       } else if (category === '1') {
-        products = products.filter((product) => product.prod_sell / product.prod_count < 0.3);
+        products = products.filter(
+          (product) => product.prod_sell / product.prod_count < 0.3
+        );
       } else if (category === '2') {
         products = products.filter((product) => product.kind === 'true');
       } else if (category === '3') {
@@ -57,12 +61,12 @@ const productApi = {
         products.sort((a, b) => a.price - b.price);
       }
 
-    res.status(200).json({ products });    
+      res.status(200).json({ products });
     } catch (error) {
       console.error(error);
       next(error);
     }
-  }
+  },
 
   // 상품 상세 - 선택한 상품의 상세정보 조회
   async getProductById(req, res, next) {
