@@ -9,7 +9,7 @@ import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 
 //서버 주소
 const productsUrl = 'http://34.64.218.104:5002/products';
-
+console.log('안녕하세요');
 ////////////////////
 //getProducts DEMO
 const products = getProducts(productsUrl);
@@ -46,7 +46,7 @@ let dataForPutDemo = {
   prod_seq: 10,
 };
 
-// let putUrlParams = 10;
+let putUrlParams = 10;
 
 const callPutProduct = putProduct(productsUrl, putUrlParams, dataForPutDemo);
 console.log(callPutProduct);
@@ -63,17 +63,17 @@ console.log(callPutProduct);
 
 ////////////////////
 //getProducts DEMO
-const callGetUser = getUser(userUrl, userDataForChangeDemo['email']);
-console.log(callGetUser);
+//const callGetUser = getUser(userUrl, userDataForChangeDemo['email']);
+//console.log(callGetUser);
 ////////////////////
 
 ////////////////////////////////////////////////
 //deleteProduct DEMO
 
-let deleteUserEmail = userDataForChangeDemo['email'];
+//let deleteUserEmail = userDataForChangeDemo['email'];
 
-const callDeleteUser = deleteUser(userUrl, deleteUserEmail);
-console.log(callDeleteUser);
+//const callDeleteUser = deleteUser(userUrl, deleteUserEmail);
+//console.log(callDeleteUser);
 ////////////////////////////
 
 /*
@@ -146,6 +146,7 @@ iconShoppingP.innerHTML = no;
 
 //장바구니 로컬스토리지 어쩌구저쩌구 중..
 const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+console.log(addToCartBtns);
 addToCartBtns.forEach((btn) => {
   btn.addEventListener('click', addItemFunction);
 });

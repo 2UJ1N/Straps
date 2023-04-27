@@ -1,7 +1,7 @@
-import LoginModal from "../loginModal/loginModal.js";
+// import LoginModal from '../loginModal/loginModal.js';
 
 //로그인 모달 import
-const loginModal = new LoginModal();
+// const loginModal = new LoginModal();
 
 ////////////////////////////////////////////
 //CustomHeader Component
@@ -47,35 +47,31 @@ export default class CustomHeader extends HTMLElement {
         </div>
       </div>
     </div>
-    `
-
+    `;
   }
 
   //컴포넌트가 DOM에 연결 되면 실행되는 함수
   connectedCallback() {
     this.render();
-    this.querySelectorAll(".nav-item")
-      .forEach((elem)=>{
-        elem.addEventListener('click', this.changeAcitveTab, false);
+    this.querySelectorAll('.nav-item').forEach((elem) => {
+      elem.addEventListener('click', this.changeAcitveTab, false);
     });
-    this.appendChild(loginModal);    
+    // this.appendChild(loginModal);
   }
-  changeAcitveTab(e){
+  changeAcitveTab(e) {
     {
-      const classString = "btn rounded-3 btn-primary";
+      const classString = 'btn rounded-3 btn-primary';
       const navPills = this.parentNode;
-      navPills.querySelectorAll(".nav-item")
-        .forEach((elem)=>{
-          elem.firstElementChild.setAttribute("class",classString);
+      navPills.querySelectorAll('.nav-item').forEach((elem) => {
+        elem.firstElementChild.setAttribute('class', classString);
       });
-      e.target.setAttribute("class",classString + " " + "active");
-      let cardGrid = document.querySelector("card-grid");
-      cardGrid.category =e.target.getAttribute("id").replace('TabButton', '');
+      e.target.setAttribute('class', classString + ' ' + 'active');
+      let cardGrid = document.querySelector('card-grid');
+      cardGrid.category = e.target.getAttribute('id').replace('TabButton', '');
     }
   }
   render() {
-    this.insertAdjacentHTML("afterbegin", this.customHeaderTemplate);
+    this.insertAdjacentHTML('afterbegin', this.customHeaderTemplate);
   }
 }
 customElements.define('custom-header', CustomHeader);
-
