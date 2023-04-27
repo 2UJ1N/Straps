@@ -272,10 +272,12 @@ form hr {
 .option .divider {
     color: #d3d3d3;
     margin-right: 100px;
+    width: fit-content;
 }
 
 .option .quantityOption {
     font-size: 20px;
+    white-space: nowrap;
 }
 
 .option .quantityOption input {
