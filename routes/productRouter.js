@@ -5,7 +5,7 @@ const productApi = require('../apis/product_api');
 // 사용자
 router.get('/', productApi.getAllProducts); // (메인 페이지)
 
-router.get('/sort', productApi.getAlignProducts); // (메인 페이지 - 정렬)
+router.get('/sort/:option', productApi.getAlignProducts); // (메인 페이지 - 정렬)
 
 router.get('/:prod_num', productApi.getProductById); // (상품 상세 페이지)
 
