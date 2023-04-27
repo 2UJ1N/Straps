@@ -24,6 +24,33 @@ const productApi = {
     }
   },
 
+  // 상품 정렬 - default, 높은 가격순, 낮은 가격순
+  async getAlignProducts(req, res, next) {
+    try {
+      const { price } = req.params;
+      const sort = Number(req.query.sort || 0);
+
+      let products;
+
+      if (sort === 0) { 
+        products = await Product.find({}); // default
+      } else if (sort === 1) {
+        products = await Product.find({}).sort({ price: -1 }); // 높은 가격순
+      } else if (sort === 2) {
+        products = await Product.find({}).sort({ price: 1 }); // 낮은 가격순
+      } else {
+        const error = new Error('Invalid sort option');
+        error.status = 400;
+        throw error;
+      }
+
+      res.status(200).json({ sort, products });
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  }
+
   // 상품 상세 - 선택한 상품의 상세정보 조회
   async getProductById(req, res, next) {
     try {
