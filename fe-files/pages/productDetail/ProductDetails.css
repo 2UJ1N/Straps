@@ -249,6 +249,8 @@
     border: 1px solid var(--bs-red);
     background-color: var(--bs-red);
     color: white;
+    font-size: 15px;
+    margin-left: 5px;
 }
 
 .option .priceOption .salePrice {
