@@ -19,7 +19,7 @@ export default class ItemCard extends HTMLElement {
 
             </p
             <p>
-                <button type="button" class="btn btn-secondary">
+                <button id = "cardButton${this.productNumber}" type="button" class="btn btn-secondary">
                     장바구니에 추가
                 </button>
             </p>
