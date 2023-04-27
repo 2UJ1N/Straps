@@ -136,9 +136,9 @@
 }
 
 .prodectInfo #category {
-    text-decoration: none;
-    color: #666A73;
-
+    color: black;
+    text-underline-offset: 8px;
+    font-weight: 1200px;
     margin-left: 5px;
     margin-right: 5px;
 }
