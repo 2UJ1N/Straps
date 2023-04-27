@@ -50,6 +50,10 @@
     margin-top: 100px;
 }
 
+.shopHeader svg {
+    margin-left: 10px;
+}
+
 .nav-tabs {justify-content: center; }
 
 .categoryBar {
@@ -132,9 +136,9 @@
 }
 
 .prodectInfo #category {
-    text-decoration: none;
-    color: #666A73;
-
+    color: black;
+    text-underline-offset: 8px;
+    font-weight: 1200px;
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -185,9 +189,9 @@
 }
     
 .jumbotron h2{
-    font-size: 52px;
+    font-size: 40px;
     color: #000;
-    font-weight: 800;
+    font-weight: 1000;
     margin-bottom: 30px;
     padding: 0 15px;
 }
@@ -200,7 +204,7 @@
 }
 .jumbotron p{
     margin-bottom: 60px;
-    font-size: 25px;
+    font-size: 20px;
     padding: 0 15px;
 }
 
@@ -245,6 +249,8 @@
     border: 1px solid var(--bs-red);
     background-color: var(--bs-red);
     color: white;
+    font-size: 15px;
+    margin-left: 5px;
 }
 
 .option .priceOption .salePrice {
@@ -298,12 +304,14 @@ form hr {
     font-weight: 650;
 }
 
-.option .order .addComplete {
-    display: none;
-}
-
 .orderNow {
     font-family: 'LOTTERIACHAB';
     transition-property: transform;
 }
 
+.order .arrowBox {
+    font-size: 20px;
+    display: none;
+    position: absolute;
+    width: 100px;
+}

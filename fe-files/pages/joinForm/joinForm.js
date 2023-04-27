@@ -16,6 +16,7 @@ window.addEventListener('load', () => {
       form.classList.add('was-validated');
     }, false);
   });
+  
   createBrithOptions();//생년월일 날짜 달기
 
   //비밀번호 유효성 검사

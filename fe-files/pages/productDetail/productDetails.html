@@ -83,7 +83,6 @@
                         <hr />
                         <div class="option d-flex justify-content-between">
                             <div class="priceOption row">
-                                <!--재고량 0일 경우 일시 품절 보이게 + 장바구니/구매 버튼 비활성화--> 
                                 <div id="showPrice">
                                     <h4>가격</h4>
                                     <span class="price" id="productPrice"></span>
@@ -113,14 +112,12 @@
                             </div>
                             <div class="order">
                                 <!--공유-->
-                                <button type="submit" class="share btn btn-lg btn-outline-dark">
+                                <button type="button" class="share btn btn-lg btn-outline-dark" onclick="copyUrl()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
                                         <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
                                     </svg>
                                 </button>
-
-                                <!--개수 0이면 아래 버튼 다 비활성화-->
 
                                 <!--장바구니 추가-->
                                 <button type="submit" class="addCart btn btn-lg btn-outline-dark" id="addCart">
@@ -129,15 +126,10 @@
                                     </svg>
                                 </button>
 
-                                <!--장바구니 추가 완료 후 바뀌는 아이콘-->
-                                <button type="submit" class="addComplete btn btn-lg btn-dark" id="addComplete">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
-                                        <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
-                                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                    </svg>
-                                </button>
                                 <!--바로 주문 버튼-->
                                 <button type="submit" class="orderNow btn btn-lg btn-dark" id="orderNow">Order Now!</button>
+
+                                <p class="arrowBox">장바구니에 추가되었습니다.</p>
                             </div>
                         </div>
                     </form>
