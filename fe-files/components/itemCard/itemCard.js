@@ -49,8 +49,14 @@ export default class ItemCard extends HTMLElement {
     connectedCallback() {
         this.render();
     }
+    hrefToDetails(){
+        window.localStorage.setItem("detailsProductNumber",this._productNumber);
+    }
     render() {
         this.insertAdjacentHTML("afterbegin", this._cardTemplate);
+        this.querySelector("a").addEventListener("click",()=>{
+            window.localStorage.setItem("detailProductNumber",this._productNumber)}
+        ,false);
     }
 }
 customElements.define('item-card', ItemCard);
