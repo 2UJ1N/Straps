@@ -36,15 +36,15 @@ export default class CustomHeader extends HTMLElement {
             <li class="nav-item" id="bestTab">
               <button id="bestTabButton" class="categoryBtn btn btn-outline-dark active" type="button">Best</button>
             </li>
-            <span class="divider2 align-self-center">·</span>
+              <span class="divider2 align-self-center">·</span>
             <li class="nav-item" id="saleTab">
               <button id="saleTabButton" class="categoryBtn btn btn-outline-dark" type="button">Sale</button>
             </li>
-            <span class="divider1 align-self-center">|</span>
+              <span class="divider1 align-self-center">|</span>
             <li class="nav-item" id="galaxyTab">
               <button id="galaxyTabButton" class="categoryBtn btn btn-outline-dark" type="button">갤럭시</button>
             </li>
-            <span class="divider2 align-self-center">·</span>
+              <span class="divider2 align-self-center">·</span>
             <li class="nav-item" id="appleTab">
               <button id="appleTabButton" class="categoryBtn btn btn-outline-dark" type="button">애플</button>
             </li>
@@ -65,7 +65,9 @@ export default class CustomHeader extends HTMLElement {
   }
   changeAcitveTab(e) {
     {
-      const classString = "btn rounded-3 btn-primary";
+      const classString = e.target.getAttribute("class")
+        .replace('active','').trimEnd();
+
       const navPills = this.parentNode;
       navPills.querySelectorAll(".nav-item")
         .forEach((elem) => {
