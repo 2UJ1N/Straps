@@ -53,7 +53,7 @@ function btnDisabled(target) {
 }
 
 let productUrl = "http://34.64.218.104:5002/products";
-let prod_num = 6;
+let prod_num = 5;
 
 // 상품 product로 받아오기
 let product = await getProduct(productUrl, prod_num);
@@ -104,6 +104,12 @@ let i = 1;
 
 minus.addEventListener("click", () => {
     if (i > 0) {
+        if (i == 1) {
+            // 버튼 비활성화
+            addCart.disabled = true;
+            orderNow.disabled = true;
+        }
+
         i--
         amount.value = i;
         amount.textContent = amount.value;
@@ -125,10 +131,15 @@ plus.addEventListener("click", () => {
     amount.textContent = amount.value;
     let totalCostNum = i * product['price'];
     totalCost.textContent = '₩ ' + numberWithCommas(totalCostNum);
+
+    // 버튼 활성화
+    addCart.disabled = false;
+    orderNow.disabled = false;
 })
 
 
 // 상품 베스트셀러 - 70% 이상 판매된 경우
+    // 베스트셀러가 아닌경우
 if (product['prod_cell'] < product['prod_count'] * 0.7)
     document.getElementById('best').style.display = 'none';
 
@@ -136,9 +147,10 @@ if (product['prod_cell'] < product['prod_count'] * 0.7)
     //세일 아닐 경우
 if (product['prod_cell'] > product['prod_count'] * 0.3){
     document.getElementById('sale').style.display = 'none';
-    //할인가 보이기
+    //할인가 숨기기
     document.getElementById('showSalePrice').style.display = 'none';
     document.getElementById('showPrice').style.alignSelf = 'center';
+
     totalCost.textContent = '₩ ' + numberWithCommas(product['price']);
 }
 else {
@@ -158,8 +170,11 @@ else { //상품 품절 o
     orderNow.disabled = true;
 }
 
+// 공유
+let nowUrl = window.location.href;
 
-addCart.addEventListener("click", () => { 
-    addCart.style.display = 'none';
-    getElementById('addComplete').display = 'inline';
-})
+function copyUrl(){
+    navigator.clipboard.writeText(nowUrl).then(res =>{
+        alert('주소가 복사되었습니다!')
+    })
+}
