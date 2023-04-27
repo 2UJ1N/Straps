@@ -5,13 +5,55 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+
+$(".wrap")
+    .on('mousemove', magnify)
+    .prepend("<div class='magnifier'></div>")
+    .children('.magnifier').css({
+        "background": "url('" + $(".target").attr("src") + "') no-repeat"
+    });
+ 
+var target = $('.bigImg');
+var magnifier = $('.magnifier');
+
+// 돋보기 함수
+function magnify(e) {
+
+    var mouseX = e.pageX - $(this).offset().left;
+    var mouseY = e.pageY - $(this).offset().top;
+ 
+    if (mouseX < $(this).width() && mouseY < $(this).height() && mouseX > 0 && mouseY > 0) {
+        magnifier.fadeIn(100);
+    } else {
+        magnifier.fadeOut(100);
+    }
+ 
+    if (magnifier.is(":visible")) {
+ 
+        var rx = -(mouseX / target.width() * target[0].naturalWidth - magnifier.width() / 2);
+        var ry = -(mouseY / target.height() * target[0].naturalHeight - magnifier.height()  /2);
+ 
+        // 5
+        var px = mouseX - magnifier.width() / 2;
+        var py = mouseY - magnifier.height() / 2;
+ 
+        // 6
+        magnifier.css({
+            left: px,
+            top: py,
+            backgroundPosition: rx + "px " + ry + "px"
+        });
+    }
+}
+
+
 // 버튼 비활성화
 function btnDisabled(target) {
     target.disabled = true;
 }
 
 let productUrl = "http://34.64.218.104:5002/products";
-let prod_num = 5;
+let prod_num = 6;
 
 // 상품 product로 받아오기
 let product = await getProduct(productUrl, prod_num);
@@ -24,6 +66,11 @@ let category = document.getElementById('category');
 if (product['kind'] === 1) category.innerHTML="갤럭시";
 // 상품 분류(kind)가 갤럭시(1)인 경우 갤럭시로 표시 + 갤럭시 카테고리 링크 걸기
 else category.innerHTML="애플";
+
+
+//상품 이미지
+let img = document.getElementById('bigImg');
+img.src = product['image'];
 
 // 상품 이름
 let name = document.getElementById('productName');
