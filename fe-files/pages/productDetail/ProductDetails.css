@@ -50,6 +50,10 @@
     margin-top: 100px;
 }
 
+.shopHeader svg {
+    margin-left: 10px;
+}
+
 .nav-tabs {justify-content: center; }
 
 .categoryBar {
