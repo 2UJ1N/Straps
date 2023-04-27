@@ -13,18 +13,22 @@ class CardGrid extends HTMLElement {
         this._productsObj;
         this._productsArr;
         this._category = "best";
-        this._cardGridTemplate = `    
-            <slot id = "categoryTabLabel" >Category</slot>
-            <div class="container">
-                <h4>${this._category}</h4>
-                <div class="dropdown text-end">
-                <select id="sortSelector">
-                    <option value="2">인기순</option>
-                    <option value="1">높은 가격순</option>
-                    <option value="0">낮은 가격순</option>
-                </select>
-              </div>
-            </div>
+        this._cardGridTemplate = ` 
+            <div class="container">   
+                <div class="row">
+                    <slot id = "categoryTabLabel" class="col-md-5">Category</slot>
+                    <div class="container" class="col-md-5">
+                        <h4>${this._category}</h4>
+                        <div class="dropdown text-end">
+                            <select id="sortSelector">
+                                <option value="2">인기순</option>
+                                <option value="1">높은 가격순</option>
+                                <option value="0">낮은 가격순</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            <div>
         `;
     }
     set category(value) {
