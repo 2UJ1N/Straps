@@ -105,15 +105,15 @@ class CardGrid extends HTMLElement {
         let rowNum = 0;
         for (let i = 0; i < products.length; i++) {
             if (i >= 16) break;
-            const { name, image, price } = products[i];
-            const productNumber = Number(i + 1);
-            let itemCard = new ItemCard(productNumber,name,price);
+            const { name, image, price, prod_num } = products[i];
+            const colNumber = Number(i + 1);
+            let itemCard = new ItemCard(prod_num,name,price);
             let divCol = document.createElement('div');
             let divRow;
             divCol.setAttribute("class","col");
-            divCol.setAttribute("id","product"+productNumber);
+            divCol.setAttribute("id","col"+colNumber);
             divCol.insertAdjacentElement("beforeend",itemCard);
-            if ((productNumber + 3) % 4 === 0) {
+            if ((colNumber + 3) % 4 === 0) {
                 rowNum++;
                 divRow = document.createElement('div');
                 divRow.setAttribute("class","row");
@@ -128,7 +128,6 @@ class CardGrid extends HTMLElement {
     }
     render() {
         this.insertAdjacentHTML("afterbegin", this._cardGridTemplate);
-        // this.addItemsToGrid(this.obj,this.sort);
         this.addItemsToGrid(this._productsArr,this._sort);
     }
     changeSort(e){
