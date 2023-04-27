@@ -18,17 +18,17 @@ const products = getProducts(productsUrl);
 
 ////////////////////////////////////////////////
 // postProduct DEMO
-let dataForPostDemo = {
-  name: 'PostDemo',
-  kind: 1,
-  price: 2522,
-  content: 'testcontent13',
-  image: 'http://dummyimage.com/183x100.png/dddddd/000000',
-  regdate: '6/9/2022',
-  prod_cell: 3,
-};
-const callPostProduct = postProduct(productsUrl, dataForPostDemo);
-console.log(callPostProduct);
+// let dataForPostDemo =   {
+//     "name": "PostDemo",
+//     "kind": 1,
+//     "price": 2522,
+//     "content": "testcontent13",
+//     "image": "http://dummyimage.com/183x100.png/dddddd/000000",
+//     "regdate": "6/9/2022",
+//     "prod_cell": 3
+//   };
+// const callPostProduct = postProduct(productsUrl,dataForPostDemo);
+// console.log(callPostProduct);
 ////////////////////////////
 
 ////////////////////////////////////////////////
@@ -46,7 +46,7 @@ let dataForPutDemo = {
   prod_seq: 10,
 };
 
-let putUrlParams = 10;
+// let putUrlParams = 10;
 
 const callPutProduct = putProduct(productsUrl, putUrlParams, dataForPutDemo);
 console.log(callPutProduct);
@@ -55,52 +55,10 @@ console.log(callPutProduct);
 ////////////////////////////////////////////////
 //deleteProduct DEMO
 
-let deleteUrlParams = 2;
+// let deleteUrlParams = 2;
 
-const callDeleteProduct = deleteProduct(productsUrl, deleteUrlParams);
-console.log(callDeleteProduct);
-////////////////////////////
-
-//서버 주소
-const userUrl = 'http://34.64.218.104:5002/user';
-
-////////////////////////////////////////////////
-// postProduct DEMO
-let userDataForPostDemo = {
-  password: 's58rBMief',
-  name: 'Molly Stubbings',
-  address: 'Ulsan',
-  phones: '010-6742-6856',
-  email: 'mstubbings0@google.com',
-  regdate: '12/24/2022',
-  role: false,
-  status: false,
-};
-
-const callPutUser = putUser(userUrl, userDataForPostDemo);
-console.log(callPutUser);
-////////////////////////////
-
-////////////////////////////////////////////////
-//putProduct DEMO
-
-let userDataForChangeDemo = {
-  password: 'aaaabbbb!!11',
-  name: 'Molly Stubbings',
-  address: 'Ulsan',
-  phones: '010-6742-1234',
-  email: 'mstubbings0@google.com',
-  regdate: '12/24/2022',
-  role: false,
-  status: false,
-};
-
-const callChangeUser = changeUser(
-  userUrl,
-  userDataForChangeDemo['email'],
-  userDataForChangeDemo
-);
-console.log(callChangeUser);
+// const callDeleteProduct = deleteProduct(productsUrl, deleteUrlParams);
+// console.log(callDeleteProduct);
 ////////////////////////////
 
 ////////////////////
