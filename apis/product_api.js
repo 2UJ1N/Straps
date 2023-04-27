@@ -24,6 +24,46 @@ const productApi = {
     }
   },
 
+  // 상품 정렬 - default, 높은 가격순, 낮은 가격순
+  async getAlignProducts(req, res, next) {
+    try {
+      // category : Number 0(베스트), 1(세일), 2(삼성), 3(애플)
+      // sortOption : Number 0(인기순 / 판매량이 전체 상품에서 70%이상 판매), 1(높은), 2(낮은)
+      // 들어오는 수 파싱 : 십의자리 : category, 일의자리 : sortOption
+
+      const { option } = req.params;
+      const optionString = option.toString();
+
+      const category = parseInt(optionString.charAt(0));
+      const sortOption = parseInt(optionString.charAt(1));
+
+      let products = await Product.find({});
+
+      if (category === '0') {
+        products = products.filter((product) => product.prod_sell / product.prod_count >= 0.7);
+      } else if (category === '1') {
+        products = products.filter((product) => product.prod_sell / product.prod_count < 0.3);
+      } else if (category === '2') {
+        products = products.filter((product) => product.kind === 'true');
+      } else if (category === '3') {
+        products = products.filter((product) => !product.kind === 'false');
+      }
+
+      if (sortOption === '0') {
+        products.sort((a) => a.prod_sell / a.prod_count >= 0.7);
+      } else if (sortOption === '1') {
+        products.sort((a, b) => b.price - a.price);
+      } else if (sortOption === '2') {
+        products.sort((a, b) => a.price - b.price);
+      }
+
+    res.status(200).json({ products });    
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  }
+
   // 상품 상세 - 선택한 상품의 상세정보 조회
   async getProductById(req, res, next) {
     try {
