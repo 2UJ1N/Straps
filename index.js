@@ -1,25 +1,28 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
-require("dotenv").config();
+require('dotenv').config();
 
 // models
-const { Product } = require("./models");
-const { Cart } = require("./models");
-const { Order } = require("./models");
-const { User } = require("./models");
+const { Product } = require('./models');
+const { Cart } = require('./models');
+const { Order } = require('./models');
+const { User } = require('./models');
 
 // fake json
-const FakeProduct = require("./models/Fake/f_products.json");
-const FakeCart = require("./models/Fake/f_cart.json");
-const FakeOrder = require("./models/Fake/f_order.json");
-const FakeUser = require("./models/Fake/f_user.json");
+const FakeProduct = require('./models/Fake/f_products.json');
+const FakeCart = require('./models/Fake/f_cart.json');
+const FakeOrder = require('./models/Fake/f_order.json');
+const FakeUser = require('./models/Fake/f_user.json');
+
+// Middleware
+const cors = require('cors');
 
 // Router
-const indexRouter = require("./routes/index");
-const productRouter = require("./routes/productRouter");
-const orderRouter = require("./routes/orderRouter");
-const cartRouter = require("./routes/cartRouter");
+const indexRouter = require('./routes/index');
+const productRouter = require('./routes/productRouter');
+const orderRouter = require('./routes/orderRouter');
+const cartRouter = require('./routes/cartRouter');
 
 // DB 연결
 mongoose
@@ -30,7 +33,7 @@ mongoose
     socketTimeoutMS: 45000, // 45초
     family: 4, // IPv4
   })
-  .then(() => console.log("Successfully connected to MongoDB"))
+  .then(() => console.log('Successfully connected to MongoDB'))
   .catch((err) => console.log(err));
 
 // DB 초기화하는 코드 넣기
@@ -60,12 +63,12 @@ mongoose
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("OK");
+app.get('/', (req, res) => {
+  res.send('OK');
 });
 
-app.use("/products", productRouter);
-app.use("/cart", cartRouter);
-app.use("/order", orderRouter);
+app.use('/products', cors(), productRouter);
+app.use('/cart', cors(), cartRouter);
+app.use('/order', cors(), orderRouter);
 
 app.listen(3000);
