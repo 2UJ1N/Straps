@@ -4,27 +4,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./ProductDetails.css">
+  
   <title>Detail</title>
 </head>
 <body>
     <!--쇼핑몰 헤더-->
-    <!--
-        수정 필요
-    -->
-    <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="link-secondary" href="#">Subscribe</a>
-            </div>
-            <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="#">Straps</a>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="link-secondary" href="#" aria-label="Search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+    <custom-header>
+    </custom-header>
+    <header class="shopHeader py-3">
+        <div class="row">
+            <div class="link col-4 pt-1">
+                <a class="eliceLink" href="https://elice.io/">
+                    <img class="eliceLogo" src="../../images/eliceLogo.png"/>
                 </a>
-                <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+            </div>
+            <div class="logo col-4 text-center">
+                <a class="shopLogo text-dark" href="#">Straps</a>
+            </div>
+
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <svg id="loginButton" type="button" xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi bi-person-circle justify-content-end" viewBox="0 0 16 16"                 data-bs-toggle="modal" href="#modalSignin">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+                <svg id="cartButton" type="button" xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi bi-cart-fill justify-content-end" viewBox="0 0 16 16" data-bs-toggle="offcanvas" data-bs-target="#cartSideBar">
+                  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                </svg>
             </div>
         </div>
     </header>     
@@ -32,46 +41,50 @@
     <!--상품 상세 페이지 상단-->
     <section class="prodectInfo py-5">
         <!--상품 분류-->
-        <!--
-            수정 필요 - 정보 받아와서 함수로 동작
-        -->
         <div class="container">
             <div class="row">
                 <p class="productNav py-2">브랜드 > <a id="category" href="#" target="_self"></a></p>
                 <!--상품 이미지-->
                 <div class="productPictures col-md-5">
-                    <img src="../images/watchBigImg1.jpg" alt="제품 이미지" class="big_img">
+                    <img src="../../images/watchBigImg1.jpg" alt="제품 이미지" class="big_img">
                     <ul class="sub_img">
-                        <li><img src="../images/watchSmallImg1.jpg" data-target="../images/watchBigImg1.jpg" alt="제품 상세 이미지1"></li>
-                        <li><img src="../images/watchSmallImg2.jpg" data-target="../images/watchBigImg2.jpg" alt="제품 상세 이미지2"></li>
-                        <li><img src="../images/watchSmallImg3.jpg" data-target="../images/watchBigImg3.jpg" alt="제품 상세 이미지3"></li>
+                        <li><img src="../../images/watchSmallImg1.jpg" data-target="../../images/watchBigImg1.jpg" alt="제품 상세 이미지1"></li>
+                        <li><img src="../../images/watchSmallImg2.jpg" data-target="../../images/watchBigImg2.jpg" alt="제품 상세 이미지2"></li>
+                        <li><img src="../../images/watchSmallImg3.jpg" data-target="../../images/watchBigImg3.jpg" alt="제품 상세 이미지3"></li>
                     </ul>
                 </div>
                 <!--상품 정보-->
                 <div class="productSpec jumbotron col-md-7">
-                    <h2>상품 이름</h2>
-                    <p>상세 설명</p>
-                    <span class="best"><strong>베스트셀러🛒</strong></span>
-                    <span class="sale"><strong>세일🔥</strong></span>
+                    <h2 id="productName">상품 이름</h2>
+                    <p id="productExplain">상세 설명</p>
+                    <span>     </span>
+                    <span class="best" id="best"><strong>베스트셀러🛒</strong></span>
+                    <span class="sale" id="sale"><strong>세일🔥</strong></span>
                     <span class="delivary"><strong>무료배송📦</strong></span>
 
                     <form action="">
                         <hr />
                         <div class="option d-flex justify-content-between">
-                            <div class="priceOption">
+                            <div class="priceOption row">
                                 <!--재고량 0일 경우 일시 품절 보이게 + 장바구니/구매 버튼 비활성화--> 
-                                <h4>가격</h4>
-                                <span class="price" id="price">₩12,000  <span class="soldOut"><strong>일시품절</strong></span></span>
+                                <div id="showPrice">
+                                    <h4>가격</h4>
+                                    <span class="price" id="productPrice"></span>
+                                    <span class="soldOut" id="productSoldOut"><strong>일시품절</strong></span>
+                                </div>
                                 <br>
-                                <h4>할인가</h4>
-                                <span class="salePrice">₩10,800  <span class="salePercent"><strong>[10%]</strong></span></span>
+                                <div id="showSalePrice">
+                                    <h4>할인가</h4>
+                                    <span class="salePrice" id="productSalePrice"></span>
+                                    <span class="salePercent"><strong>[10%]</strong></span>
+                                </div>
                             </div>
                             <span class="divider align-self-center">|</span>
                             <div class="quantityOption align-self-center">
                                 <h4>수량</h4>
-                                <span class="minus">-</span>
-                                <input type="text" readonly value="1">
-                                <span class="plus">+</span>
+                                <span class="minus" id="minus">-</span>
+                                <input type="text" id="productAmount" readonly value="1">
+                                <span class="plus" id="plus">+</span>
                             </div>
                         </div>  
                         <hr />
@@ -79,7 +92,7 @@
                         <div class="option orderSummary d-flex justify-content-between">
                             <div class="totalPrice">
                                 <h4>총 가격</h4>
-                                <span class="total">₩12,000</span>
+                                <span class="total"></span>
                             </div>
                             <div class="order">
                                 <!--공유-->
@@ -93,20 +106,21 @@
                                 <!--개수 0이면 아래 버튼 다 비활성화-->
 
                                 <!--장바구니 추가-->
-                                <button type="submit" class="addCart btn btn-outline-dark" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="장바구니에 추가되었습니다.">
+                                <button type="submit" class="addCart btn btn-outline-dark" id="addCart">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
                                         <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z"/>
                                     </svg>
                                 </button>
 
                                 <!--장바구니 추가 완료 후 바뀌는 아이콘-->
-                                <button type="submit" class="addComplete btn btn-dark" disabled>
+                                <button type="submit" class="addComplete btn btn-dark" id="addComplete">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
                                         <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
                                         <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                                     </svg>
                                 </button>
-                                <button type="submit" class="orderNow btn btn-dark">바로 주문</button>
+                                <!--바로 주문 버튼-->
+                                <button type="submit" class="orderNow btn btn-dark" id="orderNow">Order Now!</button>
                             </div>
                         </div>
                     </form>
@@ -136,8 +150,8 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="inform">
-                            <img src="../images/watchDetailImg1.jpg" alt="제품 상세설명1" class="img-responsive">
-                            <img src="../images/watchDetailImg2.jpg" alt="제품 상세설명2" class="img-responsive">
+                            <img src="../../images/watchDetailImg1.jpg" alt="제품 상세설명1" class="img-responsive">
+                            <img src="../../images/watchDetailImg2.jpg" alt="제품 상세설명2" class="img-responsive">
                         </div>
                         <div class="tab-pane fade" id="review">
                             <p>사용자의 리뷰를 보여줍니다</p>
@@ -159,6 +173,10 @@
     <!-- bootstrap.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
     <script src="./ProductDetails.js" type="module"></script>
+
+    <!-- customHeaderComponent.js -->
+    <script src="../../components/customHeaderComponent/customHeaderComponent.js" type="module"></script>
+
 </body>
 
 </html>

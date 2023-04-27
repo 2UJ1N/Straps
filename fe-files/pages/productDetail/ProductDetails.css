@@ -5,33 +5,61 @@
     font-style: normal;
 }
 
-/* 헤더 */
-.blog-header .blog-header-logo {
-    font-family: 'LOTTERIACHAB';
-    font-size: 60px;
-    text-align: center;
-    padding: auto;
-    margin: auto;
+@media (max-width: 1000px) {
+    .productPictures .sub_img li img {width: 100%; }
+    .productPictures .big_img {width: 100%; height: fit-content; }
 }
+
+.body {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* 헤더 */
+.shopHeader {
+    height: 250px;
+    margin-top: 30px;
+}
+
+.shopHeader .row {
+    align-items: flex-start;
+    justify-content: space-between; 
+}
+
+.shopHeader .link .eliceLogo {
+    width: 10%;
+    height: 10%;
+    margin-left: 30px;
+}
+
+.shopHeader .logo .shopLogo {
+    font-family: 'LOTTERIACHAB';
+    font-size: 90px;
+    text-align: center;
+    text-decoration-line: none;
+    margin-top: 100px;
+}
+
+.nav-tabs {justify-content: center; }
 
 /* 상품 상세 페이지 */
 .productPictures {
     text-align: center;
+    width: 55%;
 }
   
 .productPictures .big_img {
     width: 500px;
     height: 500px;
 }
-  
+
 .productPictures .sub_img {
     margin-top: 20px;
+    padding: 0 15px;
     display: flex;
-    width: 500px;
+    width: 100%;
     justify-content: space-between;
 }
   
-/* 서브 이미지 사이즈 줄일 예정 - width, height 설정! 지금은 50px */
 .productPictures .sub_img li {
     list-style: none;
     padding: 10px 0;
@@ -40,6 +68,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.productPictures .sub_img li + li {margin-left: 10px; }
 
 .productNav{
     display: inline-block;
@@ -63,6 +93,9 @@
     margin-bottom: 60px;
     padding: 0 15px;
 }
+
+.productSpec{width: 45%; }
+.productSpec p + span:first-of-type {padding-left: 15px; }
 
 .productSpec strong {
     margin-right: 5px; 
@@ -88,13 +121,21 @@
     color: red;
 }
 
-.productSpec .option .priceOption .price .soldOut strong{
+.option .priceOption .price {
+    display: inline-block;
+}
+
+.option .priceOption .soldOut strong{
     border: 1px solid var(--bs-red);
     background-color: var(--bs-red);
     color: white;
 }
 
-.productSpec .option .priceOption .salePrice .salePercent {
+.option .priceOption .salePrice {
+    display: inline-block;
+}
+
+.option .priceOption .salePercent strong{
     color: red;
 }
 
@@ -122,33 +163,26 @@ form hr {
 }
 
 .option .quantityOption input {
+    font-family: 'LOTTERIACHAB';
     border: none;
-    width: 30px;
+    width: 50px;
     color: #000;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 300;
+    font-size: 30px;
     text-align: center;
+    display: inline-block;
 }
 
 .productDetail {
     text-align: center;
 }
 
-
-/* 추가 */
-.productPictures {width: 55%; }
-.productPictures .sub_img {padding: 0 15px; }
-.productPictures .sub_img li + li {margin-left: 10px; }
-
-
-.productSpec{width: 45%; }
-.productSpec p + span:first-of-type {padding-left: 15px; }
-
-.productPictures .sub_img {width: 100%; }
-
-.nav-tabs {justify-content: center; }
-
-@media (max-width: 1000px) {
-    .productPictures .sub_img li img {width: 100%; }
-    .productPictures .big_img {width: 100%; height: fit-content; }
+.option .order .addComplete {
+    display: none;
 }
+
+.orderNow {
+    font-family: 'LOTTERIACHAB';
+    transition-property: transform;
+}
+
