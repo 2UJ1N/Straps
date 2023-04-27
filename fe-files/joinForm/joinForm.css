@@ -1,5 +1,5 @@
 .was-validated .gender-group input:invalid ~ .invalid-feedback {
-    display: block;
+    
 }
 
 .warning-text {

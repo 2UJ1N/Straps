@@ -26,46 +26,39 @@
         <div class="col-md-7 mx-md-auto">
           <h4 class="mb-3"></h4>
           <form class="needs-validation" novalidate>
+
             <div class="row">
-              <div class="col-12 mb-3 form-floating">
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                <label for="floatingInput" class="d-block">아이디</label>
+              <div class="col-12 mb-3">
+                <label for="email" class="label-required">이메일</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
                 <div class="invalid-feedback">
                   이메일을 입력해주세요.
                 </div>
               </div>
 
-              <div class="col-12 form-floating">
-                
+              <div class="col-12">                
+                <label for="password" class="label-required">비밀번호</label>
                 <input type="password" class="form-control" id="password" placeholder="비밀번호" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$" required>
-                <label for="floatingPassword">  비밀번호</label>
-                <!--<div class="invalid-feedback">
-                  비밀번호를 입력해주세요.
-                </div>-->
                 <p class="warning-text" id="pwchk01"></p>
               </div>
 
-              <div class="col-12 form-floating">
-                <input type="password" class="form-control" id="passwordCheck" placeholder="비밀번호 확인" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$" required>
-                
-                <label for="floatingPassword">  비밀번호 확인</label>
-                <!--<div class="invalid-feedback">
-                  비밀번호가 일치하지 않습니다.
-                </div>-->
+              <div class="col-12">
+                <label for="passwordCheck" class="label-required">비밀번호 확인</label>
+                <input type="password" class="form-control" id="passwordCheck" placeholder="" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$" required>
                 <p class="warning-text" id="pwchk02"></p>
               </div>
 
-              <div class="col-12 mb-3 form-floating">
-                <input type="text" class="form-control" id="name" placeholder="홍길동">
-                <label for="floatingInput">  이름</label>
+              <div class="col-12 mb-3">
+                <label for="name" class="label-required">이름</label>
+                <input type="text" class="form-control" id="name" placeholder="홍길동" required>
                 <div class="invalid-feedback">
                   이름을 입력해주세요.
                 </div>
               </div>
 
-              <div class="col-12 mb-3 form-floating">
-                <input type="tel" class="form-control" id="phoneNumber" placeholder="name@example.com">
-                <label for="floatingInput">  전화번호</label>
+              <div class="col-12 mb-3">
+                <label for="tel" class="label-required">전화번호</label>
+                <input type="tel" class="form-control" id="phones" placeholder="010-0000-0000" required>
                 <div class="invalid-feedback">
                   전화번호를 입력해주세요.
                 </div>
@@ -73,11 +66,10 @@
 
 
               <div class="col-12 mb-3">
-                <label for="root">주소</label>
+                <label for="root" class="label-required">주소</label>
                 <div class="row">
                   <div class="col-4">
-                    <input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호 검색" readonly
-                      required>
+                    <input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호 검색" readonly required>
                     <div class="invalid-feedback">
                       우편번호를 검색해주세요.
                     </div>
@@ -105,17 +97,17 @@
                 <label for="birth" class="label-required">생년월일</label>
                 <div class="row">
                   <div class="col-3">
-                    <select class="form-select d-block w-100" id="year" name="yy" required>
-                      <option value=""> 년 </option>
+                    <select class="form-select d-block w-100" id="year" name="year" required>
+                      <option value=""> 년도 </option>
                     </select>
                   </div>
                   <div class="col-3">
-                    <select class="form-select d-block w-100" id="month" name="mm" required>
-                      <option value=""> 월 </option>
+                    <select class="form-select d-block w-100" id="month" name="month" required>
+                      <option value="">월</option>
                     </select>
                   </div>
                   <div class="col-3">
-                    <select class="form-select d-block w-100" id="day" name="dd" required>
+                    <select class="form-select d-block w-100" id="day" name="day" required>
                       <option value=""> 일 </option>
                     </select>
                   </div>
@@ -133,21 +125,22 @@
             <hr class="my-4">
 
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="same-address">
-              <label class="form-check-label" for="same-address">정보동의</label>
+              <input type="checkbox" class="form-check-input" id="same-address" required>
+              <label class="label-required" for="same-address">개인정보 수집 및 이용에 동의합니다.</label>
             </div>
 
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="save-info">
-              <label class="form-check-label" for="save-info">동의해</label>
+              <input type="checkbox" class="form-check-input" id="save-info" required> 
+              <label class="label-required" for="save-info">동의해</label>
             </div>
 
             <hr class="my-4">
 
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+            <button class="w-100 btn btn-primary btn-lg" id="subbtn" type="submit">Continue to checkout</button>
           </form>
         </div>
       </div>
+      
     </main>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
