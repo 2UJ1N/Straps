@@ -5,14 +5,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'TAEBAEKmilkyway';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    color: #000;
-}
-
 .modal-body {
     align-items: center;
 }
@@ -24,6 +16,8 @@
     font-weight: 200;
     margin-bottom: 50px;
     line-height: 50px;
+
+    cursor: pointer;
 }
 
 .ment .hi {
@@ -31,10 +25,36 @@
     margin-bottom: 0;
 }
 
+    /* 마우스 호버 효과 - 아직 안됨 */
+
+.ment:hover .highlight:after{
+    width: 100%;
+    transition: width;
+}
+
+.highlight {
+    display: inline-block;
+    position: relative;
+}
+
+.highlight:after{
+    content:"";
+    width: 0;
+    height: 10px;
+    display: inline-block;
+    background: pink;
+    position: absolute;
+    bottom:0;
+    left:0;
+    z-index:-1;
+    transition: 0.2s all;
+}
+
+    /* 끗 */
+
 #emailInput, #passwordInput {
     border-radius: 60px;
     border: black solid 1px;
-
 }
 
 /* 버튼 css */
