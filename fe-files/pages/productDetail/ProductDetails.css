@@ -5,43 +5,154 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    color: #000;
+}
+
+
 @media (max-width: 1000px) {
     .productPictures .sub_img li img {width: 100%; }
     .productPictures .big_img {width: 100%; height: fit-content; }
 }
 
+.body {
+    font-family: 'TAEBAEKmilkyway', sans-serif;
+}
+
+
 /* 헤더 */
 .shopHeader {
-    height: 300px;
+    height: 250px;
+    margin-top: 30px;
+    margin-right: 30px;
+    margin-left: 30px;
 }
 
 .shopHeader .row {
+    align-items: flex-start;
     justify-content: space-between; 
 }
 
 .shopHeader .link .eliceLogo {
     width: 10%;
     height: 10%;
-    margin-left: 30px;
 }
 
-.shopHeader .shopLogo {
+.shopHeader .logo .shopLogo {
     font-family: 'LOTTERIACHAB';
-    font-size: 80px;
+    font-size: 110px;
     text-align: center;
-    padding: auto;
-    margin: auto;
+    text-decoration-line: none;
+    margin-top: 100px;
 }
 
 .nav-tabs {justify-content: center; }
 
+.categoryBar {
+    margin-top: 120px;
+}
+
+.categoryBar .nav {
+    border: #000 1px;
+    border-style: solid none;
+}
+
+.categoryBar .nav .categoryBtn {
+    border-radius: 60px;
+    vertical-align: middle;
+}
+
+
+.categoryBar .nav .categoryBtn:active{
+    border-radius: 60px;
+    vertical-align: middle;
+}
+
+.categoryBar .divider1 {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.categoryBar .divider2 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.categoryBar #bestTabButton {
+    font-family: 'LOTTERIACHAB';
+    font-size: 28px;
+    font-weight: 10;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.categoryBar #saleTabButton {
+    font-family: 'LOTTERIACHAB';
+    font-size: 28px;
+    font-weight: 10;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.categoryBar #galaxyTabButton {
+    font-family: 'TAEBAEKmilkyway';
+    font-size: 25px;
+    font-weight: 700;
+    border: none;
+    margin-top: 6.5px;
+    margin-bottom: 3.5px;
+}
+
+.categoryBar #appleTabButton {
+    font-family: 'TAEBAEKmilkyway';
+    font-size: 25px;
+    font-weight: 700;
+    border: none;
+    margin-top: 6.5px;
+    margin-bottom: 3.5px;
+}
+
+.categoryBar #bestTabButton:hover, #saleTabButton:hover {
+    border: none;
+
+}
+
 /* 상품 상세 페이지 */
+
+.prodectInfo {
+    font-family: 'TAEBAEKmilkyway';
+    font-weight: 650;
+    margin-top: 70px;
+}
+
+.prodectInfo #category {
+    text-decoration: none;
+    color: #666A73;
+
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.productNav{
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* 이미지 */
 .productPictures {
     text-align: center;
     width: 55%;
 }
   
-.productPictures .big_img {
+.productPictures .bigImg {
     width: 500px;
     height: 500px;
 }
@@ -65,8 +176,12 @@
 
 .productPictures .sub_img li + li {margin-left: 10px; }
 
-.productNav{
-    display: inline-block;
+.magnifier {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    border-radius: 100%;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 0 3px 3px rgba(0, 0, 0, 0.25);
 }
     
 .jumbotron h2{
@@ -78,13 +193,14 @@
 }
 .jumbotron h3{
     color: #1a1e21;
-    font-size: 18px;
+    font-size: 25px;
     margin-bottom: 13px;
     font-weight: 600;
     padding: 0 15px;
 }
 .jumbotron p{
     margin-bottom: 60px;
+    font-size: 25px;
     padding: 0 15px;
 }
 
@@ -97,7 +213,7 @@
     border-radius: 3px; 
     font-weight: bolder; 
     font-style: normal; 
-    font-size: 12px;  
+    font-size: 20px;  
 }
 
 .productSpec .delivary strong {
@@ -113,6 +229,12 @@
 .productSpec .sale strong {
     border: 1px solid red;
     color: red;
+}
+
+.option {
+    font-size: 20px;
+    padding: 0 15px;
+    justify-content: space-between;
 }
 
 .option .priceOption .price {
@@ -139,10 +261,6 @@ form hr {
     margin: 30px 0 ;
 }
 
-.option {
-    padding: 0 15px;
-}
-
 .option h4 {
     display: inline-block;
     font-weight: 600;
@@ -154,17 +272,38 @@ form hr {
 
 .option .divider {
     color: #d3d3d3;
+    margin-right: 100px;
+    width: fit-content;
+}
+
+.option .quantityOption {
+    font-size: 20px;
+    white-space: nowrap;
 }
 
 .option .quantityOption input {
+    font-family: 'LOTTERIACHAB';
     border: none;
-    width: 30px;
+    width: 50px;
     color: #000;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 300;
+    font-size: 30px;
     text-align: center;
+    display: inline-block;
 }
 
 .productDetail {
     text-align: center;
+    font-family: 'TAEBAEKmilkyway';
+    font-weight: 650;
 }
+
+.option .order .addComplete {
+    display: none;
+}
+
+.orderNow {
+    font-family: 'LOTTERIACHAB';
+    transition-property: transform;
+}
+
