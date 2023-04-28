@@ -13,39 +13,6 @@ $(".wrap")
         "background": "url('" + $(".target").attr("src") + "') no-repeat"
     });
  
-var target = $('.bigImg');
-var magnifier = $('.magnifier');
-
-// 돋보기 함수
-function magnify(e) {
-
-    var mouseX = e.pageX - $(this).offset().left;
-    var mouseY = e.pageY - $(this).offset().top;
- 
-    if (mouseX < $(this).width() && mouseY < $(this).height() && mouseX > 0 && mouseY > 0) {
-        magnifier.fadeIn(100);
-    } else {
-        magnifier.fadeOut(100);
-    }
- 
-    if (magnifier.is(":visible")) {
- 
-        var rx = -(mouseX / target.width() * target[0].naturalWidth - magnifier.width() / 2);
-        var ry = -(mouseY / target.height() * target[0].naturalHeight - magnifier.height()  /2);
- 
-        // 5
-        var px = mouseX - magnifier.width() / 2;
-        var py = mouseY - magnifier.height() / 2;
- 
-        // 6
-        magnifier.css({
-            left: px,
-            top: py,
-            backgroundPosition: rx + "px " + ry + "px"
-        });
-    }
-}
-
 
 // 버튼 비활성화
 function btnDisabled(target) {
@@ -167,9 +134,3 @@ else { //상품 품절 o
     // 바로구매 버튼 비활성화
     orderNow.disabled = true;
 }
-
-
-addCart.addEventListener("click", () => { 
-    addCart.style.display = 'none';
-    getElementById('addComplete').display = 'inline';
-})
