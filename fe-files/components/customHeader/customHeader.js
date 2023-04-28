@@ -1,6 +1,6 @@
-import LoginModal from "../loginModal/loginModal.js";
+import LoginModal from '../loginModal/loginModal.js';
 
-//로그인 모달 import
+// 로그인 모달 import
 const loginModal = new LoginModal();
 
 ////////////////////////////////////////////
@@ -79,8 +79,7 @@ export default class CustomHeader extends HTMLElement {
     }
   }
   render() {
-    this.insertAdjacentHTML("afterbegin", this.customHeaderTemplate);
+    this.insertAdjacentHTML('afterbegin', this.customHeaderTemplate);
   }
 }
 customElements.define('custom-header', CustomHeader);
-

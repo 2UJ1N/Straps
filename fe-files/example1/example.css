@@ -1,0 +1,55 @@
+.product {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  position: relative;
+  max-width: 400px;
+}
+
+/* 상품 이미지 스타일 */
+.product .product-img {
+  max-width: 100px;
+  margin-right: 1rem;
+}
+
+/* 상품명 스타일 */
+.product .product-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* 버튼 그룹 스타일 */
+.product .btn-group {
+  margin-top: 1rem;
+}
+
+/* 삭제 버튼 스타일 */
+.product .delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* 가격 스타일 */
+.product .price {
+  /* position: absolute;
+    bottom: 0;
+    right: 0; */
+}
+
+.product .delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
