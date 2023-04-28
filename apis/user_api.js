@@ -6,9 +6,10 @@ const userApi = {
   // 회원가입: db 에 저장되는 코드 다시 구현  // 오류: user_id path 필요하다
   async newUser(req, res, next) {
     try {
-      const { password, name, address, phones, email, regdate, role, status } = req.body;
+      const { user_id, password, name, address, phones, email, regdate, role, status } = req.body;
 
       const createInfo = {
+        user_id,
         password,
         name,
         address,
@@ -61,16 +62,16 @@ const userApi = {
       });
     } catch (err) {
       const user = await User.findOne({ email });
-      const passwordMatch = password === user.password;
       if (!user) {
         res.status(401).json({
           // 에러 응답 코드를 401(Unauthorized)으로 설정
           code: 401,
           message: 'email', // 에러 메시지를 클라이언트에게 반환
         });
-      } else if (!passwordMatch) {
+      }
+      const passwordMatch = password === user.password;
+      if (!passwordMatch) {
         res.status(402).json({
-          // 에러 응답 코드를 401(Unauthorized)으로 설정
           code: 402,
           message: 'password', // 에러 메시지를 클라이언트에게 반환
         });
@@ -87,17 +88,31 @@ const userApi = {
     const base64Url = token.split('.')[1];
     const payload = Buffer.from(base64Url, 'base64');
     const result = JSON.parse(payload.toString());
-    const parseUserId = result.user_id;
+    const ParseUserId = result.user_id;
+    const parseUserId = parseInt(ParseUserId);
 
-    // const user = await User.findOne({ user_id: parseUserId });
-    // req.currentUser = user;
-    // next();
+    const user = await User.findOne({ user_id: parseUserId });
+    req.currentUser = user;
+    next();
     // console.log(parseUserId);
-    res.status(202).json(parseUserId);
+    // res.status(202).json(parseUserId);
   },
 
-  // 사용자 정보 조회
+  // 사용자 정보 조회: 모든 유저
   async getAllUser(req, res, next) {
+    try {
+      const foundUser = await User.find({});
+
+      if (!foundUser) return console.error(error);
+
+      res.status(202).json(foundUser);
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
+  // 사용자 정보 조회: 특정 유저만
+  async getUser(req, res, next) {
     try {
       const { user_id } = req.params;
       const foundUser = await User.findOne({ user_id });
