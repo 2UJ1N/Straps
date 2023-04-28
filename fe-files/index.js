@@ -3,7 +3,7 @@
 import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 
 //서버 주소
-// const productsUrl = "http://34.64.218.104:5002/products";
+// const productsUrl = "http://34.64.218.104:3000/products";
 
 ////////////////////
 //getProducts DEMO
@@ -20,7 +20,7 @@ import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 //     "content": "testcontent13",
 //     "image": "http://dummyimage.com/183x100.png/dddddd/000000",
 //     "regdate": "6/9/2022",
-//     "prod_cell": 3
+//     "prod_sell": 3
 //   };
 // const callPostProduct = postProduct(productsUrl,dataForPostDemo);
 // console.log(callPostProduct);
@@ -37,7 +37,7 @@ import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 //   "image": "http://naver.com/183x100.png/5fa2dd/ffffff",
 //   "regdate": "9/23/2025",
 //   "prod_count": 501,
-//   "prod_cell": 91,
+//   "prod_sell": 91,
 //   "prod_seq": 10
 // };
 

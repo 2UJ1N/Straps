@@ -97,12 +97,12 @@ plus.addEventListener("click", () => {
 
 
 // 상품 베스트셀러 - 70% 이상 판매된 경우
-if (product['prod_cell'] < product['prod_count'] * 0.7)
+if (product['prod_sell'] < product['prod_count'] * 0.7)
     document.getElementById('best').style.display = 'none';
 
 // 상품 세일 - 30% 이하 판매된 경우
     //세일 아닐 경우
-if (product['prod_cell'] > product['prod_count'] * 0.3){
+if (product['prod_sell'] > product['prod_count'] * 0.3){
     document.getElementById('sale').style.display = 'none';
     //할인가 보이기
     document.getElementById('showSalePrice').style.display = 'none';
@@ -115,7 +115,7 @@ else {
     
 
 // 상품 품절 x
-if (product['prod_cell'] < product['prod_count']) {
+if (product['prod_sell'] < product['prod_count']) {
     // 일시품절 표시
     document.getElementById('productSoldOut').style.display = 'none';
 }
