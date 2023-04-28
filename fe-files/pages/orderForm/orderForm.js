@@ -65,18 +65,18 @@ function userDataCreate(form) {
 
 function putUserData(userData){
   console.log(userData);
-  document.querySelector("#name").value = userData.name;
-  document.querySelector("#phones").value = userData.phones;
-  document.querySelector("#postcode").value = userData.postcode;
-  document.querySelector("#address").value = userData.address;
-  document.querySelector("#more_address").value =userData.more_address;
+  // document.querySelector("#name").value = userData.name;
+  // document.querySelector("#phones").value = userData.phones;
+  // document.querySelector("#postcode").value = userData.postcode;
+  // document.querySelector("#address").value = userData.address;
+  // document.querySelector("#more_address").value =userData.more_address;
 }
 
 function resetData(){
-  document.querySelector("#name").value = "";
-  document.querySelector("#phones").value = "";
-  document.querySelector("#postcode").value = "";
-  document.querySelector("#address").value = "";
-  document.querySelector("#more_address").value ="";
+  // document.querySelector("#name").value = "";
+  // document.querySelector("#phones").value = "";
+  // document.querySelector("#postcode").value = "";
+  // document.querySelector("#address").value = "";
+  // document.querySelector("#more_address").value ="";
 
 }
