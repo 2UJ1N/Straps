@@ -152,7 +152,7 @@ function updateCartUI() {
                          <h3>${value.name}</h3>
                          <p>${value.desc}
                           <span class="quantity">수량: ${value.quantity}</span>
-                             <span class="price">금액: ₩${price}</span>
+                             <span class="price">가격: ₩${price}</span>
                          </p>
                      </div>
                      <div class="cancel"><i class="fas fa-window-close"></i></div>
@@ -170,7 +170,7 @@ function updateCartUI() {
     let root = document.querySelector(':root');
     root.style.setProperty('--after-content', `"${count}"`);
     const subtotal = document.querySelector('.subtotal');
-    subtotal.innerHTML = `총 금액: ₩${total}`;
+    subtotal.innerHTML = `총 가격: ₩${total}`;
   } else cartIcon.classList.remove('non-empty');
 }
 // DOMContentLoaded 이벤트 추가
