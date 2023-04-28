@@ -54,6 +54,15 @@ h3:hover{
     transform: translateY(-10px);
 }
 
+select {
+    padding: .4rem;
+    margin-right: 10px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+
+    border-radius: 40px;
+}
+
 .searchTable {
     background-color: rgba(0, 0, 0, 0.04);
     padding: 1rem 1rem 2rem 1rem; 
@@ -73,6 +82,24 @@ table{
     margin: auto;
 }
 
-table, tr, th {
+table thead {
+    background-color: white;
+}
+
+table, tr, td {
     border: 1px solid;
+}
+
+table tr .return {
+
+        margin-right: 5px; 
+        padding: 5px; 
+        border-radius: 50px; 
+        font-weight: bolder; 
+        font-style: normal; 
+        font-size: 15px;  
+
+        border: 1px solid red;
+        color: red;
+
 }
