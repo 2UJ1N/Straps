@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'LOTTERIACHAB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    color: #000;
+}
+
+* {
+    font-family: 'TAEBAEKmilkyway';
+    font-weight: 650;
+    text-align: center;
+}
+
+h2{
+    font-family: 'LOTTERIACHAB';
+    font-size: 45px;
+    font-weight: 100;
+
+    background-color: black;
+    color: white;
+      
+    border: 1px solid;
+    border-radius: 60px;
+
+    display: inline-block;
+      
+    padding: 1rem;
+    margin: auto;
+}
+
+h3{
+    margin-bottom: 20px;
+
+    font-family: 'LOTTERIACHAB';
+    font-size: 30px;
+    font-weight: 100;
+
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+}
+
+h3:hover{
+    transform: translateY(-10px);
+}
+
+.searchTable {
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 1rem 1rem 2rem 1rem; 
+    margin: 2rem;
+}
+
+li{
+    display: block;
+}
+
+.orderInfo {
+    margin-top: 60px;
+    text-align: center;
+}
+
+table{
+    margin: auto;
+}
+
+table, tr, th {
+    border: 1px solid;
+}
