@@ -1,5 +1,5 @@
 import { Button } from 'bootstrap';
-import { getProducts } from '../../modules/product.mjs';
+import { getProducts,getSortedProducts } from '../../modules/product.mjs';
 import ItemCard from '../itemCard/itemCard.js';
 
 const productsUrl = "http://34.64.218.104:3000/products";
@@ -9,7 +9,8 @@ const productsUrl = "http://34.64.218.104:3000/products";
 class CardGrid extends HTMLElement {
     constructor() {
         super();
-        this._sort = 2;
+        this._sortParam = "00";
+        // this._sortValue = 0;
         this._productsObj;
         this._productsArr;
         this._category = "best";
@@ -21,9 +22,9 @@ class CardGrid extends HTMLElement {
                         <h4>${this._category}</h4>
                         <div class="dropdown text-end">
                             <select id="sortSelector">
-                                <option value="2">인기순</option>
+                                <option value="0">인기순</option>
                                 <option value="1">높은 가격순</option>
-                                <option value="0">낮은 가격순</option>
+                                <option value="2">낮은 가격순</option>
                             </select>
                         </div>
                     </div>
@@ -33,81 +34,51 @@ class CardGrid extends HTMLElement {
     }
     set category(value) {
         this._category = value;
-        let products = this.changeCategory(this._category,this._productsArr);
-        this.update(products);
+        let sortParm = "";
+        if(this._category === "best"){
+            sortParm += "0";
+        }
+        if(this._category === "sale"){
+            sortParm += "1";
+        }
+        if(this._category === "galaxy"){
+            sortParm += "2";
+        }
+        if(this._category === "apple"){
+            sortParm += "3";
+        }
+        this._sortParam = (sortParm += "0");
+        // let products = this.changeCategory(this._category,this._productsArr);
+        this.update();
     }
 
     get category() {
         return this._category;
     }
 
-    set sort(value) {
-        this._sort = value;
-        this.updateTemplate();
+    set sortParam(value) {
+        this._sortParam = value;
+        // let products = this.changeCategory(this._category,this._productsArr);
         this.update();
     }
 
-    get sort() {
-        return this._sort;
+    get sortParam() {
+        return this._sortParam;
     }
     async connectedCallback() {
-        this._productsObj = await getProducts(productsUrl);
+        this._productsObj = await getSortedProducts(productsUrl,this._sortParam);
         this._productsArr = this._productsObj.products;
         this.render();
     }
-    changeCategory(category,products) {
-        const filteredProducts = [];
-        if(category === "galaxy"){
-            products.forEach(element => {
-                //galaxy
-                if(element.kind === true){
-                    filteredProducts.push(element)
-                }
-            });
-        }
-        if(category === "apple"){
-            products.forEach(element => {
-                //galaxy
-                if(element.kind === false){
-                    filteredProducts.push(element)
-                }
-            });
-        }
-        if(category === "best"){
-            this._productsArr.forEach(element =>{
-                filteredProducts.push(element);
-            })
-        }
-        return filteredProducts;
-    }
-    addItemsToGrid(products,sort){
-        //인기순
-        if(sort === 2){
 
-        }
-        //낮은가격순
-        if(sort === 0){
-            products = products.sort((a, b) => {
-                if (a.price < b.price) {
-                  return -1;
-                }
-            });              
-        }
-        //높은가격순
-        if(sort === 1){
-            products = products.sort((a, b) => {
-                if (a.price > b.price) {
-                  return -1;
-                }
-            });              
-        }
+    addItemsToGrid(products){
         const cardGrid = this.querySelector('div');
         let rowNum = 0;
         for (let i = 0; i < products.length; i++) {
             if (i >= 16) break;
             const { name, image, price, prod_num } = products[i];
             const colNumber = Number(i + 1);
-            let itemCard = new ItemCard(prod_num,name,price);
+            let itemCard = new ItemCard(prod_num,name,price,image);
             let divCol = document.createElement('div');
             let divRow;
             divCol.setAttribute("class","col");
@@ -127,16 +98,46 @@ class CardGrid extends HTMLElement {
         }
     }
     render() {
-        this.insertAdjacentHTML("afterbegin", this._cardGridTemplate);
-        this.addItemsToGrid(this._productsArr,this._sort);
+        this.innerHTML = this._cardGridTemplate;
+        this.addItemsToGrid(this._productsArr);
+        this.querySelector('#sortSelector').addEventListener("input",(e)=>{
+            let sortParam = "";
+            if(this._category === "best"){
+                sortParam += "0";
+            }
+            if(this._category === "sale"){
+                sortParam += "1";
+            }
+            if(this._category === "galaxy"){
+                sortParam += "2";
+            }
+            if(this._category === "apple"){
+                sortParam += "3";
+            }
+            if(e.target.value === "0"){
+                sortParam += "0";
+                //인기순 
+            }
+            if(e.target.value === "1"){
+                sortParam += "1";
+                //높은 가격순  
+            }
+            if(e.target.value === "2"){
+                sortParam += "2";
+                //낮은 가격순
+            }
+            console.log(e.target.value);
+            this.sortParam = sortParam;
+        })
     }
     changeSort(e){
         console.log(e.target.getAttribute("id"));
         
     }
-    update(products){
-        this.innerHTML = this._cardGridTemplate;
-        this.addItemsToGrid(products,this.sort);
+    async update(){
+        this._productsObj = await getSortedProducts(productsUrl,this._sortParam);
+        this._productsArr = this._productsObj.products;
+        this.render();
     }
 }
 customElements.define('card-grid', CardGrid);

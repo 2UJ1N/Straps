@@ -1,14 +1,15 @@
 //////////////////////////////////////////
 export default class ItemCard extends HTMLElement {
-    constructor(productNumber = 1, name = "이름이매우1매우2매우3매우4매우4매우5매우6매우7매우8매우9매우10길어요", price = "500") {
+    constructor(productNumber = 1, name = "이름이매우1매우2매우3매우4매우4매우5매우6매우7매우8매우9매우10길어요", price = "500", image = "//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg") {
         super();
         this._noShadow = true;
         this._productNumber = productNumber;
         this._name = name;
         this._price = price;
+        this._image = image;
         this._cardTemplate = `
         <a href=${window.location.href}pages/productDetail/productDetail.html>
-            <img alt="이미지1" data-original="//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg" src="//image.msscdn.net/images/goods_img/20200820/1557508/1557508_4_125.jpg">
+            <img alt="이미지1" data-original="${this._image}" src="${this._image}">
         </a>
         <div class="info row">
             <div class="productNum" hidden>
