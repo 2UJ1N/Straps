@@ -3,7 +3,7 @@ import { getProducts,getSortedProducts } from '../../modules/product.mjs';
 import ItemCard from '../itemCard/itemCard.js';
 
 const productsUrl = "http://34.64.218.104:3000/products";
-// const productsUrl = "http://34.64.218.104:5002/products";
+// const productsUrl = "http://34.64.218.104:3000/products";
 ////////////////////////////////////////////
 //CardGrid Component
 class CardGrid extends HTMLElement {
