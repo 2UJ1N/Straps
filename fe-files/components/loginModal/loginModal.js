@@ -62,10 +62,10 @@ login.addEventListener('click', async(event) => {
   console.log(token);
   if(token.message==='email'){
     const message = document.querySelector("#noemail");
-    message.innerHTML = "이메일이 없습니다";
+    message.innerText = "    이메일이 없습니다!";
   }else if(token.message==='password'){
     const message = document.querySelector("#nopassword");
-    message.innerHTML = "비밀번호가 일치하지 않습니다";
+    message.innerText = "    비밀번호가 일치하지 않습니다!";
   }else if(token.message==='token'){
     window.localStorage.setItem("JWT",token.token);
     window.location.href = "../../index.html";
