@@ -1,12 +1,13 @@
-const { User } = require('../models/index');
-const userModel = require('../models/userModel');
-const jwt = require('jsonwebtoken');
+const { User } = require("../models/index");
+const userModel = require("../models/userModel");
+const jwt = require("jsonwebtoken");
 
 const userApi = {
   // 회원가입: db 에 저장되는 코드 다시 구현  // 오류: user_id path 필요하다
   async newUser(req, res, next) {
     try {
-      const { password, name, address, phones, email, regdate, role, status } = req.body;
+      const { password, name, address, phones, email, regdate, role, status } =
+        req.body;
 
       const createInfo = {
         password,
@@ -32,30 +33,30 @@ const userApi = {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) throw new Error('이메일이 존재하지 않습니다.');
+    if (!user) throw new Error("이메일이 존재하지 않습니다.");
     const passwordMatch = password === user.password;
-    if (!passwordMatch) throw new Error('비밀번호가 맞지 않습니다.');
+    if (!passwordMatch) throw new Error("비밀번호가 맞지 않습니다.");
     // console.log(userService.token);
 
     // // 로그인 성공 -> JWT 웹 토큰 생성
-    const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
+    const secretKey = process.env.JWT_SECRET_KEY || "secret-key";
 
     //2개 프로퍼티를 jwt 토큰에 담음; loginRequired: jwt.verify 이용하여 정상적인 jwt인지 확인도 해야하나?
     const token = jwt.sign(
       {
-        type: 'JWT',
+        type: "JWT",
         user_id: user.user_id,
       },
       secretKey,
       {
-        expiresIn: '15m', // 만료시간 15분
-        issuer: '토큰 발급자',
-      },
+        expiresIn: "15m", // 만료시간 15분
+        issuer: "토큰 발급자",
+      }
     );
 
     res.status(200).json({
       code: 200,
-      message: '토큰이 발급되었습니다.',
+      message: "토큰이 발급되었습니다.",
       token: token,
     });
   },
@@ -64,10 +65,10 @@ const userApi = {
   async parsejwt(req, res, next) {
     // 토큰 파싱하여 저장
     const token =
-      'eyJhbGciOiJIUzeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNjk3MzQ2LCJleHAiOjE2ODI2OTgyNDYsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.H2EfhfdW744A4hNgTRQpL6rYJmRHtApNTmsZNt4vrf0I1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNjk1NzkxLCJleHAiOjE2ODI2OTY2OTEsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.HMxoAjXcACqH3-aqIg_-BAw6lqZa1INn4BNUEUWgrcs';
+      "eyJhbGciOiJIUzeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNjk3MzQ2LCJleHAiOjE2ODI2OTgyNDYsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.H2EfhfdW744A4hNgTRQpL6rYJmRHtApNTmsZNt4vrf0I1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNjk1NzkxLCJleHAiOjE2ODI2OTY2OTEsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.HMxoAjXcACqH3-aqIg_-BAw6lqZa1INn4BNUEUWgrcs";
 
-    const base64Url = token.split('.')[1];
-    const payload = Buffer.from(base64Url, 'base64');
+    const base64Url = token.split(".")[1];
+    const payload = Buffer.from(base64Url, "base64");
     const result = JSON.parse(payload.toString());
     const parseUserId = result.user_id;
 
@@ -96,7 +97,8 @@ const userApi = {
   async updateUser(req, res, next) {
     try {
       const { user_id } = req.params;
-      const { password, name, address, phones, email, regdate, role, status } = req.body;
+      const { password, name, address, phones, email, regdate, role, status } =
+        req.body;
 
       const updateInfo = {
         password,
