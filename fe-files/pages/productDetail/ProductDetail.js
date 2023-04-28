@@ -19,7 +19,7 @@ function btnDisabled(target) {
     target.disabled = true;
 }
 
-let productUrl = "http://34.64.218.104:3000/products";
+let productUrl = "http://34.64.218.104:5002/products";
 let prod_num = window.localStorage.getItem("detailProductNumber");
 
 // 상품 product로 받아오기
