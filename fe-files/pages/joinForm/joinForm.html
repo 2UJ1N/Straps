@@ -16,13 +16,13 @@
 <body>
   <div class="container">
     <main>
-      <div class="py-5 text-center">
-        <h1>straps</h1>
-        <h4>회원가입</h4>
+      <div class="title py-5 text-center">
+        <!-- <h1>straps</h1> -->
+        <h4>Sign in</h4>
         <p class="lead"></p>
       </div>
 
-      <div class="row g-5">
+      <div class="total row g-5">
         <div class="col-md-7 mx-md-auto">
           <h4 class="mb-3"></h4>
           <form class="needs-validation" novalidate>
@@ -30,7 +30,7 @@
             <div class="row">
               <div class="col-12 mb-3">
                 <label for="email" class="label-required">이메일</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                <input type="email" class="form-control" id="email" placeholder="elice@example.com" required>
                 <div class="invalid-feedback">
                   이메일을 입력해주세요.
                 </div>
@@ -38,7 +38,7 @@
 
               <div class="col-12">                
                 <label for="password" class="label-required">비밀번호</label>
-                <input type="password" class="form-control" id="password" placeholder="비밀번호" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$" required>
+                <input type="password" class="form-control" id="password" placeholder="password" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$" required>
                 <p class="warning-text" id="pwchk01"></p>
               </div>
 
@@ -50,7 +50,7 @@
 
               <div class="col-12 mb-3">
                 <label for="name" class="label-required">이름</label>
-                <input type="text" class="form-control" id="name" placeholder="홍길동" required>
+                <input type="text" class="form-control" id="name" placeholder="엘리스" required>
                 <div class="invalid-feedback">
                   이름을 입력해주세요.
                 </div>
@@ -75,7 +75,11 @@
                     </div>
                   </div>
                   <div class="col-3">
-                    <button type="button" class="btn btn-primary" id="search" onclick="findAddr()">검색</button>
+                    <button type="button" class="btn btn-dark" id="search" onclick="findAddr()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg> 
+                    </button>
                   </div>
                 </div>
               </div>
@@ -118,10 +122,6 @@
                                     </div>-->
             </div>
 
-
-
-
-
             <hr class="my-4">
 
             <div class="form-check">
@@ -131,12 +131,12 @@
 
             <div class="form-check">
               <input type="checkbox" class="form-check-input" id="save-info" required> 
-              <label class="label-required" for="save-info">동의해</label>
+              <label class="label-required" for="save-info">이 페이지는 가상의 페이지임을 알고 있습니다.</label>
             </div>
 
             <hr class="my-4">
-
-            <button class="w-100 btn btn-primary btn-lg" id="subbtn" type="submit">Continue to checkout</button>
+            <br>
+            <button class="w-100 btn btn-outline-dark btn-lg" id="subbtn" type="submit">Join Straps!</button>
           </form>
         </div>
       </div>
@@ -144,7 +144,7 @@
     </main>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
-      <p class="mb-1">&copy; 2017–2022 Company Name</p>
+      <p class="mb-1">&copy; Elice 77ㅣ리77ㅣ리</p>
       <ul class="list-inline">
         <li class="list-inline-item"><a href="#">Privacy</a></li>
         <li class="list-inline-item"><a href="#">Terms</a></li>
