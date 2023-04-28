@@ -7,6 +7,21 @@ export default class ItemCard extends HTMLElement {
         this._name = name;
         this._price = price;
         this._image = image;
+        this._cardTemplate; 
+    }
+    get price(){
+        return this._price;
+    }
+    get name(){
+        return this._name;
+    }
+    get productNumber(){
+        return this._productNumber;
+    }
+    connectedCallback() {
+        this.render();
+    }
+    render() {
         this._cardTemplate = `
         <a href=${window.location.href}pages/productDetail/productDetail.html>
             <img alt="이미지1" data-original="${this._image}" src="${this._image}">
@@ -37,27 +52,16 @@ export default class ItemCard extends HTMLElement {
             
         </div>
         `;
-    }
-    get price(){
-        return this._price;
-    }
-    get name(){
-        return this._name;
-    }
-    get productNumber(){
-        return this._productNumber;
-    }
-    connectedCallback() {
-        this.render();
-    }
-    hrefToDetails(){
-        window.localStorage.setItem("detailsProductNumber",this._productNumber);
-    }
-    render() {
         this.insertAdjacentHTML("afterbegin", this._cardTemplate);
         this.querySelector("a").addEventListener("click",()=>{
             window.localStorage.setItem("detailProductNumber",this._productNumber)}
         ,false);
+    }
+    update(){
+        this.render();
+    }
+    hrefToDetails(){
+        window.localStorage.setItem("detailsProductNumber",this._productNumber);
     }
 }
 customElements.define('item-card', ItemCard);
