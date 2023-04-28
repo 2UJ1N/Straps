@@ -12,7 +12,7 @@ import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 
 ////////////////////
 //getProducts DEMO
-const products = getProducts(productsUrl);
+// const products = getProducts(productsUrl);
 // console.log(products);
 ////////////////////
 
@@ -46,10 +46,10 @@ const products = getProducts(productsUrl);
 //   "prod_seq": 10
 // };
 
-let putUrlParams = 10;
+// let putUrlParams = 10;
 
-const callPutProduct = putProduct(productsUrl, putUrlParams, dataForPutDemo);
-console.log(callPutProduct);
+// const callPutProduct = putProduct(productsUrl, putUrlParams, dataForPutDemo);
+// console.log(callPutProduct);
 ////////////////////////////
 
 ////////////////////////////////////////////////

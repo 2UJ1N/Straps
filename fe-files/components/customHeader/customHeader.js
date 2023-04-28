@@ -1,7 +1,7 @@
-// import LoginModal from '../loginModal/loginModal.js';
+import LoginModal from '../loginModal/loginModal.js';
 
-//로그인 모달 import
-// const loginModal = new LoginModal();
+// 로그인 모달 import
+const loginModal = new LoginModal();
 
 ////////////////////////////////////////////
 //CustomHeader Component
@@ -63,7 +63,6 @@ export default class CustomHeader extends HTMLElement {
       });
     this.appendChild(loginModal);
   }
-  changeAcitveTab(e) {
   changeAcitveTab(e) {
     {
       const classString = e.target.getAttribute("class")
