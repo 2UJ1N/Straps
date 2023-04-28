@@ -1,3 +1,6 @@
+import {loginUser,} from '../../modules/user.mjs';
+import {getProduct,} from '../../modules/product.mjs';
+
 //모달 포커스 하는 코드
 // const modalSignin = document.getElementById('modalSignin');
 // const emailInput = document.getElementById('emailInput');
@@ -84,14 +87,36 @@ export default class LoginModal extends HTMLElement  {
         this.insertAdjacentHTML("afterbegin", this.loginModalTemplate);
     }
 }
-customElements.define('login-modal', LoginModal);
 
-const joinForm = document.querySelector('#join');
+const joinForm = document.querySelector('.signin');
+const login = document.querySelector(".login");
 
+login.addEventListener('click', async(event) => {
+  event.preventDefault();
+  const emailInput = document.querySelector('#emailInput');
+  const passwordInput = document.querySelector("#passwordInput");
 
-// joinForm.addEventListener("click", () => {
-//   window.location.href = "../joinForm/joinForm.html";
-// });
+  let userData = {};
+  userData["email"] = emailInput.value;
+  userData["password"] = passwordInput.value;
+  const url = 'http://34.64.218.104:3000/user/login';
+  const token = await loginUser(url,userData);
+  console.log(token);
+  if(token.message==='email'){
+    const message = document.querySelector("#noemail");
+    message.innerHTML = "이메일이 없습니다";
+  }else if(token.message==='password'){
+    const message = document.querySelector("#nopassword");
+    message.innerHTML = "비밀번호가 일치하지 않습니다";
+  }else if(token.message==='token'){
+    window.localStorage.setItem("JWT",token.token);
+    window.location.href = "../../index.html";
+  }
+});
+
+joinForm.addEventListener("click", () => {
+  window.location.href = "../joinForm/joinForm.html";
+});
 
 
 //서버 주소
