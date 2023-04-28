@@ -41,7 +41,7 @@ export default class LoginModal extends HTMLElement  {
                         <!-- 버튼 -->
                         <div class="button d-flex justify-content-center">
                             <button type="submit" class="login btn btn-lg btn-dark">Login</button>
-                            <button type="button" class="signin btn btn-lg btn-outline-dark hover1">signin</button>
+                            <button type="button" class="signin btn btn-lg btn-outline-dark hover1" onclick="location.href='../../pages/joinForm/joinForm.html'">signin</button>
                         </div>
                     </form>
                 </div>
