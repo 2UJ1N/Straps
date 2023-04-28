@@ -74,8 +74,13 @@ export default class CustomHeader extends HTMLElement {
           elem.firstElementChild.setAttribute("class", classString);
         });
       e.target.setAttribute("class", classString + " " + "active");
-      let cardGrid = document.querySelector("card-grid");
-      cardGrid.category = e.target.getAttribute("id").replace('TabButton', '');
+      try{
+        let cardGrid = document.querySelector("card-grid");
+        cardGrid.category = e.target.getAttribute("id").replace('TabButton', '');
+      }catch(error){
+        console.log(error);
+        window.location.href = window.location.origin;
+      }
     }
   }
   render() {
