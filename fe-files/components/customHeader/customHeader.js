@@ -8,14 +8,24 @@ const loginModal = new LoginModal();
 export default class CustomHeader extends HTMLElement {
   constructor() {
     super();
-    this.customHeaderTemplate;
+    this._customHeaderTemplate;
+    this._category;
   }
+  set category(value) {
+    //아이템 카드 클릭시 설정됨
+    this._category = value;
+  }
+
+  get category() {
+      return this._category;
+  }
+
   //컴포넌트가 DOM에 연결 되면 실행되는 함수
   connectedCallback() {
     this.render();
   }
   render() {
-    this.customHeaderTemplate = `
+    this._customHeaderTemplate = `
       <header class="shopHeader py-3">
       <div class="row">
           <div class="link col-4 pt-1">
@@ -58,7 +68,7 @@ export default class CustomHeader extends HTMLElement {
         </div>
     </header>    
     `;
-    this.innerHTML = this.customHeaderTemplate;
+    this.innerHTML = this._customHeaderTemplate;
     this.querySelectorAll(".nav-item")
       .forEach((elem) => {
         elem.addEventListener('click', this.changeAcitveTab, false);
@@ -68,6 +78,7 @@ export default class CustomHeader extends HTMLElement {
   update(){
     this.render();
   }
+
   changeAcitveTab(e) {
     {
       const classString = e.target.getAttribute("class")
