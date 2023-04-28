@@ -5,15 +5,6 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-
-$(".wrap")
-    .on('mousemove', magnify)
-    .prepend("<div class='magnifier'></div>")
-    .children('.magnifier').css({
-        "background": "url('" + $(".target").attr("src") + "') no-repeat"
-    });
- 
-
 // 버튼 비활성화
 function btnDisabled(target) {
     target.disabled = true;
