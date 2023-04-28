@@ -73,6 +73,24 @@ table{
     margin: auto;
 }
 
-table, tr, th {
+table thead {
+    background-color: white;
+}
+
+table, tr, td {
     border: 1px solid;
+}
+
+table tr .return {
+
+        margin-right: 5px; 
+        padding: 5px; 
+        border-radius: 50px; 
+        font-weight: bolder; 
+        font-style: normal; 
+        font-size: 15px;  
+
+        border: 1px solid red;
+        color: red;
+
 }
