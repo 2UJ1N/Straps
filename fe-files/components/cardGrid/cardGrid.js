@@ -78,7 +78,7 @@ class CardGrid extends HTMLElement {
             if (i >= 16) break;
             const { name, image, price, prod_num } = products[i];
             const colNumber = Number(i + 1);
-            let itemCard = new ItemCard(prod_num,name,price);
+            let itemCard = new ItemCard(prod_num,name,price,image);
             let divCol = document.createElement('div');
             let divRow;
             divCol.setAttribute("class","col");
