@@ -1,17 +1,25 @@
+import {putUser,} from '../../modules/user.mjs';
+
+const registerUser = async (url, userData) => {
+  await putUser(url, userData);
+};
+
 window.addEventListener('load', () => {
   const forms = document.getElementsByClassName('needs-validation');
-  
+  const addressBtn = document.querySelector('#search');
+
   // submit 전 모든 값 입력하기
   Array.prototype.filter.call(forms, (form) => {
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', async(event) => {
       if (form.checkValidity() === false) { //값이 없으면
         event.preventDefault(); //동작멈추게 하고 was-validated추가
         event.stopPropagation();
       } else {
         event.preventDefault(); //기본동작 막고
         const userData = userDataCreate(form); //db에 들어갈 user정보를 만듬
-        console.log(userData); // 출력
-        //window.location.href = "../index.html"; //성공하면 홈으로 돌아가기
+        const url = 'http://34.64.218.104:3000/user/register';
+        registerUser(url, userData); // 이 부분에서 await 사용     
+        window.location.href = "../../index.html"; //성공하면 홈으로 돌아가기
       }
       form.classList.add('was-validated');
     }, false);
@@ -55,6 +63,9 @@ window.addEventListener('load', () => {
       document.getElementById('pwchk02').innerHTML = '';
     }
   }
+  addressBtn.addEventListener('click', ()=>{
+    findAddr();
+  })
 }, false);
 
 
@@ -130,15 +141,12 @@ createDayOptions();
 function userDataCreate(form) {
   const userData = {};
   const inputs = form.querySelectorAll('input, select, textarea');
-  userData["birth"] = "";
+  userData["user_id"] = "99";
   inputs.forEach((input) => {
-    if (input.id==="email"||input.id==="password"||input.id==="name"||input.id==="phones"||input.id==="postcode"||input.id==="address"||input.id==="more_address") {
+    if (input.id==="email"||input.id==="password"||input.id==="name"||input.id==="phones"||input.id==="address") {
         userData[input.id] = input.value;
-    }else if(input.id==="year"){
-      userData["birth"] = input.value;
-    }else if(input.id==="month"||input.id==="day"){
-      userData["birth"] = userData.birth +"/"+ input.value;
     }
   });
+  
   return userData;
 }

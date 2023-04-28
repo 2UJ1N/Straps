@@ -1,5 +1,4 @@
 import {loginUser,} from '../../modules/user.mjs';
-import {getProduct,} from '../../modules/product.mjs';
 
 //모달 포커스 하는 코드
 // const modalSignin = document.getElementById('modalSignin');
