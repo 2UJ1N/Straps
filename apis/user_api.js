@@ -31,33 +31,51 @@ const userApi = {
   async loginUser(req, res, next) {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
-    if (!user) throw new Error('이메일이 존재하지 않습니다.');
-    const passwordMatch = password === user.password;
-    if (!passwordMatch) throw new Error('비밀번호가 맞지 않습니다.');
-    // console.log(userService.token);
+    try {
+      const user = await User.findOne({ email });
+      if (!user) throw new Error('이메일이 존재하지 않습니다.');
+      const passwordMatch = password === user.password;
+      if (!passwordMatch) throw new Error('비밀번호가 맞지 않습니다.');
+      // console.log(userService.token);
 
-    // // 로그인 성공 -> JWT 웹 토큰 생성
-    const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
+      // // 로그인 성공 -> JWT 웹 토큰 생성
+      const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
 
-    //2개 프로퍼티를 jwt 토큰에 담음; loginRequired: jwt.verify 이용하여 정상적인 jwt인지 확인도 해야하나?
-    const token = jwt.sign(
-      {
-        type: 'JWT',
-        user_id: user.user_id,
-      },
-      secretKey,
-      {
-        expiresIn: '15m', // 만료시간 15분
-        issuer: '토큰 발급자',
-      },
-    );
+      //2개 프로퍼티를 jwt 토큰에 담음; loginRequired: jwt.verify 이용하여 정상적인 jwt인지 확인도 해야하나?
+      const token = jwt.sign(
+        {
+          type: 'JWT',
+          user_id: user.user_id,
+        },
+        secretKey,
+        {
+          expiresIn: '15m', // 만료시간 15분
+          issuer: '토큰 발급자',
+        },
+      );
 
-    res.status(200).json({
-      code: 200,
-      message: '토큰이 발급되었습니다.',
-      token: token,
-    });
+      res.status(200).json({
+        code: 200,
+        message: 'token',
+        token: token,
+      });
+    } catch (err) {
+      const user = await User.findOne({ email });
+      const passwordMatch = password === user.password;
+      if (!user) {
+        res.status(401).json({
+          // 에러 응답 코드를 401(Unauthorized)으로 설정
+          code: 401,
+          message: 'email', // 에러 메시지를 클라이언트에게 반환
+        });
+      } else if (!passwordMatch) {
+        res.status(402).json({
+          // 에러 응답 코드를 401(Unauthorized)으로 설정
+          code: 402,
+          message: 'password', // 에러 메시지를 클라이언트에게 반환
+        });
+      }
+    }
   },
 
   // 로그인 정보 뽑기
