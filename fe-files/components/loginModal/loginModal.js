@@ -13,64 +13,64 @@ import {getProduct,} from '../../modules/product.mjs';
 export default class LoginModal extends HTMLElement  {
     constructor() {
       super();
-    this.loginModalTemplate = `
-    <div class="modal fade" id="modalSignin" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-            <div class="modal-content rounded-4 shadow">
-                <!-- 모달 닫기 -->
-                <div class="modal-header p-5 pb-4 border-bottom-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <!-- 모달 본문 -->
-                <div class="modal-body p-5 pt-0">
-                    <!-- 인사 -->
-                    <div class="ment text-center">
-                        <span class="hi">Welcome</span>
-                        <span class="shop">Straps!</span>
-                    </div>
-
-                    <form class="">
-                        <!-- 아이디 비밀번호-->
-                        <div class="form-floating mb-3">
-                            <input id="emailInput" type="email" class="form-control">
-                            <label for="floatingInput text-center">아이디</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input id="passwordInput" type="password" class="form-control">
-                            <label for="floatingPassword text-center">비밀번호</label>
-                        </div>
-                        
-                        <!-- 버튼 -->
-                        <div class="button d-flex justify-content-center">
-                            <button type="submit" class="login btn btn-lg btn-dark">Login</button>
-                            <button type="button" class="signin btn btn-lg btn-outline-dark hover1" onclick="location.href='../../pages/joinForm/joinForm.html'">signin</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
+        this._loginModalTemplate;
+        this._url = 'http://34.64.218.104:3000/user/login';
     }
     connectedCallback() {
         this.render();
     }
     render() {
-        this.insertAdjacentHTML("afterbegin", this.loginModalTemplate);
-        const login = document.querySelector(".login");
+        this._loginModalTemplate = `
+        <div class="modal fade" id="modalSignin" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <!-- 모달 닫기 -->
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
+                    <!-- 모달 본문 -->
+                    <div class="modal-body p-5 pt-0">
+                        <!-- 인사 -->
+                        <div class="ment text-center">
+                            <span class="hi">Welcome</span>
+                            <span class="shop">Straps!</span>
+                        </div>
+
+                        <form class="">
+                            <!-- 아이디 비밀번호-->
+                            <div class="form-floating mb-3">
+                                <input id="emailInput" type="email" class="form-control">
+                                <label for="floatingInput text-center">아이디</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input id="passwordInput" type="password" class="form-control">
+                                <label for="floatingPassword text-center">비밀번호</label>
+                            </div>
+                            
+                            <!-- 버튼 -->
+                            <div class="button d-flex justify-content-center">
+                                <button type="submit" class="login btn btn-lg btn-dark">Login</button>
+                                <button type="button" class="signin btn btn-lg btn-outline-dark hover1" onclick="location.href='../../pages/joinForm/joinForm.html'">signin</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        this.insertAdjacentHTML("afterbegin", this._loginModalTemplate);
+
+        const login = this.querySelector(".login");
         login.addEventListener('click', async(event) => {
             event.preventDefault();
             const emailInput = document.querySelector('#emailInput');
             const passwordInput = document.querySelector("#passwordInput");
-
             let userData = {};
+
             userData["email"] = emailInput.value;
             userData["password"] = passwordInput.value;
-            const url = 'http://34.64.218.104:3000/user/login';
-            const token = await loginUser(url,userData);
-            console.log(token);
+            const token = await loginUser(this._url,userData);
+
             if(token.message==='email'){
                 const message = document.querySelector("#noemail");
                 message.innerHTML = "이메일이 없습니다";
@@ -79,7 +79,7 @@ export default class LoginModal extends HTMLElement  {
                 message.innerHTML = "비밀번호가 일치하지 않습니다";
             }else if(token.message==='token'){
                 window.localStorage.setItem("JWT",token.token);
-                window.location.href = "../../index.html";
+                window.location.href = window.location.origin;
             }
         });
 

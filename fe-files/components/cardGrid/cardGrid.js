@@ -1,9 +1,7 @@
-import { Button } from 'bootstrap';
-import { getProducts,getSortedProducts } from '../../modules/product.mjs';
+import { getSortedProducts } from '../../modules/product.mjs';
 import ItemCard from '../itemCard/itemCard.js';
 
 const productsUrl = "http://34.64.218.104:3000/products";
-// const productsUrl = "http://34.64.218.104:3000/products";
 ////////////////////////////////////////////
 //CardGrid Component
 class CardGrid extends HTMLElement {
@@ -14,23 +12,7 @@ class CardGrid extends HTMLElement {
         this._productsObj;
         this._productsArr;
         this._category = "best";
-        this._cardGridTemplate = ` 
-            <div class="container">   
-                <div class="row">
-                    <slot id = "categoryTabLabel" class="col-md-5">Category</slot>
-                    <div class="container" class="col-md-5">
-                        <h4>${this._category}</h4>
-                        <div class="dropdown text-end">
-                            <select id="sortSelector">
-                                <option value="0">인기순</option>
-                                <option value="1">높은 가격순</option>
-                                <option value="2">낮은 가격순</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            <div>
-        `;
+        this._cardGridTemplate;
     }
     set category(value) {
         this._category = value;
@@ -48,7 +30,6 @@ class CardGrid extends HTMLElement {
             sortParm += "3";
         }
         this._sortParam = (sortParm += "0");
-        // let products = this.changeCategory(this._category,this._productsArr);
         this.update();
     }
 
@@ -58,7 +39,6 @@ class CardGrid extends HTMLElement {
 
     set sortParam(value) {
         this._sortParam = value;
-        // let products = this.changeCategory(this._category,this._productsArr);
         this.update();
     }
 
@@ -71,33 +51,24 @@ class CardGrid extends HTMLElement {
         this.render();
     }
 
-    addItemsToGrid(products){
-        const cardGrid = this.querySelector('div');
-        let rowNum = 0;
-        for (let i = 0; i < products.length; i++) {
-            if (i >= 16) break;
-            const { name, image, price, prod_num } = products[i];
-            const colNumber = Number(i + 1);
-            let itemCard = new ItemCard(prod_num,name,price,image);
-            let divCol = document.createElement('div');
-            let divRow;
-            divCol.setAttribute("class","col");
-            divCol.setAttribute("id","col"+colNumber);
-            divCol.insertAdjacentElement("beforeend",itemCard);
-            if ((colNumber + 3) % 4 === 0) {
-                rowNum++;
-                divRow = document.createElement('div');
-                divRow.setAttribute("class","row");
-                divRow.setAttribute("id","row" + rowNum);
-                divRow.insertAdjacentElement("beforeend",divCol);
-                cardGrid.insertAdjacentElement("beforeend",divRow);
-            }else{
-                divRow = document.querySelector("#row"+rowNum);
-                divRow.insertAdjacentElement("beforeend",divCol);
-            }
-        }
-    }
     render() {
+        this._cardGridTemplate = `
+            <div class="container">   
+                <div class="row">
+                    <slot id = "categoryTabLabel" class="col-md-5">Category</slot>
+                    <div class="container" class="col-md-5">
+                        <h4>${this._category}</h4>
+                        <div class="dropdown text-end">
+                            <select id="sortSelector">
+                                <option value="0">인기순</option>
+                                <option value="1">높은 가격순</option>
+                                <option value="2">낮은 가격순</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            <div>
+        `;
         this.innerHTML = this._cardGridTemplate;
         this.addItemsToGrid(this._productsArr);
         this.querySelector('#sortSelector').addEventListener("input",(e)=>{
@@ -130,14 +101,38 @@ class CardGrid extends HTMLElement {
             this.sortParam = sortParam;
         })
     }
-    changeSort(e){
-        console.log(e.target.getAttribute("id"));
-        
-    }
+
     async update(){
         this._productsObj = await getSortedProducts(productsUrl,this._sortParam);
         this._productsArr = this._productsObj.products;
         this.render();
+    }
+
+    addItemsToGrid(products){
+        const cardGrid = this.querySelector('div');
+        let rowNum = 0;
+        for (let i = 0; i < products.length; i++) {
+            if (i >= 16) break;
+            const { name, image, price, prod_num } = products[i];
+            const colNumber = Number(i + 1);
+            let itemCard = new ItemCard(prod_num,name,price,image);
+            let divCol = document.createElement('div');
+            let divRow;
+            divCol.setAttribute("class","col");
+            divCol.setAttribute("id","col"+colNumber);
+            divCol.insertAdjacentElement("beforeend",itemCard);
+            if ((colNumber + 3) % 4 === 0) {
+                rowNum++;
+                divRow = document.createElement('div');
+                divRow.setAttribute("class","row");
+                divRow.setAttribute("id","row" + rowNum);
+                divRow.insertAdjacentElement("beforeend",divCol);
+                cardGrid.insertAdjacentElement("beforeend",divRow);
+            }else{
+                divRow = document.querySelector("#row"+rowNum);
+                divRow.insertAdjacentElement("beforeend",divCol);
+            }
+        }
     }
 }
 customElements.define('card-grid', CardGrid);

@@ -8,8 +8,14 @@ const loginModal = new LoginModal();
 export default class CustomHeader extends HTMLElement {
   constructor() {
     super();
-    //템플릿 생성
-    this.customHeaderTemplate =`
+    this.customHeaderTemplate;
+  }
+  //컴포넌트가 DOM에 연결 되면 실행되는 함수
+  connectedCallback() {
+    this.render();
+  }
+  render() {
+    this.customHeaderTemplate = `
       <header class="shopHeader py-3">
       <div class="row">
           <div class="link col-4 pt-1">
@@ -52,16 +58,15 @@ export default class CustomHeader extends HTMLElement {
         </div>
     </header>    
     `;
-  }
-
-  //컴포넌트가 DOM에 연결 되면 실행되는 함수
-  connectedCallback() {
-    this.render();
+    this.innerHTML = this.customHeaderTemplate;
     this.querySelectorAll(".nav-item")
       .forEach((elem) => {
         elem.addEventListener('click', this.changeAcitveTab, false);
-      });
+    });
     this.appendChild(loginModal);
+  }
+  update(){
+    this.render();
   }
   changeAcitveTab(e) {
     {
@@ -74,12 +79,14 @@ export default class CustomHeader extends HTMLElement {
           elem.firstElementChild.setAttribute("class", classString);
         });
       e.target.setAttribute("class", classString + " " + "active");
-      let cardGrid = document.querySelector("card-grid");
-      cardGrid.category = e.target.getAttribute("id").replace('TabButton', '');
+      try{
+        let cardGrid = document.querySelector("card-grid");
+        cardGrid.category = e.target.getAttribute("id").replace('TabButton', '');
+      }catch(error){
+        console.log(error);
+        window.location.href = window.location.origin;
+      }
     }
-  }
-  render() {
-    this.insertAdjacentHTML('afterbegin', this.customHeaderTemplate);
   }
 }
 customElements.define('custom-header', CustomHeader);
