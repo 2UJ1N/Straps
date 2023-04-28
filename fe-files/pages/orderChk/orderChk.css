@@ -36,17 +36,32 @@ h2{
     margin: auto;
 }
 
+h3{
+    margin-bottom: 20px;
+
+    font-family: 'LOTTERIACHAB';
+    font-size: 30px;
+    font-weight: 100;
+
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+}
+
+h3:hover{
+    transform: translateY(-10px);
+}
+
 .searchTable {
     background-color: rgba(0, 0, 0, 0.04);
     padding: 1rem 1rem 2rem 1rem; 
     margin: 2rem;
 }
 
-
 li{
-    display: inline-block;
-    /* text-align: left;
-    float: left; */
+    display: block;
 }
 
 .orderInfo {
