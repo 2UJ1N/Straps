@@ -62,6 +62,7 @@ mongoose
 //   .catch((err) => console.log(err));
 
 app.use(express.json());
+app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.send('OK');
