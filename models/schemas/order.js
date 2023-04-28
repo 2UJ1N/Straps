@@ -5,6 +5,7 @@ const OrderSchema = new Schema({
   user_id: { type: String, ref: "User" }, // reference
   prod_num: { type: String, ref: "Product" }, // reference
   order_inDate: { type: String, required: true },
+  order_quantity: { type: Number, required: true },
 });
 
 module.exports = OrderSchema;
