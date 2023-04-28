@@ -70,7 +70,6 @@ login.addEventListener('click', async(event) => {
     window.localStorage.setItem("JWT",token.token);
     window.location.href = "../../index.html";
   }
-
 });
 
 joinForm.addEventListener("click", () => {
