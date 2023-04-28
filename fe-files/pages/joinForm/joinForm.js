@@ -140,5 +140,5 @@ function userDataCreate(form) {
       userData["birth"] = userData.birth +"/"+ input.value;
     }
   });
-  return JSON.stringify(userData);
+  return userData;
 }

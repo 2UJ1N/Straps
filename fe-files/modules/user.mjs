@@ -23,10 +23,10 @@ async function changeUser(url = "", urlId = "" ,data = {}) {
 // export { putProduct };
 
 //putUser
-//회원정보 등록 API
+//회원가입 API
 async function putUser(url,data) {
     try {
-        url = url + "/" + data.email;
+        url = url + "/";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -35,6 +35,7 @@ async function putUser(url,data) {
         body: JSON.stringify(data),
       });
       const result = await response.json();
+    
       console.log("Success");
       return result;
     } catch (error) {
@@ -87,4 +88,27 @@ async function deleteUser(url = "", urlId = "") {
         return error;
     }
   };
-export { changeUser, deleteUser, getUser, putUser };
+
+  //loginUser
+//로그인 API
+async function loginUser(url,data) {
+  try {
+      const response = await fetch(url, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json; charset=utf-8",
+          },
+          body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      return result;
+  } catch (error) {
+    console.log("Error");
+    return error;
+  }
+};
+
+
+
+export { changeUser, deleteUser, getUser, putUser, loginUser};
