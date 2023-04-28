@@ -35,3 +35,29 @@ h2{
     padding: 1rem;
     margin: auto;
 }
+
+.searchTable {
+    background-color: rgba(0, 0, 0, 0.04);
+    padding: 1rem 1rem 2rem 1rem; 
+    margin: 2rem;
+}
+
+
+li{
+    display: inline-block;
+    /* text-align: left;
+    float: left; */
+}
+
+.orderInfo {
+    margin-top: 60px;
+    text-align: center;
+}
+
+table{
+    margin: auto;
+}
+
+table, tr, th {
+    border: 1px solid;
+}
