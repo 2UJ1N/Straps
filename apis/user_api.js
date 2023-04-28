@@ -35,8 +35,9 @@ const userApi = {
     if (!user) throw new Error('이메일이 존재하지 않습니다.');
     const passwordMatch = password === user.password;
     if (!passwordMatch) throw new Error('비밀번호가 맞지 않습니다.');
+    // console.log(userService.token);
 
-    // 로그인 성공 -> JWT 웹 토큰 생성
+    // // 로그인 성공 -> JWT 웹 토큰 생성
     const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
 
     //2개 프로퍼티를 jwt 토큰에 담음; loginRequired: jwt.verify 이용하여 정상적인 jwt인지 확인도 해야하나?
@@ -57,6 +58,24 @@ const userApi = {
       message: '토큰이 발급되었습니다.',
       token: token,
     });
+  },
+
+  // 로그인 정보 뽑기
+  async parsejwt(req, res, next) {
+    // 토큰 파싱하여 저장
+    const token =
+      'eyJhbGciOiJIUzeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNjk3MzQ2LCJleHAiOjE2ODI2OTgyNDYsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.H2EfhfdW744A4hNgTRQpL6rYJmRHtApNTmsZNt4vrf0I1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNjk1NzkxLCJleHAiOjE2ODI2OTY2OTEsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.HMxoAjXcACqH3-aqIg_-BAw6lqZa1INn4BNUEUWgrcs';
+
+    const base64Url = token.split('.')[1];
+    const payload = Buffer.from(base64Url, 'base64');
+    const result = JSON.parse(payload.toString());
+    const parseUserId = result.user_id;
+
+    // const user = await User.findOne({ user_id: parseUserId });
+    // req.currentUser = user;
+    // next();
+    // console.log(parseUserId);
+    res.status(202).json(parseUserId);
   },
 
   // 사용자 정보 조회
