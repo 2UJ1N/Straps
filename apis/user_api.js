@@ -1,8 +1,9 @@
 const { User } = require('../models/index');
 const userModel = require('../models/userModel');
+const jwt = require('jsonwebtoken');
 
 const userApi = {
-  // È¸¿ø°¡ÀÔ: db ¿¡ ÀúÀåµÇ´Â ÄÚµå ´Ù½Ã ±¸Çö  // ¿À·ù: user_id path ÇÊ¿äÇÏ´Ù
+  // íšŒì›ê°€ì…: db ì— ì €ì¥ë˜ëŠ” ì½”ë“œ ë‹¤ì‹œ êµ¬í˜„  // ì˜¤ë¥˜: user_id path í•„ìš”í•˜ë‹¤
   async newUser(req, res, next) {
     try {
       const { password, name, address, phones, email, regdate, role, status } = req.body;
@@ -26,53 +27,39 @@ const userApi = {
     }
   },
 
-  // ·Î±×ÀÎ
-  async accessUser(req, res, next) {
-    try {
-      const { email, password } = req.body;
+  // ë¡œê·¸ì¸
+  async loginUser(req, res, next) {
+    const { email, password } = req.body;
 
-      const getUserToken = {
-        async GetUserToken(loginInfo) {
-          const { email, password, role } = loginInfo;
+    const user = await User.findOne({ email });
+    if (!user) throw new Error('ì´ë©”ì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');
+    const passwordMatch = password === user.password;
+    if (!passwordMatch) throw new Error('ë¹„ë°€ë²ˆí˜¸ê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.');
 
-          // À¯Àú db¿¡ ÇÁ·ĞÆ®¿¡¼­ ÀÔ·ÂÇÑ ÀÌ¸ŞÀÏÀÌ ÀÖ´ÂÁö Ã£±â
-          const user = await this.userModel.findByEmail(email);
-          if (!user) {
-            throw new Error('ÇØ´ç ÀÌ¸ŞÀÏÀº °¡ÀÔ ³»¿ªÀÌ ¾ø½À´Ï´Ù. ´Ù½Ã ÇÑ ¹ø È®ÀÎÇØ ÁÖ¼¼¿ä.');
-          }
+    // ë¡œê·¸ì¸ ì„±ê³µ -> JWT ì›¹ í† í° ìƒì„±
+    const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
 
-          // ºñ¹Ğ¹øÈ£ ÀÏÄ¡ ¿©ºÎ È®ÀÎ
-          const correctPasswordHash = user.password; // db¿¡ ÀúÀåµÇ¾î ÀÖ´Â ¾ÏÈ£È­µÈ ºñ¹Ğ¹øÈ£
+    //2ê°œ í”„ë¡œí¼í‹°ë¥¼ jwt í† í°ì— ë‹´ìŒ; loginRequired: jwt.verify ì´ìš©í•˜ì—¬ ì •ìƒì ì¸ jwtì¸ì§€ í™•ì¸ë„ í•´ì•¼í•˜ë‚˜?
+    const token = jwt.sign(
+      {
+        type: 'JWT',
+        user_id: user.user_id,
+      },
+      secretKey,
+      {
+        expiresIn: '15m', // ë§Œë£Œì‹œê°„ 15ë¶„
+        issuer: 'í† í° ë°œê¸‰ì',
+      },
+    );
 
-          // ¸Å°³º¯¼öÀÇ ¼ø¼­ Áß¿ä (1¹øÂ°´Â ÇÁ·ĞÆ®°¡ º¸³»¿Â ºñ¹Ğ¹øÈ£, 2¹ø´Â db¿¡ ÀÖ¶² ¾ÏÈ£È­µÈ ºñ¹Ğ¹øÈ£)
-          const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
-
-          if (!isPasswordCorrect) {
-            throw new Error('ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù. ´Ù½Ã ÇÑ ¹ø È®ÀÎÇØ ÁÖ¼¼¿ä.');
-          }
-
-          // ·Î±×ÀÎ ¼º°ø -> JWT À¥ ÅäÅ« »ı¼º
-          const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
-
-          // 2°³ ÇÁ·ÎÆÛÆ¼¸¦ jwt ÅäÅ«¿¡ ´ãÀ½; loginRequired: jwt.verify ÀÌ¿ëÇÏ¿© Á¤»óÀûÀÎ jwtÀÎÁö È®ÀÎµµ ÇØ¾ßÇÏ³ª?
-          const token = jwt.sign({ userId: user.user_id, role: user.role }, secretKey); // jwtÀÇ sign ÇÔ¼ö: ÅäÅ« »ı¼º, ÀÌ ¶§ À§ÀÇ secret key »ç¿ë
-          if (user.role === 1) {
-            return { token, admin: 1 };
-          }
-          return { token };
-        },
-      };
-
-      // ·Î±×ÀÎ ÅäÅ« »ı¼º ÇÔ¼ö ¿¬°á
-      const userToken = await getUserToken;
-
-      res.status(201).json(userToken);
-    } catch (error) {
-      console.error(error);
-    }
+    res.status(200).json({
+      code: 200,
+      message: 'í† í°ì´ ë°œê¸‰ë˜ì—ˆìŠµë‹ˆë‹¤.',
+      token: token,
+    });
   },
 
-  // »ç¿ëÀÚ Á¤º¸ Á¶È¸
+  // ì‚¬ìš©ì ì •ë³´ ì¡°íšŒ
   async getAllUser(req, res, next) {
     try {
       const { user_id } = req.params;
@@ -86,7 +73,7 @@ const userApi = {
     }
   },
 
-  // »ç¿ëÀÚ Á¤º¸ ¼öÁ¤
+  // ì‚¬ìš©ì ì •ë³´ ìˆ˜ì •
   async updateUser(req, res, next) {
     try {
       const { user_id } = req.params;
@@ -114,7 +101,7 @@ const userApi = {
     }
   },
 
-  // »ç¿ëÀÚ Á¤º¸ »èÁ¦
+  // ì‚¬ìš©ì ì •ë³´ ì‚­ì œ
   async deleteUser(req, res, next) {
     try {
       const { user_id } = req.params;
