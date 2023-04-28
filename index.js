@@ -13,7 +13,7 @@ const { User } = require('./models');
 const FakeProduct = require('./models/Fake/f_products.json');
 const FakeCart = require('./models/Fake/f_cart.json');
 const FakeOrder = require('./models/Fake/f_order.json');
-const FakeUser = require('./models/Fake/f_user_convert.json');
+const FakeUser = require('./models/Fake/f_user.json');
 
 // Middleware
 const cors = require('cors');
@@ -23,6 +23,7 @@ const indexRouter = require('./routes/index');
 const productRouter = require('./routes/productRouter');
 const orderRouter = require('./routes/orderRouter');
 const cartRouter = require('./routes/cartRouter');
+const userRouter = require('./routes/userRouter');
 
 // DB 연결
 mongoose
@@ -58,8 +59,9 @@ mongoose
 //   .catch((err) => console.log(err));
 
 // User.create(FakeUser)
-//   .then((user) => {}) //console.log(user)
-//   .catch((err) => console.log(err));
+//   .then(user => {}) //console.log(user)
+//   .catch(err => console.log(err));
+// console.log(user);
 
 app.use(express.json());
 
@@ -70,5 +72,6 @@ app.get('/', (req, res) => {
 app.use('/products', cors(), productRouter);
 app.use('/cart', cors(), cartRouter);
 app.use('/order', cors(), orderRouter);
+app.use('/user', cors(), userRouter);
 
 app.listen(3000);

@@ -7,7 +7,7 @@ const UserSchema = new Schema(
     name: { type: String, required: true },
     address: { type: String, required: false },
     phones: { type: String, required: false },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     regdate: { type: Date, default: Date.now },
     role: {
       // 사용자 1 , 관리자 0
