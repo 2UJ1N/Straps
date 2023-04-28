@@ -23,6 +23,7 @@ export default class ItemCard extends HTMLElement {
     }
     render() {
         this._cardTemplate = `
+        <div class="all">
         <a href=${window.location.href}pages/productDetail/productDetail.html>
             <img alt="이미지1" data-original="${this._image}" src="${this._image}">
         </a>
@@ -50,7 +51,7 @@ export default class ItemCard extends HTMLElement {
                 </svg>
             </button>
             
-        </div>
+        </div></div>
         `;
         this.insertAdjacentHTML("afterbegin", this._cardTemplate);
         this.querySelector("a").addEventListener("click",()=>{
