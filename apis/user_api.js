@@ -83,13 +83,15 @@ const userApi = {
   async parsejwt(req, res, next) {
     // 토큰 파싱하여 저장
     const token =
-      'eyJhbGciOiJIUzeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNjk3MzQ2LCJleHAiOjE2ODI2OTgyNDYsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.H2EfhfdW744A4hNgTRQpL6rYJmRHtApNTmsZNt4vrf0I1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNjk1NzkxLCJleHAiOjE2ODI2OTY2OTEsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.HMxoAjXcACqH3-aqIg_-BAw6lqZa1INn4BNUEUWgrcs';
-
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNzA5ODIzLCJleHAiOjE2ODI3MTA3MjMsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.ifzE7OY6rmN2L9D-pjz5vwLui52p60ivM_jnFVQpP7A';
     const base64Url = token.split('.')[1];
     const payload = Buffer.from(base64Url, 'base64');
     const result = JSON.parse(payload.toString());
     const ParseUserId = result.user_id;
     const parseUserId = parseInt(ParseUserId);
+
+    // console.log(typeof parseUserId);
+    // res.end();
 
     const user = await User.findOne({ user_id: parseUserId });
     req.currentUser = user;
