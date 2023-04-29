@@ -1,15 +1,15 @@
-// À¯Àú db¿¡ ÇÁ·ÐÆ®¿¡¼­ ÀÔ·ÂÇÑ ÀÌ¸ÞÀÏÀÌ ÀÖ´ÂÁö Ã£±â
+// ìœ ì € dbì— í”„ë¡ íŠ¸ì—ì„œ ìž…ë ¥í•œ ì´ë©”ì¼ì´ ìžˆëŠ”ì§€ ì°¾ê¸°
 const user = await this.userModel.findByEmail(email);
 if (!user) {
-  throw new Error('ÇØ´ç ÀÌ¸ÞÀÏÀº °¡ÀÔ ³»¿ªÀÌ ¾ø½À´Ï´Ù. ´Ù½Ã ÇÑ ¹ø È®ÀÎÇØ ÁÖ¼¼¿ä.');
+  throw new Error('ï¿½Ø´ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½ï¿½ ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.');
 }
 
-// ºñ¹Ð¹øÈ£ ÀÏÄ¡ ¿©ºÎ È®ÀÎ
-const correctPasswordHash = user.password; // db¿¡ ÀúÀåµÇ¾î ÀÖ´Â ¾ÏÈ£È­µÈ ºñ¹Ð¹øÈ£
+// ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ ì—¬ë¶€ í™•ì¸
+const correctPasswordHash = user.password; // // dbì— ì €ìž¥ë˜ì–´ ìžˆëŠ” ì•”í˜¸í™”ëœ ë¹„ë°€ë²ˆí˜¸
 
-// ¸Å°³º¯¼öÀÇ ¼ø¼­ Áß¿ä (1¹øÂ°´Â ÇÁ·ÐÆ®°¡ º¸³»¿Â ºñ¹Ð¹øÈ£, 2¹ø´Â db¿¡ ÀÖ¶² ¾ÏÈ£È­µÈ ºñ¹Ð¹øÈ£)
+// ë§¤ê°œë³€ìˆ˜ì˜ ìˆœì„œ ì¤‘ìš” (1ë²ˆì§¸ëŠ” í”„ë¡ íŠ¸ê°€ ë³´ë‚´ì˜¨ ë¹„ë°€ë²ˆí˜¸, 2ë²ˆëŠ” dbì— ìžˆë–¤ ì•”í˜¸í™”ëœ ë¹„ë°€ë²ˆí˜¸)
 const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
 
 if (!isPasswordCorrect) {
-  throw new Error('ºñ¹Ð¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù. ´Ù½Ã ÇÑ ¹ø È®ÀÎÇØ ÁÖ¼¼¿ä.');
+  throw new Error('ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½. ï¿½Ù½ï¿½ ï¿½ï¿½ ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.');
 }
