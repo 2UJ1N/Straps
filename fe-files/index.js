@@ -5,7 +5,7 @@ import {
   postProduct,
   getProducts,
 } from './modules/product.mjs';
-
+window.localStorage.setItem("cartItems",JSON.stringify([]));
 //서버 주소
 // const productsUrl = "http://34.64.218.104:3000/products";
 
@@ -142,6 +142,19 @@ JSON.parse(localStorage.getItem('item')).map((data) => {
 });
 iconShoppingP.innerHTML = no;
 */
+
+const cartItemsObj = JSON.parse(window.localStorage.getItem("cartItems"));
+let sum = 0;
+try{
+  cartItemsObj.array.forEach(element => {
+    sum = Number(element.price) + sum;
+  });
+  document.querySelector("#cartSum").innerHTML = sum.toString() +" "+"원";
+}
+catch(error){
+  console.log(error);
+}
+
 
 //장바구니 로컬스토리지 어쩌구저쩌구 중..
 const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
