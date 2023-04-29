@@ -4,9 +4,23 @@ const jwt = require('jsonwebtoken');
 
 const userApi = {
   // 회원가입: db 에 저장되는 코드 다시 구현  // 오류: user_id path 필요하다
+  // async isUsingEmail(email) {
+  //   const user = await User.find({ email, status: 1 });
+  //   return user.email;
+  // },
+
   async newUser(req, res, next) {
     try {
       const { user_id, password, name, address, phones, email, regdate, role, status } = req.body;
+
+      // 이메일 중복 검사
+      const allUser = await User.find({});
+      const IsUsingEmail = allUser.map(allUser => allUser.email);
+      for (let i = 0; i < IsUsingEmail.length; i++) {
+        if (req.body.email == IsUsingEmail[i]) {
+          throw new Error('사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
+        }
+      }
 
       const createInfo = {
         user_id,
@@ -24,7 +38,11 @@ const userApi = {
 
       res.status(200).json(createdUser);
     } catch (error) {
-      console.error(error);
+      res.status(401).json({
+        // 에러 응답 코드를 401(Unauthorized)으로 설정
+        code: 401,
+        message: 'email', // 에러 메시지를 클라이언트에게 반환
+      });
     }
   },
 
