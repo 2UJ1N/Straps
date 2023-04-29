@@ -66,6 +66,10 @@ export default class LoginModal extends HTMLElement  {
 
         login.addEventListener('click', async(event) => {
         event.preventDefault();
+        const emessage = document.querySelector("#noemail");
+        const pmessage = document.querySelector("#nopassword");
+        emessage.innerText = "";
+        pmessage.innerText = "";
         const emailInput = document.querySelector('#emailInput');
         const passwordInput = document.querySelector("#passwordInput");
 
@@ -76,11 +80,11 @@ export default class LoginModal extends HTMLElement  {
         const token = await loginUser(url,userData);
         console.log(token);
         if(token.message==='email'){
-            const message = document.querySelector("#noemail");
-            message.innerText = "    이메일이 없습니다!";
+            
+            emessage.innerText = "    이메일이 없습니다!";
         }else if(token.message==='password'){
-            const message = document.querySelector("#nopassword");
-            message.innerText = "    비밀번호가 일치하지 않습니다!";
+            
+            pmessage.innerText = "    비밀번호가 일치하지 않습니다!";
         }else if(token.message==='token'){
             window.localStorage.setItem("JWT",token.token);
             window.location.href = "../../index.html";
