@@ -25,24 +25,23 @@ async function changeUser(url = "", urlId = "" ,data = {}) {
 //putUser
 //회원가입 API
 async function putUser(url,data) {
-    try {
-        url = url + "/";
-      const response = await fetch(url, {
+  try {
+    const response = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json; charset=utf-8",
+            "Content-Type": "application/json; charset=utf-8",
         },
         body: JSON.stringify(data),
-      });
-      const result = await response.json();
-    
-      console.log("Success");
-      return result;
-    } catch (error) {
-      console.error("Error");
-      return error;
-    }
-  }
+    });
+
+    const result = await response.json();
+    console.log("Success");
+    return result;
+} catch (error) {
+  console.log("Error");
+  return error;
+}
+};
 // export { postProduct };
 
 
