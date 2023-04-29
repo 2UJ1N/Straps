@@ -1,15 +1,7 @@
-const user = {
-  "name": "육현진",
-  "phones": "010-4659-5823",
-  "postcode": "06265",
-  "address" : "서울 강남구 강남대로 272",
-  "more_address" : "101동 202호",
-}
-
-putUserData(user);
-
 window.addEventListener('load', () => {
     const forms = document.querySelectorAll('.needs-validation');
+    const addressBtn = document.querySelector('#search');
+
     Array.from(forms).forEach(form => {
       form.addEventListener('submit', event => {
         if (!form.checkValidity()) {
@@ -17,13 +9,20 @@ window.addEventListener('load', () => {
           event.stopPropagation()
         } else {
             event.preventDefault(); //기본동작 막고
-            const userData = userDataCreate(form); //db에 들어갈 user정보를 만듬
-            console.log(userData);
+            //const userData = userDataCreate(form); //db에 들어갈 user정보를 만듬
+            alert("결제완료!");
+            window.location.href=window.location.origin;
           //window.location.href = "../index.html"; //성공하면 홈으로 돌아가기
         }
         form.classList.add('was-validated');
       }, false);
     });
+    
+    addressBtn.addEventListener('click', ()=>{
+      findAddr();
+    })
+
+    
 }, false);
 
 

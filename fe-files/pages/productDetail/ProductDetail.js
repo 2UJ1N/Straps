@@ -125,3 +125,9 @@ else { //상품 품절 o
     // 바로구매 버튼 비활성화
     orderNow.disabled = true;
 }
+    
+const order = document.querySelector("#orderNow")
+order.addEventListener("click", (event)=>{
+    event.preventDefault();
+    window.location.href = "../orderForm/orderForm.html";
+})
