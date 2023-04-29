@@ -41,13 +41,15 @@ export default class LoginModal extends HTMLElement  {
                             <div class="form-floating mb-3">
                                 <input id="emailInput" type="email" class="form-control">
                                 <label for="floatingInput text-center">아이디</label>
+                                <p id="noemail" style="color: red;"></p>
                             </div>
                             <div class="form-floating mb-3">
                                 <input id="passwordInput" type="password" class="form-control">
                                 <label for="floatingPassword text-center">비밀번호</label>
+                                <p id="nopassword" style="color: red;"></p>
                             </div>
-                            
                             <!-- 버튼 -->
+                            
                             <div class="button d-flex justify-content-center">
                                 <button type="submit" class="login btn btn-lg btn-dark">Login</button>
                                 <button type="button" class="signin btn btn-lg btn-outline-dark hover1" onclick="location.href='../../pages/joinForm/joinForm.html'">signin</button>
@@ -59,39 +61,34 @@ export default class LoginModal extends HTMLElement  {
         </div>`;
         this.insertAdjacentHTML("afterbegin", this._loginModalTemplate);
 
-
-
-
-
-const joinForm = document.querySelector('.signin');
-const login = document.querySelector(".login");
-
-login.addEventListener('click', async(event) => {
-  event.preventDefault();
-  const emailInput = document.querySelector('#emailInput');
-  const passwordInput = document.querySelector("#passwordInput");
-
-  let userData = {};
-  userData["email"] = emailInput.value;
-  userData["password"] = passwordInput.value;
-  const url = 'http://34.64.218.104:3000/user/login';
-  const token = await loginUser(url,userData);
-  console.log(token);
-  if(token.message==='email'){
-    const message = document.querySelector("#noemail");
-    message.innerText = "    이메일이 없습니다!";
-  }else if(token.message==='password'){
-    const message = document.querySelector("#nopassword");
-    message.innerText = "    비밀번호가 일치하지 않습니다!";
-  }else if(token.message==='token'){
-    window.localStorage.setItem("JWT",token.token);
-    window.location.href = "../../index.html";
-  }
-});
-
         const joinForm = document.querySelector('.signin');
+        const login = document.querySelector(".login");
+
+        login.addEventListener('click', async(event) => {
+        event.preventDefault();
+        const emailInput = document.querySelector('#emailInput');
+        const passwordInput = document.querySelector("#passwordInput");
+
+        let userData = {};
+        userData["email"] = emailInput.value;
+        userData["password"] = passwordInput.value;
+        const url = 'http://34.64.218.104:3000/user/login';
+        const token = await loginUser(url,userData);
+        console.log(token);
+        if(token.message==='email'){
+            const message = document.querySelector("#noemail");
+            message.innerText = "    이메일이 없습니다!";
+        }else if(token.message==='password'){
+            const message = document.querySelector("#nopassword");
+            message.innerText = "    비밀번호가 일치하지 않습니다!";
+        }else if(token.message==='token'){
+            window.localStorage.setItem("JWT",token.token);
+            window.location.href = "../../index.html";
+        }
+        });
+
         joinForm.addEventListener("click", () => {
-            window.location.href = "../joinForm/joinForm.html";
+            window.location.href = "../../pages/joinForm/joinForm.html";
         });
     }
 }
