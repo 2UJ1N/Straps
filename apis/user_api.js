@@ -3,12 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const userApi = {
-  // 회원가입: db 에 저장되는 코드 다시 구현  // 오류: user_id path 필요하다
-  // async isUsingEmail(email) {
-  //   const user = await User.find({ email, status: 1 });
-  //   return user.email;
-  // },
-
+  // 회원가입
   async newUser(req, res, next) {
     try {
       const { user_id, password, name, address, phones, email, regdate, role, status } = req.body;
@@ -22,13 +17,12 @@ const userApi = {
         }
       }
 
-      // const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedPassword = await bcrypt.hash(password, 10);
 
       const createInfo = {
         user_id,
-        password,
-        // password: hashedPassword,
-        password,
+        // password,
+        password: hashedPassword,
         name,
         address,
         phones,
@@ -59,9 +53,9 @@ const userApi = {
       const user = await User.findOne({ email });
       if (!user) throw new Error('이메일이 존재하지 않습니다.');
       // 비밀번호 일치 여부 확인
-      // const correctPasswordHash = user.password;
-      // const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
-      const passwordMatch = password === user.password;
+      const correctPasswordHash = user.password;
+      const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
+      // const passwordMatch = password === user.password;
       if (!passwordMatch) throw new Error('비밀번호가 맞지 않습니다.');
 
       // 로그인 성공 -> JWT 웹 토큰 생성
@@ -94,9 +88,9 @@ const userApi = {
           message: 'email', // 에러 메시지를 클라이언트에게 반환
         });
       }
-      // const correctPasswordHash = user.password;
-      // const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
-      const passwordMatch = password === user.password;
+      const correctPasswordHash = user.password;
+      const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
+      // const passwordMatch = password === user.password;
       if (!passwordMatch) {
         res.status(402).json({
           code: 402,
