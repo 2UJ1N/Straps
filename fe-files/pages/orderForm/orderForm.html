@@ -22,8 +22,6 @@
 
         <div class="row">
         <div class="title py-5 text-center">
-          <custom-header>
-          </custom-header>
           <!-- <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="57"> -->
           <h1>Order</h1>
           <!-- <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form
@@ -82,29 +80,47 @@
                     <label for="lastName" class="form-label">이름</label>
                     <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
                     <div class="invalid-feedback">
-                      Valid last name is required.
+                      이름을 입력해주세요.
                     </div>
                   </div>
 
                   <div class="col-12">
                     <label for="floatingInput">연락처</label>
-                    <input type="tel" class="form-control" id="phoneNumber" placeholder="name@example.com">
+                    <input type="tel" class="form-control" id="phoneNumber" placeholder="010-0000-0000" required>
                     <div class="invalid-feedback">
                       전화번호를 입력해주세요.
                     </div>
                   </div>
 
-                  <div class="col-12">
-                    <label for="address" class="form-label">주소</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                    <div class="invalid-feedback">
-                      Please enter your shipping address.
+                  <div class="col-12 mb-3">
+                    <label for="root">주소</label>
+                    <div class="row">
+                      <div class="col-4">
+                        <input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호 검색" readonly required>
+                        <div class="invalid-feedback">
+                          우편번호를 검색해주세요.
+                        </div>
+                      </div>
+                      <div class="col-3">
+                        <button type="button" class="btn btn-dark" id="search">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                          </svg> 
+                        </button>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="col-12">
-                    <label for="address2" class="form-label">상세주소 <span class="text-muted"></span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+    
+    
+                  <div class="col-12 mb-3">
+                    <input type="postcode" class="form-control" id="address" required readonly>
+                  </div>
+    
+                  <div class="col-12 mb-3">
+                    <input type="text" class="form-control formstyle-none" id="more_address" placeholder="상세주소 입력" required>
+                    <div class="invalid-feedback">
+                      상세주소를 입력해주세요.
+                    </div> 
                   </div>
                 </div>
             </div>
