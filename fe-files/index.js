@@ -5,7 +5,6 @@ import {
   postProduct,
   getProducts,
 } from './modules/product.mjs';
-import { changeUser, deleteUser, getUser, putUser } from './modules/user.mjs';
 
 //서버 주소
 // const productsUrl = "http://34.64.218.104:3000/products";
@@ -223,3 +222,12 @@ class LocalCart {
     updateCartUI();
   }
 }
+
+window.addEventListener('load', () => {
+  const loginBtn = document.querySelector("#loginButton");
+  const token = localStorage.getItem("JWT");
+  if(token){
+    loginBtn.querySelectorAll("path").forEach(path => path.setAttribute("fill", "red"));    
+  }
+  
+});
