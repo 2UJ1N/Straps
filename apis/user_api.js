@@ -1,6 +1,6 @@
 const { User } = require('../models/index');
-const userModel = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const userApi = {
   // 회원가입: db 에 저장되는 코드 다시 구현  // 오류: user_id path 필요하다
@@ -22,8 +22,12 @@ const userApi = {
         }
       }
 
+      // const hashedPassword = await bcrypt.hash(password, 10);
+
       const createInfo = {
         user_id,
+        password,
+        // password: hashedPassword,
         password,
         name,
         address,
@@ -51,13 +55,16 @@ const userApi = {
     const { email, password } = req.body;
 
     try {
+      // 이메일 존재 여부 확인
       const user = await User.findOne({ email });
       if (!user) throw new Error('이메일이 존재하지 않습니다.');
+      // 비밀번호 일치 여부 확인
+      // const correctPasswordHash = user.password;
+      // const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
       const passwordMatch = password === user.password;
       if (!passwordMatch) throw new Error('비밀번호가 맞지 않습니다.');
-      // console.log(userService.token);
 
-      // // 로그인 성공 -> JWT 웹 토큰 생성
+      // 로그인 성공 -> JWT 웹 토큰 생성
       const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
 
       //2개 프로퍼티를 jwt 토큰에 담음; loginRequired: jwt.verify 이용하여 정상적인 jwt인지 확인도 해야하나?
@@ -87,35 +94,40 @@ const userApi = {
           message: 'email', // 에러 메시지를 클라이언트에게 반환
         });
       }
+      // const correctPasswordHash = user.password;
+      // const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
       const passwordMatch = password === user.password;
       if (!passwordMatch) {
         res.status(402).json({
           code: 402,
-          message: 'password', // 에러 메시지를 클라이언트에게 반환
+          message: 'password',
         });
       }
     }
   },
 
-  // 로그인 정보 뽑기
+  // jwt 토큰 파싱
   async parsejwt(req, res, next) {
-    // 토큰 파싱하여 저장
     const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MCwiaWF0IjoxNjgyNzA5ODIzLCJleHAiOjE2ODI3MTA3MjMsImlzcyI6Iu2GoO2BsCDrsJzquInsnpAifQ.ifzE7OY6rmN2L9D-pjz5vwLui52p60ivM_jnFVQpP7A';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MTAwLCJpYXQiOjE2ODI3MzQyMjgsImV4cCI6MTY4MjczNTEyOCwiaXNzIjoi7Yag7YGwIOuwnOq4ieyekCJ9.rfqIorYWbNr-r2Pqq6h2I2WtPaxSIsEk3sgdj5f60F8';
     const base64Url = token.split('.')[1];
     const payload = Buffer.from(base64Url, 'base64');
     const result = JSON.parse(payload.toString());
-    const ParseUserId = result.user_id;
-    const parseUserId = parseInt(ParseUserId);
-
-    // console.log(typeof parseUserId);
-    // res.end();
+    const parseUserId = result.user_id;
+    // const parseUserId = Number(ParseUserId);
 
     const user = await User.findOne({ user_id: parseUserId });
-    req.currentUser = user;
+    // user.user_id = Number(user.user_id);
+    // res.currentUser = user;
+    // console.log(res.currentUser);
+    // res.end();
+
+    res.status(202).json({
+      parseUserId,
+      email: user.email,
+      password: user.password,
+    });
     next();
-    // console.log(parseUserId);
-    // res.status(202).json(parseUserId);
   },
 
   // 사용자 정보 조회: 모든 유저
