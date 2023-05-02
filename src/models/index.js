@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('../config/database');
 
 const ProductSchema = require('./schemas/product');
 const CartSchema = require('./schemas/cart');

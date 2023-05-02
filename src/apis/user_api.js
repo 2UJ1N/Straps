@@ -6,14 +6,26 @@ const userApi = {
   // 회원가입
   async newUser(req, res, next) {
     try {
-      const { user_id, password, name, address, phones, email, regdate, role, status } = req.body;
+      const {
+        user_id,
+        password,
+        name,
+        address,
+        phones,
+        email,
+        regdate,
+        role,
+        status,
+      } = req.body;
 
       // 이메일 중복 검사
       const allUser = await User.find({});
-      const IsUsingEmail = allUser.map(allUser => allUser.email);
+      const IsUsingEmail = allUser.map((allUser) => allUser.email);
       for (let i = 0; i < IsUsingEmail.length; i++) {
         if (req.body.email == IsUsingEmail[i]) {
-          throw new Error('사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
+          throw new Error(
+            '사용 중인 이메일입니다. 다른 이메일을 입력해주세요.'
+          );
         }
       }
 
@@ -71,7 +83,7 @@ const userApi = {
         {
           expiresIn: '15m', // 만료시간 15분
           issuer: '토큰 발급자',
-        },
+        }
       );
 
       res.status(200).json({
@@ -155,7 +167,8 @@ const userApi = {
   async updateUser(req, res, next) {
     try {
       const { user_id } = req.params;
-      const { password, name, address, phones, email, regdate, role, status } = req.body;
+      const { password, name, address, phones, email, regdate, role, status } =
+        req.body;
 
       const updateInfo = {
         password,
