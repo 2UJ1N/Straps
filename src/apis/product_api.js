@@ -76,7 +76,6 @@ const productApi = {
       res.status(200).json({ products, page, perPage, totalPage });
     } catch (error) {
       console.error(error);
-      next(error);
     }
   },
 
