@@ -20,7 +20,8 @@ const productApi = {
       // const foundAllProducts = await Product.find({});
       res.status(200).json({ products, page, perPage, totalPage });
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      res.status(500).json({ message: '서버에러' });
     }
   },
 
@@ -75,7 +76,8 @@ const productApi = {
 
       res.status(200).json({ products, page, perPage, totalPage });
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      res.status(500).json({ message: '서버에러' });
     }
   },
 
@@ -90,7 +92,8 @@ const productApi = {
 
       res.status(200).json(foundProduct);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      res.status(500).json({ message: '서버에러' });
     }
   },
 
@@ -127,7 +130,8 @@ const productApi = {
 
       res.status(201).json(createdProduct);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      res.status(500).json({ message: '서버에러' });
     }
   },
 
@@ -166,7 +170,8 @@ const productApi = {
 
       res.status(201).json(updatedProduct);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      res.status(500).json({ message: '서버에러' });
     }
   },
 
@@ -183,7 +188,8 @@ const productApi = {
 
       res.status(201).json(deletedProduct);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
+      res.status(500).json({ message: '서버에러' });
     }
   },
 };
