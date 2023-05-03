@@ -1,0 +1,134 @@
+@font-face {
+    font-family: 'LOTTERIACHAB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    color: #000;
+}
+
+* {
+    font-family: 'TAEBAEKmilkyway';
+    font-weight: 650;
+}
+
+h1{
+    font-family: 'LOTTERIACHAB';
+    font-size: 45px;
+    font-weight: 100;
+
+    background-color: black;
+    color: white;
+      
+    border: 1px solid;
+    border-radius: 60px;
+      
+    padding: 5px;
+    display: inline;
+}
+
+.mainForm {
+    margin-top: 10px;
+    margin-bottom: 90px;
+}
+
+h4{
+    font-family: 'LOTTERIACHAB';
+    font-size: 30px;
+
+    border: 1px solid;
+    border-radius: 40px;
+    background-color: white;
+    display: inline-block;
+    padding: .6rem;
+}
+
+.address svg {
+    transition: all 5s ease-in-out;
+}
+
+.address:hover > svg {
+    transform: translateX(600px);
+}
+
+.address .addressInput {
+    border-left: 5px dotted;
+    border-right: 5px dotted;
+
+    padding: 1rem 1rem 1.5rem 1rem;
+}
+
+/* 결제 방식 */
+.select {
+    text-align: center;
+    padding: 15px 20px;
+    margin-bottom: 60px;
+}
+
+.select input[type=radio]{
+    display: none;
+}
+
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 45px;
+    width: 100px;
+    border: 1px solid #333;
+    padding: 0.5rem;
+    font-size: 50px;
+    line-height: 24px;
+    text-align: center;
+    align-items:center;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.select input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+
+.select input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}
+
+/* 버튼 */
+.pay {
+    font-family: 'LOTTERIACHAB';
+    font-size: 50px;
+    width: fit-content;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-radius: 50px;
+
+    margin: auto;
+
+    text-align: center;
+
+    animation: shake 2s linear alternate infinite;
+}
+
+@keyframes shake {
+    0% {
+      transform: rotate(0deg)
+      }
+    25% {
+        transform: rotate(-4deg);
+      }
+    50% {
+        transform: rotate(4deg);
+      }
+    75% {
+        transform: rotate(-4deg);
+      }
+    100% {
+        transform: rotate(0deg);
+      }
+  }

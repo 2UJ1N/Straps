@@ -1,0 +1,61 @@
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    color: #000;
+}
+
+.container {
+    font-family: 'TAEBAEKmilkyway';
+    font-weight: 650;
+
+}
+
+.all {
+    height: 500px;
+    width: 250px;
+    text-align: center;
+
+    padding: 1rem;
+}
+
+img {
+    transition: all 0.3s ease-in-out;
+    border: 0.5px solid #d3d3d3;
+    width: 200px;
+    height: 200px;
+
+    background-size: contain;
+}
+
+img:hover{
+    transition:scale(1.2);
+    -webkit-transform:scale(1.2);
+}
+
+/* 상품 정보 */
+.info {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.info h5 {
+    font-weight: 900;
+    font-size: 20px;
+    word-break: break-all;
+}
+
+.info .productPrice {
+    font-size: 25px;
+}
+
+
+/* 버튼 */
+.buttons .heart:hover {
+    background-color: white;
+}
+
+.buttons .heart:hover svg{
+    color: red;
+}

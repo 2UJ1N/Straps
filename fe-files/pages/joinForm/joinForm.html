@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="joinForm.css">
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script type="module" src="joinForm.js"></script>
+  <title>회원가입</title>
+</head>
+
+<body>
+  <div class="container">
+    <main>
+      <div class="title py-5 text-center">
+        <!-- <h1>straps</h1> -->
+        <h4>Sign in</h4>
+        <p class="lead"></p>
+      </div>
+
+      <div class="total row g-5">
+        <div class="col-md-7 mx-md-auto">
+          <h4 class="mb-3"></h4>
+          <form class="needs-validation" novalidate>
+
+            <div class="row">
+              <div class="col-12 mb-3">
+                <label for="email" class="label-required">이메일</label>
+                <input type="email" class="form-control" id="email" placeholder="elice@example.com" required>
+                <div class="invalid-feedback">
+                  이메일을 입력해주세요.
+                </div>
+              </div>
+
+              <div class="col-12">                
+                <label for="password" class="label-required">비밀번호</label>
+                <input type="password" class="form-control" id="password" placeholder="password" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$" required>
+                <p class="warning-text" id="pwchk01"></p>
+              </div>
+
+              <div class="col-12">
+                <label for="passwordCheck" class="label-required">비밀번호 확인</label>
+                <input type="password" class="form-control" id="passwordCheck" placeholder="" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$" required>
+                <p class="warning-text" id="pwchk02"></p>
+              </div>
+
+              <div class="col-12 mb-3">
+                <label for="name" class="label-required">이름</label>
+                <input type="text" class="form-control" id="name" placeholder="엘리스" required>
+                <div class="invalid-feedback">
+                  이름을 입력해주세요.
+                </div>
+              </div>
+
+              <div class="col-12 mb-3">
+                <label for="tel" class="label-required">전화번호</label>
+                <input type="tel" class="form-control" id="phones" placeholder="010-0000-0000" required>
+                <div class="invalid-feedback">
+                  전화번호를 입력해주세요.
+                </div>
+              </div>
+
+
+              <div class="col-12 mb-3">
+                <label for="root">주소</label>
+                <div class="row">
+                  <div class="col-4">
+                    <input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호 검색" readonly required>
+                    <div class="invalid-feedback">
+                      우편번호를 검색해주세요.
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-dark" id="search">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg> 
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col-12 mb-3">
+                <input type="postcode" class="form-control" id="address" required readonly>
+              </div>
+
+              <div class="col-12 mb-3">
+                <input type="text" class="form-control formstyle-none" id="more_address" placeholder="상세주소 입력" required>
+                <div class="invalid-feedback">
+                  상세주소를 입력해주세요.
+                </div> 
+              </div>
+
+
+              <div class="col-12">
+                <label for="birth" class="label-required">생년월일</label>
+                <div class="row">
+                  <div class="col-3">
+                    <select class="form-select d-block w-100" id="year" name="year" required>
+                      <option value=""> 년도 </option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <select class="form-select d-block w-100" id="month" name="month" required>
+                      <option value="">월</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <select class="form-select d-block w-100" id="day" name="day" required>
+                      <option value=""> 일 </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!--<div class="invalid-feedback">
+                                    생년월일을 입력해주세요.
+                                    </div>-->
+            </div>
+
+            <hr class="my-4">
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="same-address" required>
+              <label class="label-required" for="same-address">개인정보 수집 및 이용에 동의합니다.</label>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info" required> 
+              <label class="label-required" for="save-info">이 페이지는 가상의 페이지임을 알고 있습니다.</label>
+            </div>
+
+            <hr class="my-4">
+            <br>
+            <button class="w-100 btn btn-outline-dark btn-lg" id="subbtn" type="submit">Join Straps!</button>
+          </form>
+        </div>
+      </div>
+      
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; Elice 77ㅣ리77ㅣ리</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

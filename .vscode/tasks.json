@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "fe-start",
+			"problemMatcher": [],
+			"label": "npm: fe-start",
+			"detail": "npm-run-all vite-build vite-start"
+		}
+	]
+}

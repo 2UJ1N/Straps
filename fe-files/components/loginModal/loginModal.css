@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'LOTTERIACHAB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.modal-body {
+    align-items: center;
+}
+
+/* 인사 */
+.ment{
+    font-family: 'LOTTERIACHAB';
+    font-size: 70px;
+    font-weight: 200;
+    margin-bottom: 50px;
+    line-height: 50px;
+
+    cursor: pointer;
+}
+
+.ment .hi {
+    font-size: 40px;
+    margin-bottom: 0;
+}
+
+    /* 마우스 호버 효과 - 아직 안됨 */
+
+.ment:hover .highlight:after{
+    width: 100%;
+    transition: width;
+}
+
+.highlight {
+    display: inline-block;
+    position: relative;
+}
+
+.highlight:after{
+    content:"";
+    width: 0;
+    height: 10px;
+    display: inline-block;
+    background: pink;
+    position: absolute;
+    bottom:0;
+    left:0;
+    z-index:-1;
+    transition: 0.2s all;
+}
+
+    /* 끗 */
+
+#emailInput, #passwordInput {
+    border-radius: 60px;
+    border: black solid 1px;
+}
+
+/* 버튼 css */
+.button {
+    margin-top: 50px;
+    display: inline-block;
+
+    font-family: 'LOTTERIACHAB';
+}
+
+.button .login, .button .signin {
+    border-radius: 60px;
+
+    font-size: 30px;
+    font-weight: 100;
+
+    margin-left: 5px;
+    margin-right: 5px;
+}

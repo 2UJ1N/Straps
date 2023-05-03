@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'LOTTERIACHAB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TAEBAEKmilkyway';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  color: #000;
+}
+
+.container {
+  font-family: 'TAEBAEKmilkyway';
+  font-weight: 650;
+}
+
+.title{
+  margin-bottom: 30px;
+}
+
+.title h4 {
+  font-family: 'LOTTERIACHAB';
+  font-size: 30px;
+  font-weight: 100;
+
+  border: 1px solid;
+  border-radius: 60px;
+
+  padding: 5px;
+  display: inline;
+}
+
+form {
+  border-left: 5px dotted;
+  border-right: 5px dotted;
+
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+/* 적용 안됨 */
+.form-check > input{
+  accent-color: #000;
+}
+
+#subbtn {
+  font-family: 'LOTTERIACHAB';
+  font-size: 30px;
+
+  border-radius: 40px;
+
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+}
+
+#subbtn:hover {
+  transform: translateY(-10px);
+}
+
+.warning-text {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+  }
+
+.label-required::after {content: "*"; margin-left: 5px; color: #dc3545; }

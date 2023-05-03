@@ -1,0 +1,130 @@
+@font-face {
+    font-family: 'LOTTERIACHAB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/LOTTERIACHAB.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    color: #000;
+}
+
+
+@media (max-width: 1000px) {
+    .productPictures .sub_img li img {width: 100%; }
+    .productPictures .big_img {width: 100%; height: fit-content; }
+}
+
+.body {
+    font-family: 'TAEBAEKmilkyway', sans-serif;
+}
+
+
+/* 헤더 */
+.shopHeader {
+    height: 250px;
+    margin-top: 30px;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 150px;
+}
+
+.shopHeader .row {
+    align-items: flex-start;
+    justify-content: space-between; 
+}
+
+.shopHeader .link .eliceLogo {
+    width: 10%;
+    height: 10%;
+    border: none;
+}
+
+.shopHeader .logo .shopLogo {
+    font-family: 'LOTTERIACHAB';
+    font-size: 110px;
+    text-align: center;
+    text-decoration-line: none;
+    margin-top: 100px;
+}
+
+.shopHeader .chk svg{
+    margin-right: 10px;
+}
+
+.nav-tabs {justify-content: center; }
+
+.categoryBar {
+    margin-top: 100px;
+}
+
+.categoryBar .nav {
+    border: #000 1px;
+    border-style: solid none;
+}
+
+.categoryBar .nav .categoryBtn {
+    border-radius: 60px;
+    vertical-align: middle;
+}
+
+
+.categoryBar .nav .categoryBtn:active{
+    border-radius: 60px;
+    vertical-align: middle;
+}
+
+.categoryBar .divider1 {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.categoryBar .divider2 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.categoryBar #bestTabButton {
+    font-family: 'LOTTERIACHAB';
+    font-size: 28px;
+    font-weight: 10;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.categoryBar #saleTabButton {
+    font-family: 'LOTTERIACHAB';
+    font-size: 28px;
+    font-weight: 10;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.categoryBar #galaxyTabButton {
+    font-family: 'TAEBAEKmilkyway';
+    font-size: 25px;
+    font-weight: 700;
+    border: none;
+    margin-top: 6.5px;
+    margin-bottom: 3.5px;
+}
+
+.categoryBar #appleTabButton {
+    font-family: 'TAEBAEKmilkyway';
+    font-size: 25px;
+    font-weight: 700;
+    border: none;
+    margin-top: 6.5px;
+    margin-bottom: 3.5px;
+}
+
+.categoryBar #bestTabButton:hover, #saleTabButton:hover {
+    border: none;
+
+}
