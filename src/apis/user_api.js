@@ -6,26 +6,14 @@ const userApi = {
   // 회원가입
   async newUser(req, res, next) {
     try {
-      const {
-        user_id,
-        password,
-        name,
-        address,
-        phones,
-        email,
-        regdate,
-        role,
-        status,
-      } = req.body;
+      const { user_id, password, name, address, phones, email, regdate, role, status } = req.body;
 
       // 이메일 중복 검사
       const allUser = await User.find({});
-      const IsUsingEmail = allUser.map((allUser) => allUser.email);
+      const IsUsingEmail = allUser.map(allUser => allUser.email);
       for (let i = 0; i < IsUsingEmail.length; i++) {
         if (req.body.email == IsUsingEmail[i]) {
-          throw new Error(
-            '사용 중인 이메일입니다. 다른 이메일을 입력해주세요.'
-          );
+          throw new Error('사용 중인 이메일입니다. 다른 이메일을 입력해주세요.');
         }
       }
 
@@ -48,9 +36,9 @@ const userApi = {
 
       res.status(200).json(createdUser);
     } catch (error) {
-      res.status(401).json({
+      res.status(421).json({
         // 에러 응답 코드를 401(Unauthorized)으로 설정
-        code: 401,
+        code: 421,
         message: 'email', // 에러 메시지를 클라이언트에게 반환
       });
     }
@@ -83,7 +71,7 @@ const userApi = {
         {
           expiresIn: '15m', // 만료시간 15분
           issuer: '토큰 발급자',
-        }
+        },
       );
 
       res.status(200).json({
@@ -94,9 +82,9 @@ const userApi = {
     } catch (err) {
       const user = await User.findOne({ email });
       if (!user) {
-        res.status(401).json({
+        res.status(422).json({
           // 에러 응답 코드를 401(Unauthorized)으로 설정
-          code: 401,
+          code: 422,
           message: 'email', // 에러 메시지를 클라이언트에게 반환
         });
       }
@@ -104,8 +92,8 @@ const userApi = {
       const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
       // const passwordMatch = password === user.password;
       if (!passwordMatch) {
-        res.status(402).json({
-          code: 402,
+        res.status(423).json({
+          code: 423,
           message: 'password',
         });
       }
@@ -114,26 +102,33 @@ const userApi = {
 
   // jwt 토큰 파싱
   async parsejwt(req, res, next) {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MTAwLCJpYXQiOjE2ODI3MzQyMjgsImV4cCI6MTY4MjczNTEyOCwiaXNzIjoi7Yag7YGwIOuwnOq4ieyekCJ9.rfqIorYWbNr-r2Pqq6h2I2WtPaxSIsEk3sgdj5f60F8';
-    const base64Url = token.split('.')[1];
-    const payload = Buffer.from(base64Url, 'base64');
-    const result = JSON.parse(payload.toString());
-    const parseUserId = result.user_id;
-    // const parseUserId = Number(ParseUserId);
+    try {
+      const token =
+        'JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJeyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MTAwLCJpYXQiOjE2ODI3MzQyMjgsImV4cCI6MTY4MjczNTEyOCwiaXNzIjoi7Yag7YGwIOuwnOq4ieyekCJ9.rfqIorYWbNr-r2Pqq6h2I2WtPaxSIsEk3sgdj5f60F8';
+      const base64Url = token.split('.')[1];
+      const payload = Buffer.from(base64Url, 'base64');
+      const result = JSON.parse(payload.toString());
+      const parseUserId = result.user_id;
+      // const parseUserId = Number(ParseUserId);
 
-    const user = await User.findOne({ user_id: parseUserId });
-    // user.user_id = Number(user.user_id);
-    // res.currentUser = user;
-    // console.log(res.currentUser);
-    // res.end();
+      const user = await User.findOne({ user_id: parseUserId });
+      // user.user_id = Number(user.user_id);
+      // res.currentUser = user;
+      // console.log(res.currentUser);
+      // res.end();
 
-    res.status(202).json({
-      parseUserId,
-      email: user.email,
-      password: user.password,
-    });
-    next();
+      res.status(200).json({
+        parseUserId,
+        email: user.email,
+        password: user.password,
+      });
+      next();
+    } catch (error) {
+      res.status(424).json({
+        code: 424,
+        message: 'wrong parsing code',
+      });
+    }
   },
 
   // 사용자 정보 조회: 모든 유저
@@ -143,9 +138,12 @@ const userApi = {
 
       if (!foundUser) return console.error(error);
 
-      res.status(202).json(foundUser);
+      res.status(200).json(foundUser);
     } catch (error) {
-      console.error(error);
+      res.status(425).json({
+        code: 425,
+        message: 'not all user',
+      });
     }
   },
 
@@ -157,9 +155,12 @@ const userApi = {
 
       if (!foundUser) return console.error(error);
 
-      res.status(202).json(foundUser);
+      res.status(200).json(foundUser);
     } catch (error) {
-      console.error(error);
+      res.status(426).json({
+        code: 426,
+        message: 'user_id',
+      });
     }
   },
 
@@ -167,8 +168,7 @@ const userApi = {
   async updateUser(req, res, next) {
     try {
       const { user_id } = req.params;
-      const { password, name, address, phones, email, regdate, role, status } =
-        req.body;
+      const { password, name, address, phones, email, regdate, role, status } = req.body;
 
       const updateInfo = {
         password,
@@ -186,9 +186,12 @@ const userApi = {
 
       const updatedUser = await User.updateOne({ user_id }, updateInfo);
 
-      res.status(203).json(updatedUser);
+      res.status(200).json(updatedUser);
     } catch (error) {
-      console.error(error);
+      res.status(425).json({
+        code: 425,
+        message: 'wrong update info',
+      });
     }
   },
 
@@ -202,9 +205,12 @@ const userApi = {
 
       const deletedUser = await User.deleteOne({ user_id });
 
-      res.status(204).json(deletedUser);
+      res.status(200).json(deletedUser);
     } catch (error) {
-      console.error(error);
+      res.status(426).json({
+        code: 426,
+        message: 'cannot delete user',
+      });
     }
   },
 };
