@@ -3,17 +3,17 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const userApi = {
-  // íšŒì›ê°€ì…
+  // È¸¿ø°¡ÀÔ
   async newUser(req, res, next) {
     try {
       const { user_id, password, name, address, phones, email, regdate, role, status } = req.body;
 
-      // ì´ë©”ì¼ ì¤‘ë³µ ê²€ì‚¬
+      // ÀÌ¸ŞÀÏ Áßº¹ °Ë»ç
       const allUser = await User.find({});
       const IsUsingEmail = allUser.map(allUser => allUser.email);
       for (let i = 0; i < IsUsingEmail.length; i++) {
         if (req.body.email == IsUsingEmail[i]) {
-          throw new Error('ì‚¬ìš© ì¤‘ì¸ ì´ë©”ì¼ì…ë‹ˆë‹¤. ë‹¤ë¥¸ ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”.');
+          throw new Error('»ç¿ë ÁßÀÎ ÀÌ¸ŞÀÏÀÔ´Ï´Ù. ´Ù¸¥ ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä.');
         }
       }
 
@@ -21,7 +21,6 @@ const userApi = {
 
       const createInfo = {
         user_id,
-        // password,
         password: hashedPassword,
         name,
         address,
@@ -37,40 +36,41 @@ const userApi = {
       res.status(200).json(createdUser);
     } catch (error) {
       res.status(421).json({
-        // ì—ëŸ¬ ì‘ë‹µ ì½”ë“œë¥¼ 401(Unauthorized)ìœ¼ë¡œ ì„¤ì •
+        // ¿¡·¯ ÀÀ´ä ÄÚµå¸¦ 401(Unauthorized)À¸·Î ¼³Á¤
         code: 421,
-        message: 'email', // ì—ëŸ¬ ë©”ì‹œì§€ë¥¼ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ë°˜í™˜
+        message: 'email', // ¿¡·¯ ¸Ş½ÃÁö¸¦ Å¬¶óÀÌ¾ğÆ®¿¡°Ô ¹İÈ¯
       });
     }
   },
 
-  // ë¡œê·¸ì¸
+  // ·Î±×ÀÎ
   async loginUser(req, res, next) {
     const { email, password } = req.body;
 
     try {
-      // ì´ë©”ì¼ ì¡´ì¬ ì—¬ë¶€ í™•ì¸
+      // ÀÌ¸ŞÀÏ Á¸Àç ¿©ºÎ È®ÀÎ
       const user = await User.findOne({ email });
-      if (!user) throw new Error('ì´ë©”ì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.');
-      // ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜ ì—¬ë¶€ í™•ì¸
+      if (!user) throw new Error('ÀÌ¸ŞÀÏÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.');
+      // ºñ¹Ğ¹øÈ£ ÀÏÄ¡ ¿©ºÎ È®ÀÎ
       const correctPasswordHash = user.password;
       const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
       // const passwordMatch = password === user.password;
-      if (!passwordMatch) throw new Error('ë¹„ë°€ë²ˆí˜¸ê°€ ë§ì§€ ì•ŠìŠµë‹ˆë‹¤.');
+      if (!passwordMatch) throw new Error('ºñ¹Ğ¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.');
 
-      // ë¡œê·¸ì¸ ì„±ê³µ -> JWT ì›¹ í† í° ìƒì„±
+      // ·Î±×ÀÎ ¼º°ø -> JWT À¥ ÅäÅ« »ı¼º
       const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
 
-      //2ê°œ í”„ë¡œí¼í‹°ë¥¼ jwt í† í°ì— ë‹´ìŒ; loginRequired: jwt.verify ì´ìš©í•˜ì—¬ ì •ìƒì ì¸ jwtì¸ì§€ í™•ì¸ë„ í•´ì•¼í•˜ë‚˜?
+      //2°³ ÇÁ·ÎÆÛÆ¼¸¦ jwt ÅäÅ«¿¡ ´ãÀ½; loginRequired: jwt.verify ÀÌ¿ëÇÏ¿© Á¤»óÀûÀÎ jwtÀÎÁö È®ÀÎµµ ÇØ¾ßÇÏ³ª?
       const token = jwt.sign(
         {
           type: 'JWT',
           user_id: user.user_id,
+          test: 'test',
         },
         secretKey,
         {
-          expiresIn: '15m', // ë§Œë£Œì‹œê°„ 15ë¶„
-          issuer: 'í† í° ë°œê¸‰ì',
+          expiresIn: '15m', // ¸¸·á½Ã°£ 15ºĞ
+          issuer: 'hyeri',
         },
       );
 
@@ -79,32 +79,45 @@ const userApi = {
         message: 'token',
         token: token,
       });
+
+      // const check = jwt.verify(token, 'secretKey');
+      // if (check) {
+      //   console.log('°ËÁõ', check.test);
+      // }
     } catch (err) {
+      // À¯Àú ¿À·ù
       const user = await User.findOne({ email });
       if (!user) {
         res.status(422).json({
-          // ì—ëŸ¬ ì‘ë‹µ ì½”ë“œë¥¼ 401(Unauthorized)ìœ¼ë¡œ ì„¤ì •
+          // ¿¡·¯ ÀÀ´ä ÄÚµå¸¦ 401(Unauthorized)À¸·Î ¼³Á¤
           code: 422,
-          message: 'email', // ì—ëŸ¬ ë©”ì‹œì§€ë¥¼ í´ë¼ì´ì–¸íŠ¸ì—ê²Œ ë°˜í™˜
+          message: 'email', // ¿¡·¯ ¸Ş½ÃÁö¸¦ Å¬¶óÀÌ¾ğÆ®¿¡°Ô ¹İÈ¯
         });
       }
+      // ÆĞ½º¿öµå ¿À·ù
       const correctPasswordHash = user.password;
       const passwordMatch = await bcrypt.compare(password, correctPasswordHash);
-      // const passwordMatch = password === user.password;
       if (!passwordMatch) {
         res.status(423).json({
           code: 423,
           message: 'password',
         });
       }
+      // // °ËÁõ ¿À·ù
+      // else {
+      //   res.status(424).json({
+      //     code: 424,
+      //     message: 'not verified',
+      //   });
+      // }
     }
   },
 
-  // jwt í† í° íŒŒì‹±
+  // jwt ÅäÅ« ÆÄ½Ì
   async parsejwt(req, res, next) {
     try {
       const token =
-        'JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJeyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MTAwLCJpYXQiOjE2ODI3MzQyMjgsImV4cCI6MTY4MjczNTEyOCwiaXNzIjoi7Yag7YGwIOuwnOq4ieyekCJ9.rfqIorYWbNr-r2Pqq6h2I2WtPaxSIsEk3sgdj5f60F8';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiSldUIiwidXNlcl9pZCI6MTIzLCJ0ZXN0IjoidGVzdCIsImlhdCI6MTY4MzMyOTQ1OCwiZXhwIjoxNjgzMzMwMzU4LCJpc3MiOiJoeWVyaSJ9.OdS7hKAQCiqeylolxvNnZGFYeWspDOwNqSIRFVVRjbU';
       const base64Url = token.split('.')[1];
       const payload = Buffer.from(base64Url, 'base64');
       const result = JSON.parse(payload.toString());
@@ -131,7 +144,7 @@ const userApi = {
     }
   },
 
-  // ì‚¬ìš©ì ì •ë³´ ì¡°íšŒ: ëª¨ë“  ìœ ì €
+  // »ç¿ëÀÚ Á¤º¸ Á¶È¸: ¸ğµç À¯Àú
   async getAllUser(req, res, next) {
     try {
       const foundUser = await User.find({});
@@ -147,7 +160,7 @@ const userApi = {
     }
   },
 
-  // ì‚¬ìš©ì ì •ë³´ ì¡°íšŒ: íŠ¹ì • ìœ ì €ë§Œ
+  // »ç¿ëÀÚ Á¤º¸ Á¶È¸: Æ¯Á¤ À¯Àú¸¸
   async getUser(req, res, next) {
     try {
       const { user_id } = req.params;
@@ -164,7 +177,7 @@ const userApi = {
     }
   },
 
-  // ì‚¬ìš©ì ì •ë³´ ìˆ˜ì •
+  // »ç¿ëÀÚ Á¤º¸ ¼öÁ¤
   async updateUser(req, res, next) {
     try {
       const { user_id } = req.params;
@@ -195,7 +208,7 @@ const userApi = {
     }
   },
 
-  // ì‚¬ìš©ì ì •ë³´ ì‚­ì œ
+  // »ç¿ëÀÚ Á¤º¸ »èÁ¦
   async deleteUser(req, res, next) {
     try {
       const { user_id } = req.params;
